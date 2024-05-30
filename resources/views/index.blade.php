@@ -23,8 +23,36 @@
             class="w-full text-white bg-blue-800 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-base px-5 py-3.5 text-center">Search</button>
     </form>
 </div>
-<div class="recent_search">
-
+<div class="recent_search mt-5">
+    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+        class="flex items-center text-2xl font-semibold justify-between w-full py-4 px-3 text-gray-900 md:border-0 md:p-0 md:w-auto">Recent
+        search
+        <svg class="w-3.5 h-3.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 4 4 4-4" />
+        </svg>
+    </button>
+    <div id="dropdownNavbar" class="z-10 hidden w-full font-normal divide-y px-5">
+        <ul class="text-sm" aria-labelledby="dropdownLargeButton">
+            <li>
+                <span id="badge-dismiss-red"
+                    class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-red-800 bg-red-100 rounded dark:bg-red-900 dark:text-red-300">
+                    IT Support
+                    <button type="button"
+                        class="inline-flex items-center p-1  ms-2 text-sm text-red-400 bg-transparent rounded-sm hover:bg-red-200 hover:text-red-900 dark:hover:bg-red-800 dark:hover:text-red-300"
+                        data-dismiss-target="#badge-dismiss-red" aria-label="Remove">
+                        <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Remove badge</span>
+                    </button>
+                </span>
+            </li>
+        </ul>
+    </div>
 </div>
 @endsection
 
