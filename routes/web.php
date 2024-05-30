@@ -25,3 +25,7 @@ Route::get('/sign-up', function () {
 Route::get('/sign-in', function () {
     return view('auth.signIn');
 });
+
+Route::get('/explore-companies', function () {
+    return view('explore-companies');
+});
