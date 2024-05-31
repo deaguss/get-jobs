@@ -2,7 +2,7 @@
 
 @section('title', 'Get jobs')
 
-@include("partials.header")
+@include('partials.header')
 
 @section('content')
 <div class="bg-[#051A49] text-white rounded-md py-7 px-3 lg:flex justify-between items-center">
@@ -87,10 +87,11 @@
             </div>
         </div>
     </div>
-    <hr>
+    <hr class="mb-28">
 
 
 </div>
+@include("partials.footer")
+
 @endsection
 
-@include("partials.footer")

@@ -11,14 +11,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 </head>
 
-<body class="flex flex-col h-full m-0">
-    @include('partials.header')
-
+<body>
     <div class="mx-auto w-full max-w-screen-xl px-2.5 md:px-20">
         @yield('content')
     </div>
-
-    @include('partials.footer')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
