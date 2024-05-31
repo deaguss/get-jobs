@@ -15,7 +15,7 @@
                 <h5 class="text-sm text-gray-700 text-muted pb-2 leading-none">
                     login to your account right now!
                 </h5>
-                <form class="space-y-4 md:space-y-6" action="{{ route('login') }}" method="POST">
+                <form class="space-y-4 md:space-y-6" action="/sign-in" method="POST">
                     @csrf
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your

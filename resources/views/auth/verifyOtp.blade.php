@@ -13,7 +13,7 @@
                 <p class="text-[15px] text-slate-500">Enter the 4-digit verification code that was sent to your email.
                 </p>
             </header>
-            <form id="otp-form" action="verify-otp" method="POST">
+            <form id="otp-form" action="/verify-otp/{{ $id }}" method="POST">
                 @csrf
                 <div class="flex items-center justify-center gap-3">
                     <input type="text"

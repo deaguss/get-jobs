@@ -37,7 +37,7 @@ class VerifyOtp extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.otp',
+            view: 'emails.otp',
             with: ['otp' => $this->user->otp]
         );
     }

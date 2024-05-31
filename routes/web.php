@@ -25,11 +25,11 @@ Route::get('/explore-companies', function () {
 });
 
 
-Route::get('/sign-up', [AuthController::class, 'showRegistrationForm'])->name('register');
-Route::post('register', [AuthController::class, 'register']);
+Route::get('/sign-up', [AuthController::class, 'showRegistrationForm'])->name('sign-up.form');
+Route::post('/sign-up', [AuthController::class, 'register'])->name('sign-up');
 
-Route::get('/sign-in', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('login', [AuthController::class, 'login']);
+Route::get('/sign-in', [AuthController::class, 'showLoginForm'])->name('sign.in.form');
+Route::post('/sign-in', [AuthController::class, 'login'])->name('sign.in');
 
-Route::get('/verify-otp', [AuthController::class, 'showOtpForm'])->name('verify-otp');
-Route::post('verify-otp', [AuthController::class, 'verifyOtp']);
+Route::get('/verify-otp/{id}', [AuthController::class, 'showOtpForm'])->name('verify.otp.form');
+Route::post('/verify-otp/{id}', [AuthController::class, 'verifyOtp'])->name('verify.otp');
