@@ -63,6 +63,6 @@
     <div class="card_people">
     </div>
 </div>
-@endsection
 
 @include("partials.footer")
+@endsection
