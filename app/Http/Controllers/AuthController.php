@@ -33,7 +33,7 @@ class AuthController extends Controller
 
         Mail::to($user->email)->send(new VerifyOtp($user));
 
-        return redirect()->route('verify.otp');
+        return view('auth.verifyOtp', ['id' => $user->id]);
     }
 
     public function showLoginForm()
@@ -60,29 +60,23 @@ class AuthController extends Controller
         return view('auth.verifyOtp');
     }
 
-    public function verifyOtp(Request $request)
+    public function verifyOtp(Request $request, $id = null)
     {
-        $request->validate([
-            'otp' => 'required|string',
-        ]);
+        $newUser = User::where('id', $id)->first();
 
-        dd($request->otp);
+        $otpArray = str_split($newUser->otp);
 
-        // $user = Auth::user();
-        // $newUser = User::where('id', $user->id)->first();
+        if ($request->otp === $otpArray
+        && Carbon::now()->lessThanOrEqualTo($newUser->otp_expires_at))
+        {
+            $newUser->otp = null;
+            $newUser->otp_expires_at = null;
+            $newUser->email_verified_at = Carbon::now();
+            $newUser->save();
 
-        // if ($user->otp === $request->otp && Carbon::now()->lessThanOrEqualTo($user->otp_expires_at)) {
-        //     foreach(){
+            return redirect()->route('login');
+        }
 
-        //     }
-        //     $newUser->otp = null;
-        //     $newUser->otp_expires_at = null;
-        //     $newUser->email_verified_at = Carbon::now();
-        //     $newUser->save();
-
-        //     return redirect()->intended('/');
-        // }
-
-        // return back()->withErrors(['otp' => 'Invalid or expired OTP.']);
+        return back()->withErrors(['otp' => 'Invalid or expired OTP.']);
     }
 }

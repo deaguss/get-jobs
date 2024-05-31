@@ -24,8 +24,6 @@ class User extends Authenticatable
     protected $guarded = [
         'created_at',
         'updated_at',
-        'deleted_at',
-        'email_verified_at',
         'remember_token'
     ];
 
@@ -45,6 +43,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+        'id' => 'string',
         'email_verified_at' => 'datetime',
     ];
 
