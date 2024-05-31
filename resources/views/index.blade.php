@@ -2,30 +2,35 @@
 
 @section('title', 'Get jobs')
 
-@include("partials.header")
+@include('partials.header')
 
 @section('content')
-<div class="header_search bg-gradient-to-r from-rose-700 to-pink-600 w-full py-6 rounded px-4">
-    <form class="max-w-sm mx-auto md:flex md:gap-x-10">
-        <div class="mb-5">
-            <label for="large-input" class="block mb-1 text-xl font-bold text-white">Jobs Title</label>
-            <input type="text" id="large-input"
-                class="block w-full p-4 text-gray-900 rounded-lg bg-gray-50 text-base focus:ring-offset-2 focus:ring-4 outline-none border-none"
+
+{{-- FORM Jobs Title Search --}}
+<div class="w-full px-4 py-6 rounded header_search bg-gradient-to-r from-rose-700 to-pink-600">
+    <form class="max-w-full h-fit md:flex md:gap-x-4 md:items-end">
+        <div class="flex-grow mb-5 md:mb-0">
+            <label for="jobs-title" class="block mb-1 text-xl font-bold text-white">Jobs Title</label>
+            <input type="text" id="jobs-title"
+                class="block w-full p-4 text-base text-gray-900 border-none rounded-lg outline-none bg-gray-50 focus:ring-offset-2 focus:ring-4"
                 placeholder="Enter keyword">
         </div>
-        <div class="mb-5">
-            <label for="large-input" class="block mb-1 text-xl font-bold text-white">Where</label>
-            <input type="text" id="large-input"
-                class="block w-full p-4 text-gray-900 rounded-lg bg-gray-50 text-base focus:ring-offset-2 focus:ring-4 outline-none border-none"
+        <div class="flex-grow mb-5 md:mb-0">
+            <label for="location" class="block mb-1 text-xl font-bold text-white">Where</label>
+            <input type="text" id="location"
+                class="block w-full p-4 text-base text-gray-900 border-none rounded-lg outline-none bg-gray-50 focus:ring-offset-2 focus:ring-4"
                 placeholder="Enter country, state...">
         </div>
         <button type="submit"
-            class="w-full text-white bg-blue-800 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-base px-5 py-3.5 text-center">Search</button>
+            class="w-full px-8 py-4 text-base font-bold text-center text-white bg-blue-800 rounded-lg md:w-auto md:mt-auto hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-primary-300">Search</button>
     </form>
 </div>
-<div class="recent_search mt-5">
+
+
+{{-- Recent Search --}}
+<div class="mt-5 recent_search">
     <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-        class="flex items-center text-2xl font-semibold justify-between w-full py-4 px-3 text-gray-900 md:border-0 md:p-0 md:w-auto">Recent
+        class="flex items-center justify-between w-full px-3 py-4 text-2xl font-semibold text-gray-900 md:border-0 md:p-0 md:w-auto">Recent
         search
         <svg class="w-3.5 h-3.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 10 6">
@@ -33,14 +38,14 @@
                 d="m1 1 4 4 4-4" />
         </svg>
     </button>
-    <div id="dropdownNavbar" class="hidden w-full font-normal divide-y px-5">
+    <div id="dropdownNavbar" class="hidden w-full px-5 font-normal divide-y">
         <ul aria-labelledby="dropdownLargeButton">
             <li class="py-1.5">
                 <span id="badge-dismiss-red"
-                    class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-red-800 bg-red-100 rounded dark:bg-red-900 dark:text-red-300">
+                    class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-800 bg-red-100 rounded me-2 dark:bg-red-900 dark:text-red-300">
                     IT Support
                     <button type="button"
-                        class="inline-flex items-center p-1  ms-2 text-sm text-red-400 bg-transparent rounded-sm hover:bg-red-200 hover:text-red-900 dark:hover:bg-red-800 dark:hover:text-red-300"
+                        class="inline-flex items-center p-1 text-sm text-red-400 bg-transparent rounded-sm ms-2 hover:bg-red-200 hover:text-red-900 dark:hover:bg-red-800 dark:hover:text-red-300"
                         data-dismiss-target="#badge-dismiss-red" aria-label="Remove">
                         <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -51,18 +56,48 @@
                     </button>
                 </span>
             </li>
-
         </ul>
     </div>
 </div>
-<div class="promotion_people mt-20 px-3">
-    <h1 class="font-semibold text-2xl">Promotion people</h1>
-    <p class="font-thin text-gray-900">promotion of job seekers on the homepage of the website. Each registered job
-        seeker has the opportunity to be
-        promoted, so that their profile appears more frequently and more prominently among other job seekers.</p>
-    <div class="card_people">
+
+
+
+<div>
+    <div class="px-3 mt-20 promotion_people">
+        <h1 class="text-2xl font-semibold">Promotion people</h1>
+        <p class="pt-2 font-thin text-justify text-gray-900">promotion of job seekers on the homepage of the website. Each registered job
+            seeker has the opportunity to be
+            promoted, so that their profile appears more frequently and more prominently among other job seekers.</p>
+        <div class="card_people">
+        </div>
     </div>
+
+    <hr class="mt-8">
+    <div class="container py-2 mx-auto">
+        <div class="overflow-x-auto">
+            <div class="inline-flex space-x-4">
+                @for($i = 0; $i < 6; $i++)
+                <div class="flex-shrink-0 max-w-sm p-6 text-center bg-white border border-gray-200 rounded-lg shadow w-80">
+                    <div class="flex justify-center">
+                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8" alt="Bonnie image"/>
+                    </div>
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk</h5>
+                    <p class="mb-2">Skill</p>
+                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed natus eaque.</p>
+                    <div class="flex text-white gap-x-3">
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                    </div>
+                </div>
+
+                @endfor
+            </div>
+        </div>
+    </div>
+    <hr class="mb-32">
 </div>
+
 
 @include("partials.footer")
 @endsection
