@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,9 @@ Route::post('/sign-in', [AuthController::class, 'login'])->name('sign.in');
 
 Route::post('/verify-otp/{id}', [AuthController::class, 'verifyOtp'])->name('verify.otp');
 Route::post('/resend-otp/{id}', [AuthController::class, 'resendOtp'])->name('resend.otp');
+
+Route::get('/forget-password', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.form');
+Route::post('/forget-password', [ForgetPasswordController::class, 'sendResetLinkEmail'])->name('forget.password.email');
+
+Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'showResetPasswordForm'])->name('reset.password.form');
+Route::post('/reset-password/{token}', [ForgetPasswordController::class, 'resetPassword'])->name('reset.password');

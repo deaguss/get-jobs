@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -50,5 +51,12 @@ class User extends Authenticatable
     public function profile()
     {
         return $this->hasOne(Profile::class, 'user_id', 'id');
+    }
+
+    public function createPasswordResetToken()
+    {
+        $this->reset_password_token = Str::random(64);
+        $this->reset_password_token_expires_at = now()->addHours(1);
+        $this->save();
     }
 }
