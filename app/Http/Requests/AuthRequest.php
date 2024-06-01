@@ -23,7 +23,19 @@ class AuthRequest extends FormRequest
     {
         return [
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' =>
+                'required|
+                min:6|
+                confirmed|
+                regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'
+            ,
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'password.regex' => 'Passwords must contain at least one uppercase letter, one special character, and one number.',
         ];
     }
 }

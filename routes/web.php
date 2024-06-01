@@ -31,5 +31,5 @@ Route::post('/sign-up', [AuthController::class, 'register'])->name('sign-up');
 Route::get('/sign-in', [AuthController::class, 'showLoginForm'])->name('sign.in.form');
 Route::post('/sign-in', [AuthController::class, 'login'])->name('sign.in');
 
-Route::get('/verify-otp/{id}', [AuthController::class, 'showOtpForm'])->name('verify.otp.form');
 Route::post('/verify-otp/{id}', [AuthController::class, 'verifyOtp'])->name('verify.otp');
+Route::post('/resend-otp/{id}', [AuthController::class, 'resendOtp'])->name('resend.otp');

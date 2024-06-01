@@ -35,10 +35,17 @@
                         Account</button>
                 </div>
             </form>
-            <div class="text-sm text-slate-500 mt-4">Didn't receive code? <a
-                    class="font-medium text-indigo-500 hover:text-indigo-600" href="#0">Resend</a></div>
+            <form action="{{ route('resend.otp', ['id' => $id]) }}" method="POST">
+                @csrf
+                <div class="text-sm text-slate-500 mt-4">Didn't receive code? <button type="submit"
+                        class="font-medium text-indigo-500 hover:text-indigo-600" href="#0">Resend</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </section>
+@include("components.simple-alert", ['errors' => $errors] + (isset($success) ? ['success' => $success] : []))
+
 @include("partials.footer")
 @endsection

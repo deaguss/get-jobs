@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Mail\VerifyOtp;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -22,7 +23,6 @@ class AuthController extends Controller
 
     public function register(AuthRequest $request)
     {
-
         $user = User::create([
             'id' => Str::uuid(),
             'name' => $request->name,
@@ -45,17 +45,17 @@ class AuthController extends Controller
     public function login(Request $request)
     {
 
-        $credentials = $request->validate([
-            'email' => 'required','email',
-            'password' => 'required', 'password','min:6',
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
         ]);
 
         $user = User::where('email', $request->email)->first();
 
         if (! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => 'Email atau kata sandi yang diberikan tidak sesuai dengan data kami.',
-            ])->errorBag('auth')->redirectTo('/sign-in');
+            return redirect()->back()->withErrors(
+                ['email' => 'The email or password provided does not match our data.']
+            );
         }
 
         if($user->tokens()->count() > 0){
@@ -67,11 +67,10 @@ class AuthController extends Controller
         $token = $user->createToken('web-login-token')->plainTextToken;
         session(['token' => $token]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        Auth::login($user);
+        $request->session()->regenerate();
 
-            return redirect()->intended('/');
-        }
+        return redirect()->intended('/');
     }
 
     public function showOtpForm()
@@ -81,7 +80,8 @@ class AuthController extends Controller
 
     public function verifyOtp(Request $request, $id = null)
     {
-        $newUser = User::where('id', $id)->first();
+        try {
+        $newUser = User::findOrFail($id);
 
         $otpArray = str_split($newUser->otp);
 
@@ -94,8 +94,42 @@ class AuthController extends Controller
             $newUser->save();
 
             return redirect()->route('sign.in.form');
+        }else {
+            return view('auth.verifyOtp', [
+                'id' => $id,
+                'errors'=> ['Invalid or expired OTP.']
+            ]);
         }
+    } catch (\Exception $e) {
+        return view('auth.verifyOtp', [
+            'id' => $id,
+            'errors'=> ['Verification failed. Please try again.']
+        ]);
+        }
+    }
 
-        return back()->withErrors(['otp' => 'Invalid or expired OTP.']);
+        public function resendOtp($id)
+    {
+        try {
+            $user = User::findOrFail($id);
+
+            $user->otp = Str::random(4);
+            $user->otp_expires_at = Carbon::now()->addMinutes(10);
+            $user->save();
+
+            Mail::to($user->email)->send(new VerifyOtp($user));
+
+            $successMessage = 'A new OTP has been sent to your email address.';
+
+            return view('auth.verifyOtp', [
+                'id' => $id,
+                'success' => $successMessage
+            ]);
+        } catch (\Exception $e) {
+            return view('auth.verifyOtp', [
+                'id' => $id,
+                'errors' => ['Failed to resend OTP. Please try again.']
+            ]);
+        }
     }
 }
