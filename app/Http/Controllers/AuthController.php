@@ -11,8 +11,6 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Mail\VerifyOtp;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {

@@ -65,7 +65,8 @@
 <div>
     <div class="px-3 mt-20 promotion_people">
         <h1 class="text-2xl font-semibold">Promotion people</h1>
-        <p class="pt-2 font-thin text-justify text-gray-900">promotion of job seekers on the homepage of the website. Each registered job
+        <p class="pt-2 font-thin text-justify text-gray-900">promotion of job seekers on the homepage of the website.
+            Each registered job
             seeker has the opportunity to be
             promoted, so that their profile appears more frequently and more prominently among other job seekers.</p>
         <div class="card_people">
@@ -76,26 +77,30 @@
     <div class="container py-2 mx-auto">
         <div class="overflow-x-auto">
             <div class="inline-flex space-x-4">
-                @for($i = 0; $i < 6; $i++)
-                <div class="flex-shrink-0 max-w-sm p-6 text-center bg-white border border-gray-200 rounded-lg shadow w-80">
+                @for($i = 0; $i < 6; $i++) <div
+                    class="flex-shrink-0 max-w-sm p-6 text-center bg-white border border-gray-200 rounded-lg shadow w-80">
                     <div class="flex justify-center">
-                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8" alt="Bonnie image"/>
+                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg object-cover"
+                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
+                            alt="Bonnie image" />
                     </div>
                     <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk</h5>
                     <p class="mb-2">Skill</p>
-                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed natus eaque.</p>
+                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed natus
+                        eaque.</p>
                     <div class="flex text-white gap-x-3">
                         <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
                         <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
                         <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
                     </div>
-                </div>
-
-                @endfor
             </div>
+
+            @endfor
         </div>
     </div>
-    <hr class="mb-32">
+</div>
+<hr class="mb-32">
 </div>
 
 

@@ -26,7 +26,7 @@
 </div>
 @endif
 
-@if (isset($success))
+@if (isset($success) && !isset($errors))
 <div class="fixed bottom-0 right-0 z-10">
     <div id="alert-border-3"
         class="flex items-center p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800"
