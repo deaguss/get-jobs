@@ -44,9 +44,10 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
         $credentials = $request->validate([
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
+            'email' => 'required','email',
+            'password' => 'required', 'password','min:6',
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -57,17 +58,20 @@ class AuthController extends Controller
             ])->errorBag('auth')->redirectTo('/sign-in');
         }
 
-        $user->tokens()->delete();
+        if($user->tokens()->count() > 0){
+            $userId = $user->id;
+
+            $user->tokens()->where('tokenable_id', $userId)->delete();
+        }
 
         $token = $user->createToken('web-login-token')->plainTextToken;
+        session(['token' => $token]);
 
-        $request->session()->put('token', $token);
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        Auth::login($user);
-
-        $request->session()->regenerate();
-
-        return redirect()->route('/');
+            return redirect()->intended('/');
+        }
     }
 
     public function showOtpForm()
