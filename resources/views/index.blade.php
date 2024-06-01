@@ -61,7 +61,7 @@
 </div>
 
 
-
+{{-- Slider --}}
 <div>
     <div class="px-3 mt-20 promotion_people">
         <h1 class="text-2xl font-semibold">Promotion people</h1>
@@ -73,14 +73,18 @@
         </div>
     </div>
 
+
+    {{-- LIST SLIDER --}}
     <hr class="mt-8">
-    <div class="container py-2 mx-auto">
+
+    {{-- Slider pertama --}}
+    {{-- <div class="container py-2 mx-auto">
         <div class="overflow-x-auto">
             <div class="inline-flex space-x-4">
-                @for($i = 0; $i < 6; $i++) <div
+                @for($i = 0; $i < 6; $i++) \ <div
                     class="flex-shrink-0 max-w-sm p-6 text-center bg-white border border-gray-200 rounded-lg shadow w-80">
                     <div class="flex justify-center">
-                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg object-cover"
+                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
                             src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
                             alt="Bonnie image" />
                     </div>
@@ -98,9 +102,81 @@
 
             @endfor
         </div>
+    </div> --}}
+
+    {{-- Slider kedua --}}
+    <div>
+        <div id="custom-controls-gallery" class="relative w-full" data-carousel="slide">
+            <div class="relative h-80 md:h-96 overflow-hidden rounded-lg">
+                <!-- Item -->
+                @for($i = 0; $i < 6; $i++) <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    {{-- <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
+                        class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                        alt=""> --}}
+                    <div
+                        class="absolute block max-w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 border border-slate-300 p-5 rounded-lg">
+                        <div class="flex justify-center">
+                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                                src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
+                                alt="Bonnie image" />
+                        </div>
+                        <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk</h5>
+                        <p class="mb-2">Skill</p>
+                        <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
+                            amet
+                            consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed natus
+                            eaque.</p>
+                        <div class="flex text-white gap-x-3">
+                            <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                            <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                            <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        </div>
+                    </div>
+            </div>
+            @endfor
+        </div>
+
+        {{-- Slider Button --}}
+        <div class="flex justify-center items-center mb-5 gap-x-5">
+            <button type="button"
+                class="flex justify-center items-center me-4 h-full cursor-pointer group focus:outline-none"
+                data-carousel-prev>
+                <span
+                    class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
+                    <svg class="rtl:rotate-180 w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 5H1m0 0 4 4M1 5l4-4" />
+                    </svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+            </button>
+            <button type="button"
+                class="flex justify-center items-center h-full cursor-pointer group focus:outline-none"
+                data-carousel-next>
+                <span
+                    class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
+                    <svg class="rtl:rotate-180 w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                    <span class="sr-only">Next</span>
+                </span>
+            </button>
+        </div>
     </div>
+
+
 </div>
+
 <hr class="mb-32">
+</div>
+
+
+
+
+
 </div>
 
 
