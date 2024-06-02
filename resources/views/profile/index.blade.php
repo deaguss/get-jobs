@@ -192,7 +192,6 @@
                 </div>
             </div>
         </div>
-
         <div class="mt-6">
             <h2 class="text-3xl font-semibold">Education</h2>
             <p class="mt-2 text-gray-700">Bachelor of Information Technology</p>
@@ -259,6 +258,39 @@
                         resume</button>
                 </div>
             </div>
+        </div>
+        <div class="mt-6 border-2 rounded-xl px-16 py-12 mb-5">
+            <h2 class="text-3xl font-semibold mb-5">About me</h2>
+            <div class="w-full flex justify-between items-center py-4">
+                <p class="text-lg text-muted">Hobby</p>
+                <p class="text-lg text-muted">Workout</p>
+            </div>
+            <hr class="py-2 border-t-2">
+            <div class="w-full flex justify-between items-center py-4">
+                <p class="text-lg text-muted">Address</p>
+                <p class="text-lg text-muted">Renon</p>
+            </div>
+            <hr class="py-2 border-t-2">
+            <div class="w-full flex justify-between items-center py-4">
+                <p class="text-lg text-muted">Country</p>
+                <p class="text-lg text-muted">Indonesia</p>
+            </div>
+            <hr class="py-2 border-t-2">
+            <div class="w-full flex justify-between items-center py-4">
+                <p class="text-lg text-muted">City</p>
+                <p class="text-lg text-muted">Denpasar</p>
+            </div>
+            <hr class="py-2 border-t-2">
+            <div class="w-full flex justify-between items-center py-4">
+                <p class="text-lg text-muted">Postal code</p>
+                <p class="text-lg text-muted">80991</p>
+            </div>
+            <hr class="py-2 border-t-2">
+            <div class="w-full flex justify-between items-center py-4">
+                <p class="text-lg text-muted">Visible</p>
+                <p class="text-lg text-muted">On</p>
+            </div>
+            <hr class="py-2 border-t-2">
         </div>
     </div>
     <div class="flex-shrink">
