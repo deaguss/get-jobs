@@ -65,7 +65,8 @@
 <div>
     <div class="px-3 mt-20 promotion_people">
         <h1 class="text-2xl font-semibold">Promotion people</h1>
-        <p class="pt-2 font-thin text-justify text-gray-900">promotion of job seekers on the homepage of the website.
+        <p class="pt-2 font-thin text-justify text-gray-900">promotion of job seekers on the homepage of the
+            website.
             Each registered job
             seeker has the opportunity to be
             promoted, so that their profile appears more frequently and more prominently among other job seekers.</p>

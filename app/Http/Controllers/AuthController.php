@@ -91,7 +91,7 @@ class AuthController extends Controller
             $newUser->email_verified_at = Carbon::now();
             $newUser->save();
 
-            return redirect()->route('sign.in.form');
+            return redirect()->route('signin.form');
         }else {
             return view('auth.verifyOtp', [
                 'id' => $id,
@@ -129,5 +129,13 @@ class AuthController extends Controller
                 'errors' => ['Failed to resend OTP. Please try again.']
             ]);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('signin.form');
     }
 }

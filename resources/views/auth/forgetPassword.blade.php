@@ -14,7 +14,7 @@
                     enter your email and we will send a message to your email to reset your password.
                 </p>
             </header>
-            <form id="otp-form" action="/forget-password" method="POST">
+            <form id="otp-form" action="/sign-in/forget-password" method="POST">
                 @csrf
 
                 <div class="flex justify-center items-center flex-col mb-5">

@@ -39,7 +39,7 @@ class ResetPasswordMail extends Mailable
         return new Content(
             markdown: 'emails.reset_password',
             with: [
-                'resetLink' => url('/reset-password/' . $this->user->reset_password_token),
+                'resetLink' => url('/sign-in/reset-password/' . $this->user->reset_password_token),
             ]
         );
     }

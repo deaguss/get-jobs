@@ -14,7 +14,7 @@
                     Passwords must contain at least one uppercase letter, one special character, and one number.
                 </p>
             </header>
-            <form id="otp-form" action="/reset-password/{{ $token }}" method="POST">
+            <form id="otp-form" action="/sign-in/reset-password/{{ $token }}" method="POST">
                 @csrf
 
                 <div class="flex justify-center items-center flex-col mb-5">

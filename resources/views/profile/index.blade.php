@@ -156,7 +156,7 @@
             <hr class="my-3 border-t-2 mt-5">
             <p class="mt-2 text-gray-700 capitalize">Indicate your professional credentials. your relevant certificates,
                 memberships and accreditations here.</p>
-            <div class="flex flex-wrap gap-y-4 gap-x-2 mt-5">
+            <div class="flex flex-wrap gap-2 mt-5">
                 <img src="https://via.placeholder.com/100" alt="Avatar" class="w-25 h-25 rounded-lg">
                 <img src="https://via.placeholder.com/100" alt="Avatar" class="w-25 h-25 rounded-lg">
                 <img src="https://via.placeholder.com/100" alt="Avatar" class="w-25 h-25 rounded-lg">

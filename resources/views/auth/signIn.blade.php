@@ -30,13 +30,13 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                             required="">
                     </div>
-                    <a href="{{ route(('forget.password.form')) }}"
+                    <a href="{{ route(('signin.forget.password.form')) }}"
                         class="font-medium text-sm text-indigo-600 hover:underline">Forget
                         password?</a>
                     <button type="submit"
                         class="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login</button>
                     <p class="text-sm font-light text-gray-500">
-                        don't have an account? <a href="/sign-up"
+                        don't have an account? <a href="{{ route('signup.form') }}"
                             class="font-medium text-indigo-600 hover:underline ">Create an account</a>
                     </p>
                 </form>

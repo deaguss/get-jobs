@@ -21,13 +21,13 @@
             <ul
                 class="flex flex-col mt-4 font-medium rounded-lg md:items-center bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
                 <li>
-                    <a href="#"
-                        class="block px-3 py-2 text-white bg-blue-700 rounded md:p-0 md:bg-transparent md:text-blue-700"
-                        aria-current="page">Home</a>
+                    <a href="/"
+                        class="block px-3 py-2 text-gray-800 hover:underline hover:underline-offset-8 rounded">Dashboard</a>
                 </li>
                 <li>
-                    <a href="#"
-                        class="block px-3 py-2 text-gray-900 rounded md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700">Services</a>
+                    <a href="/explore-companies"
+                        class="block px-3 py-2 text-gray-800 hover:underline hover:underline-offset-8 rounded">Explore
+                        company</a>
                 </li>
                 <li>
                     <a href="#" id="dropdownNavbarLinkProfile"
@@ -44,24 +44,20 @@
 
                     {{-- Dropdown from profile menu, id="dropdownNavbarLinkProfile"--}}
                     <div id="dropdownNavbarLinkProfilePage"
-                        class="z-10 hidden absolute md:right-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="dropdownDefaultButton">
+                        class="z-10 hidden absolute md:right-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                        <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
                             <li>
-                                <a href="/profile"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                                <a href="/profile" class="block px-4 py-2 hover:bg-gray-100 ">Profile</a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Datuk</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Vacancies saved</a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Datuk</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Job application</a>
                             </li>
+                            <hr class="mx-4">
                             <li>
-                                <a href="#"
-                                    class="block px-4 py-2 text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
+                                <a href="/sign-out" class="block px-4 py-2 text-red-600 hover:bg-gray-100 ">Sign
                                     out</a>
                             </li>
                         </ul>
@@ -75,10 +71,10 @@
 
 
 <script>
-    const dropdown = document.getElementById('dropdownNavbarLinkProfile');
-    const dropdownLink = document.getElementById('dropdownNavbarLinkProfilePage');
+    const dropdown = document.getElementById("dropdownNavbarLinkProfile");
+    const dropdownLink = document.getElementById("dropdownNavbarLinkProfilePage");
 
-    dropdown.addEventListener('click', () => {
-        dropdownLink.classList.toggle('hidden');
-    })
+    dropdown.addEventListener("click", () => {
+        dropdownLink.classList.toggle("hidden");
+    });
 </script>

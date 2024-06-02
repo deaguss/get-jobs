@@ -13,7 +13,7 @@
                 <p class="text-[15px] text-slate-500">Enter the 4-digit verification code that was sent to your email.
                 </p>
             </header>
-            <form id="otp-form" action="/verify-otp/{{ $id }}" method="POST">
+            <form id="otp-form" action="/sign-up/verify-otp/{{ $id }}" method="POST">
                 @csrf
                 <div class="flex items-center justify-center gap-3">
                     <input type="text"
@@ -35,7 +35,7 @@
                         Account</button>
                 </div>
             </form>
-            <form action="{{ route('resend.otp', ['id' => $id]) }}" method="POST">
+            <form action="{{ route('signup.resend.otp', ['id' => $id]) }}" method="POST">
                 @csrf
                 <div class="text-sm text-slate-500 mt-4">Didn't receive code? <button type="submit"
                         class="font-medium text-indigo-500 hover:text-indigo-600" href="#0">Resend</button>
