@@ -46,8 +46,6 @@ Route::prefix('sign-in')->name('signin.')->group(function ()
 
 });
 
-
-
 Route::get('/sign-out', [AuthController::class, 'logout'])->name('sign.out');
 
 Route::get('/profile', [ProfileUser::class, 'index'])->name('profile');

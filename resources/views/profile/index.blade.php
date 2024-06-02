@@ -8,26 +8,137 @@
 <div class="container flex p-4 gap-x-5 w-full">
     <div class="bg-white rounded-lg">
         <div class="flex items-center space-x-4 bg-gradient-to-r from-rose-700 to-pink-600 py-8 px-3 rounded-xl">
-            <img src="https://via.placeholder.com/100" alt="Avatar" class="w-40 h-40 rounded-full">
+            <form>
+                <label for="file-upload" class="hover-edit-image relative cursor-pointer block rounded-full">
+                    <img src="https://via.placeholder.com/100" alt="Avatar" class="text-center w-40 h-40 rounded-full">
+                </label>
+                <input id="file-upload" type="file" class="hidden">
+            </form>
             <div>
-                <h1 class="text-3xl font-bold text-gray-200">Index Next Js</h1>
+                <h1 class="text-3xl font-bold text-gray-200">{{ $datas->first_name && $datas->last_name
+                    ? ($datas->first_name . ' ' . $datas->last_name)
+                    : 'User_' . $datas->short_id }}</h1>
                 <p class="text-gray-200 flex items-center gap-x-2 leading-none mt-4">
                     <svg class="w-5 h-5 text-gray-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M7.556 8.5h8m-8 3.5H12m7.111-7H4.89a.896.896 0 0 0-.629.256.868.868 0 0 0-.26.619v9.25c0 .232.094.455.26.619A.896.896 0 0 0 4.89 16H9l3 4 3-4h4.111a.896.896 0 0 0 .629-.256.868.868 0 0 0 .26-.619v-9.25a.868.868 0 0 0-.26-.619.896.896 0 0 0-.63-.256Z" />
                     </svg>
-                    index@gmail.com
+                    {{ $datas->email ? $datas->email : 'unknow@gmail.com' }}
                 </p>
                 <span
                     class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300 mt-1 ">
                     <span class="w-1.5 h-1.5 me-1 bg-green-500 rounded-full"></span>
                     Available
                 </span>
-                <button type="button"
+                <button data-modal-target="default-modal" data-modal-toggle="default-modal" type="button"
                     class="text-gray-200 bg-transparent hover:bg-gray-100/20 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 flex mt-4">
                     Edit
                 </button>
+
+                <!-- Modal set data user -->
+                <div id="default-modal" tabindex="-1" aria-hidden="true"
+                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-3xl max-h-full">
+                        <div class="relative bg-white rounded-lg shadow">
+                            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                                <h3 class="text-xl font-semibold text-gray-900">
+                                    Edit information
+                                </h3>
+                                <button type="button"
+                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                                    data-modal-hide="default-modal">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                            </div>
+                            <div class="p-4 md:p-5 space-y-4">
+                                <div class="flex mx-auto gap-x-4 w-full">
+                                    <div class="flex flex-col w-full">
+                                        <label for="first_name"
+                                            class="block mb-2 text-sm font-medium text-gray-900">First
+                                            name</label>
+                                        <input type="text" name="first_name" id="first_name"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
+                                            placeholder="Enter first name">
+                                    </div>
+                                    <div class="flex flex-col w-full">
+                                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last
+                                            name</label>
+                                        <input type="text" name="last_name" id="last_name"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
+                                            placeholder="Enter last name">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="address"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Address</label>
+                                    <input type="text" name="address" id="address"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                                        placeholder="full address" required="">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Phone
+                                        number</label>
+                                    <input type="number" name="phone" id="phone"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                                        placeholder="088888888" required="">
+                                </div>
+                                <div class="flex mx-auto gap-x-4 w-full">
+                                    <div class="flex flex-col w-full">
+                                        <label for="country"
+                                            class="block mb-2 text-sm font-medium text-gray-900">Country</label>
+                                        <input type="text" name="country" id="country"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
+                                            placeholder="country">
+                                    </div>
+                                    <div class="flex flex-col w-full">
+                                        <label for="city"
+                                            class="block mb-2 text-sm font-medium text-gray-900">City</label>
+                                        <input type="text" name="city" id="city"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
+                                            placeholder="city">
+                                    </div>
+                                    <div class="flex flex-col w-full">
+                                        <label for="postal_code"
+                                            class="block mb-2 text-sm font-medium text-gray-900">Postal code</label>
+                                        <input type="text" name="postal_code" id="postal_code"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
+                                            placeholder="089876">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="hobbies"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Hobby</label>
+                                    <input type="text" name="hobbies" id="hobbies"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                                        placeholder="play video games" required="">
+                                </div>
+                                <div>
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" value="" class="sr-only peer">
+                                        <div
+                                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <span
+                                            class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Avaliable?</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
+                                <button data-modal-hide="default-modal" type="button"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    Change</button>
+                                <button data-modal-hide="default-modal" type="button"
+                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
