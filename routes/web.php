@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgetPasswordController;
+use App\Http\Controllers\ProfileUser;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +41,6 @@ Route::post('/forget-password', [ForgetPasswordController::class, 'sendResetLink
 
 Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'showResetPasswordForm'])->name('reset.password.form');
 Route::post('/reset-password/{token}', [ForgetPasswordController::class, 'resetPassword'])->name('reset.password');
+
+
+Route::get('/profile', [ProfileUser::class, 'index'])->name('profile');
