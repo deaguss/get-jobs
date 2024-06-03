@@ -7,7 +7,7 @@
 @section('content')
 
 {{-- FORM Jobs Title Search --}}
-<div class="w-full px-4 py-6 rounded header_search bg-gradient-to-r from-rose-700 to-pink-600">
+<div class="w-full px-4 py-16 rounded header_search bg-gradient-to-r from-rose-700 to-pink-600">
     <form class="max-w-full h-fit md:flex md:gap-x-4 md:items-end">
         <div class="flex-grow mb-5 md:mb-0">
             <label for="jobs-title" class="block mb-1 text-xl font-bold text-white">Jobs Title</label>
@@ -38,8 +38,40 @@
                 d="m1 1 4 4 4-4" />
         </svg>
     </button>
-    <div id="dropdownNavbar" class="hidden w-full px-5 font-normal divide-y">
-        <ul aria-labelledby="dropdownLargeButton">
+    <div id="dropdownNavbar" class="hiddenn w-full px-32 font-normal">
+        <ul aria-labelledby="dropdownLargeButton" class="flex gap-x-2">
+            <li class="py-1.5">
+                <span id="badge-dismiss-red"
+                    class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-800 bg-red-100 rounded me-2 dark:bg-red-900 dark:text-red-300">
+                    IT Support
+                    <button type="button"
+                        class="inline-flex items-center p-1 text-sm text-red-400 bg-transparent rounded-sm ms-2 hover:bg-red-200 hover:text-red-900 dark:hover:bg-red-800 dark:hover:text-red-300"
+                        data-dismiss-target="#badge-dismiss-red" aria-label="Remove">
+                        <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Remove badge</span>
+                    </button>
+                </span>
+            </li>
+            <li class="py-1.5">
+                <span id="badge-dismiss-red"
+                    class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-800 bg-red-100 rounded me-2 dark:bg-red-900 dark:text-red-300">
+                    IT Support
+                    <button type="button"
+                        class="inline-flex items-center p-1 text-sm text-red-400 bg-transparent rounded-sm ms-2 hover:bg-red-200 hover:text-red-900 dark:hover:bg-red-800 dark:hover:text-red-300"
+                        data-dismiss-target="#badge-dismiss-red" aria-label="Remove">
+                        <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Remove badge</span>
+                    </button>
+                </span>
+            </li>
             <li class="py-1.5">
                 <span id="badge-dismiss-red"
                     class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-800 bg-red-100 rounded me-2 dark:bg-red-900 dark:text-red-300">
@@ -60,12 +92,11 @@
     </div>
 </div>
 
-
 {{-- Slider --}}
 <div>
-    <div class="px-3 mt-20 promotion_people">
+    <div class="px mt-16 promotion_people">
         <h1 class="text-2xl font-semibold">Promotion people</h1>
-        <p class="pt-2 font-thin text-justify text-gray-900">promotion of job seekers on the homepage of the
+        <p class="pt-2 font-thin text-justify text-gray-900 mr-[40rem]">promotion of job seekers on the homepage of the
             website.
             Each registered job
             seeker has the opportunity to be
@@ -73,113 +104,211 @@
         <div class="card_people">
         </div>
     </div>
-
-
-    {{-- LIST SLIDER --}}
-    <hr class="mt-8">
-
-    {{-- Slider pertama --}}
-    {{-- <div class="container py-2 mx-auto">
-        <div class="overflow-x-auto">
-            <div class="inline-flex space-x-4">
-                @for($i = 0; $i < 6; $i++) \ <div
-                    class="flex-shrink-0 max-w-sm p-6 text-center bg-white border border-gray-200 rounded-lg shadow w-80">
+    <div class="wrapper ms-20 my-5">
+        <i id="left" class="fa-solid fa-angle-left"></i>
+        <ul class="carousel">
+            <li class="card">
+                <div class="bg-white border border-slate-300 p-5 rounded-lg">
                     <div class="flex justify-center">
-                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
                             src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
-                            alt="Bonnie image" />
+                            alt="Bonnie image" draggable="false" />
                     </div>
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk</h5>
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 1</h5>
                     <p class="mb-2">Skill</p>
-                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed natus
-                        eaque.</p>
+                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
+                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
+                        natus eaque.</p>
                     <div class="flex text-white gap-x-3">
                         <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
                         <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
                         <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
                     </div>
-            </div>
-
-            @endfor
-        </div>
-    </div> --}}
-
-    {{-- Slider kedua --}}
-    <div>
-        <div id="custom-controls-gallery" class="relative w-full" data-carousel="slide">
-            <div class="relative h-80 md:h-96 overflow-hidden rounded-lg">
-                <!-- Item -->
-                @for($i = 0; $i < 6; $i++) <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    {{-- <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-                        class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                        alt=""> --}}
-                    <div
-                        class="absolute block max-w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 border border-slate-300 p-5 rounded-lg">
-                        <div class="flex justify-center">
-                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                                src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
-                                alt="Bonnie image" />
-                        </div>
-                        <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk</h5>
-                        <p class="mb-2">Skill</p>
-                        <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
-                            amet
-                            consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed natus
-                            eaque.</p>
-                        <div class="flex text-white gap-x-3">
-                            <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                            <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                            <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        </div>
+                </div>
+            </li>
+            <li class="card">
+                <div class="bg-white border border-slate-300 p-5 rounded-lg">
+                    <div class="flex justify-center">
+                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
+                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
+                            alt="Bonnie image" draggable="false" />
                     </div>
-            </div>
-            @endfor
-        </div>
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 2</h5>
+                    <p class="mb-2">Skill</p>
+                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
+                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
+                        natus eaque.</p>
+                    <div class="flex text-white gap-x-3">
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                    </div>
+                </div>
+            </li>
+            <li class="card">
+                <div class="bg-white border border-slate-300 p-5 rounded-lg">
+                    <div class="flex justify-center">
+                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
+                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
+                            alt="Bonnie image" draggable="false" />
+                    </div>
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 3</h5>
+                    <p class="mb-2">Skill</p>
+                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
+                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
+                        natus eaque.</p>
+                    <div class="flex text-white gap-x-3">
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                    </div>
+                </div>
+            </li>
+            <li class="card">
+                <div class="bg-white border border-slate-300 p-5 rounded-lg">
+                    <div class="flex justify-center">
+                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
+                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
+                            alt="Bonnie image" draggable="false" />
+                    </div>
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 4</h5>
+                    <p class="mb-2">Skill</p>
+                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
+                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
+                        natus eaque.</p>
+                    <div class="flex text-white gap-x-3">
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                    </div>
+                </div>
+            </li>
+            <li class="card">
+                <div class="bg-white border border-slate-300 p-5 rounded-lg">
+                    <div class="flex justify-center">
+                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
+                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
+                            alt="Bonnie image" draggable="false" />
+                    </div>
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 5</h5>
+                    <p class="mb-2">Skill</p>
+                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
+                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
+                        natus eaque.</p>
+                    <div class="flex text-white gap-x-3">
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                    </div>
+                </div>
+            </li>
+            <li class="card">
+                <div class="bg-white border border-slate-300 p-5 rounded-lg">
+                    <div class="flex justify-center">
+                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
+                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
+                            alt="Bonnie image" draggable="false" />
+                    </div>
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 6</h5>
+                    <p class="mb-2">Skill</p>
+                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
+                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
+                        natus eaque.</p>
+                    <div class="flex text-white gap-x-3">
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                    </div>
+                </div>
+            </li>
 
-        {{-- Slider Button --}}
-        <div class="flex justify-center items-center mb-5 gap-x-5">
-            <button type="button"
-                class="flex justify-center items-center me-4 h-full cursor-pointer group focus:outline-none"
-                data-carousel-prev>
-                <span
-                    class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
-                    <svg class="rtl:rotate-180 w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 5H1m0 0 4 4M1 5l4-4" />
-                    </svg>
-                    <span class="sr-only">Previous</span>
-                </span>
-            </button>
-            <button type="button"
-                class="flex justify-center items-center h-full cursor-pointer group focus:outline-none"
-                data-carousel-next>
-                <span
-                    class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
-                    <svg class="rtl:rotate-180 w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg>
-                    <span class="sr-only">Next</span>
-                </span>
-            </button>
+        </ul>
+        <i id="right" class="fa-solid fa-angle-right"></i>
+    </div>
+</div>
+
+<div>
+    <div class="px mt-16 promotion_people">
+        <h1 class="text-2xl font-semibold">Find a job</h1>
+        <p class="pt-2 font-thin text-justify text-gray-900 mr-[40rem]">find jobs that are relevant to your desires.
+            just apply and wait for a reply.</p>
+        <div class="card_jobs">
         </div>
     </div>
-
-
-</div>
-
-<hr class="mb-32">
 </div>
 
 
+<script>
+    const wrapper = document.querySelector(".wrapper");
+    const carousel = document.querySelector(".carousel");
+    const firstCardWidth = carousel.querySelector(".card").offsetWidth;
+    const arrowBtns = document.querySelectorAll(".wrapper i");
+    const carouselChildrens = [...carousel.children];
+
+    let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
+
+    let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
+
+    carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
+        carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+    });
+
+    carouselChildrens.slice(0, cardPerView).forEach(card => {
+        carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+    });
+
+    carousel.classList.add("no-transition");
+    carousel.scrollLeft = carousel.offsetWidth;
+    carousel.classList.remove("no-transition");
+
+    arrowBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            carousel.scrollLeft += btn.id == "left" ? -firstCardWidth : firstCardWidth;
+        });
+    });
+
+    const dragStart = (e) => {
+        isDragging = true;
+        carousel.classList.add("dragging");
+
+        startX = e.pageX;
+        startScrollLeft = carousel.scrollLeft;
+    }
+
+    const dragging = (e) => {
+        if(!isDragging) return;
+
+        carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+    }
+
+    const dragStop = () => {
+        isDragging = false;
+        carousel.classList.remove("dragging");
+    }
+
+    const infiniteScroll = () => {
+
+        if(carousel.scrollLeft === 0) {
+            carousel.classList.add("no-transition");
+            carousel.scrollLeft = carousel.scrollWidth - (2 * carousel.offsetWidth);
+            carousel.classList.remove("no-transition");
+        }
+
+        else if(Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+            carousel.classList.add("no-transition");
+            carousel.scrollLeft = carousel.offsetWidth;
+            carousel.classList.remove("no-transition");
+        }
+        clearTimeout(timeoutId);
+        if(!wrapper.matches(":hover")) autoPlay();
+    }
 
 
-
-</div>
-
-
+    carousel.addEventListener("mousedown", dragStart);
+    carousel.addEventListener("mousemove", dragging);
+    document.addEventListener("mouseup", dragStop);
+    carousel.addEventListener("scroll", infiniteScroll);
+    wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+</script>
 @include("partials.footer")
 @endsection
