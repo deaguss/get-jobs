@@ -227,14 +227,51 @@
     </div>
 </div>
 
+{{-- Find a job --}}
 <div>
     <div class="px mt-16 promotion_people">
         <h1 class="text-2xl font-semibold">Find a job</h1>
         <p class="pt-2 font-thin text-justify text-gray-900 mr-[40rem]">find jobs that are relevant to your desires.
             just apply and wait for a reply.</p>
-        <div class="card_jobs">
+
+        <div class="grid grid-cols-3 gap-4">
+            {{-- Card --}}
+            @for($i = 0; $i < 6; $i++) <div
+                class="flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
+                <div class="p-6">
+                    <div class="flex justify-between items-center">
+                        <h5 class="block text-2xl antialiased leading-snug tracking-normal text-blue-600 font-bold">
+                            Junior Coler
+                        </h5>
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m17 21-5-4-5 4V3.889a.92.92 0 0 1 .244-.629.808.808 0 0 1 .59-.26h8.333a.81.81 0 0 1 .589.26.92.92 0 0 1 .244.63V21Z" />
+                        </svg>
+                    </div>
+                    <p class="mb-3">
+                        Pt. name
+                    </p>
+                    <p>
+                        Location
+                    </p>
+                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-justify">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus blanditiis nobis eaque facilis.
+                        Voluptas illo, a rerum exercitationem omnis, quos eaque non alias nostrum praesentium recusandae
+                        ratione repellat laborum sequi.
+                    </p>
+                </div>
+                <div class="p-6 pt-0">
+                    <button
+                        class="align-middle select-none font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+                        type="button">
+                        Apply now
+                    </button>
+                </div>
         </div>
+        @endfor
     </div>
+</div>
 </div>
 
 
