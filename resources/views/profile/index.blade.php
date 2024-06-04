@@ -27,9 +27,10 @@
                     {{ $datas->email ? $datas->email : 'unknow@gmail.com' }}
                 </p>
                 <span
-                    class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300 mt-1 ">
-                    <span class="w-1.5 h-1.5 me-1 bg-green-500 rounded-full"></span>
-                    Available
+                    class="inline-flex items-center {{ $datas->profile->avaliable ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}  text-xs font-medium px-2 py-0.5 rounded-full mt-1 ">
+                    <span
+                        class="w-1.5 h-1.5 me-1 {{ $datas->profile->avaliable ? 'bg-green-500' : 'bg-red-500'}}  rounded-full"></span>
+                    {{ $datas->profile->avaliable ? 'Avaliable' : 'Unavaliable' }}
                 </span>
                 <button data-modal-target="default-modal" data-modal-toggle="default-modal" type="button"
                     class="text-gray-200 bg-transparent hover:bg-gray-100/20 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 flex mt-4">
@@ -56,86 +57,93 @@
                                     <span class="sr-only">Close</span>
                                 </button>
                             </div>
-                            <div class="p-4 md:p-5 space-y-4">
-                                <div class="flex mx-auto gap-x-4 w-full">
-                                    <div class="flex flex-col w-full">
-                                        <label for="first_name"
-                                            class="block mb-2 text-sm font-medium text-gray-900">First
-                                            name</label>
-                                        <input type="text" name="first_name" id="first_name"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
-                                            placeholder="Enter first name">
-                                    </div>
-                                    <div class="flex flex-col w-full">
-                                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last
-                                            name</label>
-                                        <input type="text" name="last_name" id="last_name"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
-                                            placeholder="Enter last name">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="address"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Address</label>
-                                    <input type="text" name="address" id="address"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
-                                        placeholder="full address" required="">
-                                </div>
-                                <div>
-                                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Phone
-                                        number</label>
-                                    <input type="number" name="phone" id="phone"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
-                                        placeholder="088888888" required="">
-                                </div>
-                                <div class="flex mx-auto gap-x-4 w-full">
-                                    <div class="flex flex-col w-full">
-                                        <label for="country"
-                                            class="block mb-2 text-sm font-medium text-gray-900">Country</label>
-                                        <input type="text" name="country" id="country"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
-                                            placeholder="country">
-                                    </div>
-                                    <div class="flex flex-col w-full">
-                                        <label for="city"
-                                            class="block mb-2 text-sm font-medium text-gray-900">City</label>
-                                        <input type="text" name="city" id="city"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
-                                            placeholder="city">
-                                    </div>
-                                    <div class="flex flex-col w-full">
-                                        <label for="postal_code"
-                                            class="block mb-2 text-sm font-medium text-gray-900">Postal code</label>
-                                        <input type="text" name="postal_code" id="postal_code"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
-                                            placeholder="089876">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="hobbies"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Hobby</label>
-                                    <input type="text" name="hobbies" id="hobbies"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
-                                        placeholder="play video games" required="">
-                                </div>
-                                <div>
-                                    <label class="inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" value="" class="sr-only peer">
-                                        <div
-                                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                            <form action="/profile-update" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="p-4 md:p-5 space-y-4">
+                                    <div class="flex mx-auto gap-x-4 w-full">
+                                        <div class="flex flex-col w-full">
+                                            <label for="first_name"
+                                                class="block mb-2 text-sm font-medium text-gray-900">First
+                                                name</label>
+                                            <input type="text" name="first_name" id="first_name"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
+                                                value="{{ $datas->first_name }}" placeholder="Enter first name">
                                         </div>
-                                        <span
-                                            class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Avaliable?</span>
-                                    </label>
+                                        <div class="flex flex-col w-full">
+                                            <label for="last_name"
+                                                class="block mb-2 text-sm font-medium text-gray-900">Last
+                                                name</label>
+                                            <input type="text" name="last_name" id="last_name"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
+                                                value="{{ $datas->last_name }}" placeholder="Enter last name">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="address"
+                                            class="block mb-2 text-sm font-medium text-gray-900">Address</label>
+                                        <input type="text" name="address" id="address"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                                            value="{{ $datas->address }}" placeholder="full address">
+                                    </div>
+                                    <div>
+                                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Phone
+                                            number</label>
+                                        <input type="number" name="phone" id="phone"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                                            value="{{ $datas->phone }}" placeholder="0812345678">
+                                    </div>
+                                    <div class="flex mx-auto gap-x-4 w-full">
+                                        <div class="flex flex-col w-full">
+                                            <label for="country"
+                                                class="block mb-2 text-sm font-medium text-gray-900">Country</label>
+                                            <input type="text" name="country" id="country"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
+                                                value="{{ $datas->country }}" placeholder="country">
+                                        </div>
+                                        <div class="flex flex-col w-full">
+                                            <label for="city"
+                                                class="block mb-2 text-sm font-medium text-gray-900">City</label>
+                                            <input type="text" name="city" id="city"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
+                                                value="{{ $datas->city }}" placeholder="city">
+                                        </div>
+                                        <div class="flex flex-col w-full">
+                                            <label for="postal_code"
+                                                class="block mb-2 text-sm font-medium text-gray-900">Postal code</label>
+                                            <input type="text" name="postal_code" id="postal_code"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-auto p-2.5"
+                                                value="{{ $datas->postal_code }}" placeholder="80990">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="hobbies"
+                                            class="block mb-2 text-sm font-medium text-gray-900">Hobby</label>
+                                        <input type="text" name="hobbies" id="hobbies"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                                            value="{{ $datas->profile->hobbies }}" placeholder="play video games">
+                                    </div>
+                                    <div>
+                                        <label class="inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" name="avaliable" value="on" class="sr-only peer" {{
+                                                $datas->profile->avaliable ? 'checked' : '' }}
+                                            >
+                                            <div
+                                                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4  peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                                            </div>
+                                            <span class="ms-3 text-sm font-medium text-gray-900">Avaliable?</span>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
-                                <button data-modal-hide="default-modal" type="button"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                    Change</button>
-                                <button data-modal-hide="default-modal" type="button"
-                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
-                            </div>
+
+                                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
+                                    <button data-modal-hide="default-modal" type="submit"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                        Change</button>
+                                    <button data-modal-hide="default-modal" type="button"
+                                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -263,32 +271,32 @@
             <h2 class="text-3xl font-semibold mb-5">About me</h2>
             <div class="w-full flex justify-between items-center py-4">
                 <p class="text-lg text-muted">Hobby</p>
-                <p class="text-lg text-muted">Workout</p>
+                <p class="text-lg text-muted">{{ $datas->profile->hobbies ? $datas->profile->hobbies : 'none' }}</p>
             </div>
             <hr class="py-2 border-t-2">
             <div class="w-full flex justify-between items-center py-4">
                 <p class="text-lg text-muted">Address</p>
-                <p class="text-lg text-muted">Renon</p>
+                <p class="text-lg text-muted">{{ $datas->address ? $datas->address : 'none' }}</p>
             </div>
             <hr class="py-2 border-t-2">
             <div class="w-full flex justify-between items-center py-4">
                 <p class="text-lg text-muted">Country</p>
-                <p class="text-lg text-muted">Indonesia</p>
+                <p class="text-lg text-muted">{{ $datas->country ? $datas->country : 'none' }}</p>
             </div>
             <hr class="py-2 border-t-2">
             <div class="w-full flex justify-between items-center py-4">
                 <p class="text-lg text-muted">City</p>
-                <p class="text-lg text-muted">Denpasar</p>
+                <p class="text-lg text-muted">{{ $datas->city ? $datas->city : 'none' }}</p>
             </div>
             <hr class="py-2 border-t-2">
             <div class="w-full flex justify-between items-center py-4">
                 <p class="text-lg text-muted">Postal code</p>
-                <p class="text-lg text-muted">80991</p>
+                <p class="text-lg text-muted">{{ $datas->postal_code ? $datas->postal_code : 'none' }}</p>
             </div>
             <hr class="py-2 border-t-2">
             <div class="w-full flex justify-between items-center py-4">
                 <p class="text-lg text-muted">Visible</p>
-                <p class="text-lg text-muted">On</p>
+                <p class="text-lg text-muted">{{ $datas->profile->is_visible ? 'on' : 'off' }}</p>
             </div>
             <hr class="py-2 border-t-2">
         </div>

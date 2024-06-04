@@ -45,7 +45,11 @@ Route::prefix('sign-in')->name('signin.')->group(function () {
 
 Route::get('/sign-out', [AuthController::class, 'logout'])->name('sign.out');
 
-Route::get('/profile', [ProfileUser::class, 'index'])->name('profile');
+Route::prefix('/')->name('home.')->group(function () {
+    Route::get('/profile', [ProfileUser::class, 'index'])->name('profile');
+    Route::put('/profile-update', [ProfileUser::class, 'updateProfile'])->name('profile.update');
+});
+
 
 Route::get('/detail-company', function () {
     return view('detail-company.index');
