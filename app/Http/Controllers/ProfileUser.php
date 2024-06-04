@@ -90,7 +90,46 @@ class ProfileUser extends Controller
     }
 
     public function updateAvatar(ProfileRequest $request){
+        $user = User::find(auth()->user()->id);
 
+        if($user == null) return Session::flash('error_avatar', 'Avatar not found');
+
+        $imageFile = $request->file('avatar');
+        $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
+
+        $storagePath = 'public/avatars';
+        $imageFile->storeAs($storagePath, $imageName);
+
+        $user->update([
+            'avatar' => $imageName
+        ]);
+
+        Session::flash('success_avatar', 'Avatar updated successfully!');
+
+        return redirect()->back();
+    }
+
+    public function updateCareer(ProfileRequest $request){
+        $user = User::find(auth()->user()->id);
+
+        if($user == null) return Session::flash('error_recent_work', 'Career history not found');
+
+        if($user->profile->recent_work == null && $user->profile ){
+            $user->profile()->create([
+                'id' => $user->id,
+                'user_id' => $user->id,
+                'recent_work' => $request->recent_work
+            ]);
+        }else {
+            $user->profile()->update([
+                'user_id' => $user->id,
+                'recent_work' => $request->recent_work
+            ]);
+        }
+
+        Session::flash('success_recent_work', 'Career history updated successfully');
+
+        return redirect()->back();
     }
 }
 
