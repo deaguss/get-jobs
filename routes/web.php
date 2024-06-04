@@ -48,6 +48,8 @@ Route::get('/sign-out', [AuthController::class, 'logout'])->name('sign.out');
 Route::prefix('/')->name('home.')->group(function () {
     Route::get('/profile', [ProfileUser::class, 'index'])->name('profile');
     Route::put('/profile-update', [ProfileUser::class, 'updateProfile'])->name('profile.update');
+    Route::put('/profile-update-summary', [ProfileUser::class, 'updateSummary'])->name('profile.update.summary');
+    Route::put('/profile-update-avatar', [ProfileUser::class, 'updateAvatar'])->name('profile.update.avatar');
 });
 
 

@@ -34,7 +34,7 @@ class ProfileUser extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        if($user == null) return Session::flash('error', 'Profile not found');
+        if($user == null) return Session::flash('error_profile', 'Profile not found');
 
         $user->update([
             'first_name' => $request->first_name,
@@ -48,7 +48,7 @@ class ProfileUser extends Controller
 
         if($user->profile == null){
             $user->profile()->create([
-                'id' => Str::uuid(),
+                'id' => $user->id,
                 'user_id' => $user->id,
                 'hobbies' => $request->hobbies,
                 'avaliable' => $request->avaliable ? '1' : '0',
@@ -61,9 +61,36 @@ class ProfileUser extends Controller
             ]);
         }
 
-        Session::flash('success', 'Profile updated successfully');
+        Session::flash('success_profile', 'Profile updated successfully');
 
         return redirect()->back();
+    }
+
+    public function updateSummary(ProfileRequest $request){
+        $user = User::find(auth()->user()->id);
+
+        if($user == null) return Session::flash('error_summary', 'Personal summary not found');
+
+        if($user->profile->personal_summmary == null && $user->profile ){
+            $user->profile()->create([
+                'id' => $user->id,
+                'user_id' => $user->id,
+                'personal_summmary' => $request->personal_summmary
+            ]);
+        }else {
+            $user->profile()->update([
+                'user_id' => $user->id,
+                'personal_summmary' => $request->personal_summmary
+            ]);
+        }
+
+        Session::flash('success_summary', 'Personal summary updated successfully');
+
+        return redirect()->back();
+    }
+
+    public function updateAvatar(ProfileRequest $request){
+
     }
 }
 

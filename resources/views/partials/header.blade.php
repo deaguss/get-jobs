@@ -29,6 +29,7 @@
                         class="block px-3 py-2 text-gray-800 hover:underline hover:underline-offset-8 rounded">Explore
                         company</a>
                 </li>
+                @if (auth()->user())
                 <li>
                     <a href="#" id="dropdownNavbarLinkProfile"
                         class="flex items-center px-3 py-2 text-gray-900 rounded-full md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700">
@@ -41,8 +42,6 @@
                         </svg>
 
                     </a>
-
-                    {{-- Dropdown from profile menu, id="dropdownNavbarLinkProfile"--}}
                     <div id="dropdownNavbarLinkProfilePage"
                         class="z-10 hidden absolute md:right-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                         <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
@@ -65,6 +64,11 @@
                     </div>
 
                 </li>
+                @else
+                <a href="{{ route('signin.form') }}"
+                    class="text-gray-800 bg-transparent border-2 hover:bg-indigo-200/50 border-indigo-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3.5 py-1.5">Sign
+                    in</a>
+                @endif
             </ul>
         </div>
     </div>
