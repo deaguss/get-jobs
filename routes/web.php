@@ -54,3 +54,7 @@ Route::prefix('/')->name('home.')->group(function () {
 Route::get('/detail-company', function () {
     return view('detail-company.index');
 });
+
+Route::get('/save-jobs', function () {
+    return view('save-jobs.index');
+});
