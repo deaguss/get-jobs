@@ -6,18 +6,20 @@
 
 @section('content')
 
+
 {{-- Section Profile --}}
 <section class="p-2">
     {{-- Tabs --}}
-    <div class="w-full mt-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
+    <div class="w-full mt-10 bg-white border border-gray-200 rounded-lg">
+        <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border border-gray-200 rounded-t-lg bg-gray-50"
             id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
-            <li class="me-2">
+            <li class="me-2 ">
                 <button id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about"
-                    aria-selected="true"
-                    class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500">Applied
-                    jobs</button>
+                    aria-selected="true" class="inline-block p-4 text-yellow-600 rounded-lg hover:bg-gray-100 ">
+                    Apllied Jobs
+                </button>
             </li>
+
             <li class="me-2">
                 <button id="services-tab" data-tabs-target="#services" type="button" role="tab" aria-controls="services"
                     aria-selected="false"

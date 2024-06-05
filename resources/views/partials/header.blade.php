@@ -33,7 +33,7 @@
                 <li>
                     <a href="#" id="dropdownNavbarLinkProfile"
                         class="flex items-center px-3 py-2 text-gray-900 rounded-full md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700">
-                        <img src="https://images.unsplash.com/photo-1714138667513-77ba2f00e85b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        <img src="{{ auth()->user()->avatar ? asset('storage/avatars/' . auth()->user()->avatar) : 'https://via.placeholder.com/100' }}"
                             alt="" class="rounded-full" style="width: 30px; height: 30px; object-fit: cover;">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -50,10 +50,7 @@
                                     class="block px-4 py-2 hover:bg-gray-100 ">Profile</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Vacancies saved</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Job application</a>
+                                <a href="/save-jobs" class="block px-4 py-2 hover:bg-gray-100 ">Job application</a>
                             </li>
                             <hr class="mx-4">
                             <li>

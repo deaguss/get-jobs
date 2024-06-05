@@ -12,8 +12,8 @@
                 @csrf
                 @method("PUT")
                 <label for="file-upload" class="hover-edit-image relative cursor-pointer block rounded-full">
-                    <img src="{{ asset('storage/avatars/' . $datas->avatar) }}" alt="Avatar"
-                        class="text-center w-40 h-40 rounded-full object-cover">
+                    <img src="{{ $datas->avatar ? asset('storage/avatars/' . $datas->avatar) : 'https://via.placeholder.com/100' }}"
+                        alt="Avatar" class="text-center w-40 h-40 rounded-full object-cover">
                 </label>
                 <input id="file-upload" type="file" name="avatar" class="hidden" onchange="this.form.submit()">
             </form>

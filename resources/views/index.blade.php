@@ -104,124 +104,46 @@
         <div class="card_people">
         </div>
     </div>
-    <div class="wrapper ms-20 my-5">
+    <div class="wrapper ms-6 my-5">
         <i id="left" class="fa-solid fa-angle-left"></i>
         <ul class="carousel">
-            <li class="card">
-                <div class="bg-white border border-slate-300 p-5 rounded-lg">
+            @for ($i = 1; $i < 7; $i++) <li class="card">
+                <div class="bg-white border border-slate-300 px-10 py-3 rounded-lg">
                     <div class="flex justify-center">
                         <img class="w-24 h-24 mb-3 rounded-full object-cover"
                             src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
                             alt="Bonnie image" draggable="false" />
                     </div>
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 1</h5>
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk {{ $i }}</h5>
                     <p class="mb-2">Skill</p>
                     <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
                         amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
                         natus eaque.</p>
                     <div class="flex text-white gap-x-3">
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
+                        <span class="bg-purple-100 text-purple-800 px-1.5 py-1 rounded">
+                            <p class="text-xs font-medium">Node
+                                js</p>
+                        </span>
+                        <span class="bg-purple-100 text-purple-800 px-1.5 py-1 rounded">
+                            <p class="text-xs font-medium">PHP</p>
+                        </span>
+                        <span class="bg-purple-100 text-purple-800 px-1.5 py-1 rounded">
+                            <p class="text-xs font-medium">Laravel</p>
+                        </span>
                     </div>
+                    <button type="button"
+                        class="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 mt-2">
+                        <svg class="w-3 h-3 text-white me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 20 16">
+                            <path
+                                d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
+                            <path
+                                d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
+                        </svg>
+                        Contact </button>
                 </div>
-            </li>
-            <li class="card">
-                <div class="bg-white border border-slate-300 p-5 rounded-lg">
-                    <div class="flex justify-center">
-                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
-                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
-                            alt="Bonnie image" draggable="false" />
-                    </div>
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 2</h5>
-                    <p class="mb-2">Skill</p>
-                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
-                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
-                        natus eaque.</p>
-                    <div class="flex text-white gap-x-3">
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                    </div>
-                </div>
-            </li>
-            <li class="card">
-                <div class="bg-white border border-slate-300 p-5 rounded-lg">
-                    <div class="flex justify-center">
-                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
-                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
-                            alt="Bonnie image" draggable="false" />
-                    </div>
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 3</h5>
-                    <p class="mb-2">Skill</p>
-                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
-                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
-                        natus eaque.</p>
-                    <div class="flex text-white gap-x-3">
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                    </div>
-                </div>
-            </li>
-            <li class="card">
-                <div class="bg-white border border-slate-300 p-5 rounded-lg">
-                    <div class="flex justify-center">
-                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
-                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
-                            alt="Bonnie image" draggable="false" />
-                    </div>
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 4</h5>
-                    <p class="mb-2">Skill</p>
-                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
-                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
-                        natus eaque.</p>
-                    <div class="flex text-white gap-x-3">
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                    </div>
-                </div>
-            </li>
-            <li class="card">
-                <div class="bg-white border border-slate-300 p-5 rounded-lg">
-                    <div class="flex justify-center">
-                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
-                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
-                            alt="Bonnie image" draggable="false" />
-                    </div>
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 5</h5>
-                    <p class="mb-2">Skill</p>
-                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
-                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
-                        natus eaque.</p>
-                    <div class="flex text-white gap-x-3">
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                    </div>
-                </div>
-            </li>
-            <li class="card">
-                <div class="bg-white border border-slate-300 p-5 rounded-lg">
-                    <div class="flex justify-center">
-                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
-                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
-                            alt="Bonnie image" draggable="false" />
-                    </div>
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk 6</h5>
-                    <p class="mb-2">Skill</p>
-                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
-                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
-                        natus eaque.</p>
-                    <div class="flex text-white gap-x-3">
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                        <p class="px-2 border rounded-md bg-slate-600 border-slate-400">Skill</p>
-                    </div>
-                </div>
-            </li>
-
+                </li>
+                @endfor
         </ul>
         <i id="right" class="fa-solid fa-angle-right"></i>
     </div>
@@ -236,7 +158,7 @@
 
         <div class="grid grid-cols-3 gap-4">
             {{-- Card --}}
-            @for($i = 0; $i < 6; $i++) <div
+            @for($i = 0; $i < 3; $i++) <div
                 class="flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
                 <div class="p-6">
                     <div class="flex justify-between items-center">
@@ -271,6 +193,9 @@
         </div>
         @endfor
     </div>
+    <button type="button"
+        class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-10 mt-5">See
+        more &rarr;</button>
 </div>
 </div>
 
