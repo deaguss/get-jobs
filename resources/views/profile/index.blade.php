@@ -285,50 +285,131 @@
         </div>
         <div class="mt-6">
             <h2 class="text-3xl font-semibold">Education</h2>
-            <p class="mt-2 text-gray-700">Bachelor of Information Technology</p>
-            <p class="text-gray-700 capitalize">STIKOM Institute of Technology and Business Bali, Selesai 2022</p>
-            <button type="button"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-4 uppercase">add
+            <p class="text-gray-700 capitalize">{{ $datas->profile->recent_education ?? 'Not set yet' }}</p>
+            <button type="button" data-modal-target="default-modal-education"
+                data-modal-toggle="default-modal-education" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium
+                rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-4 uppercase">add
                 education</button>
+            <div id="default-modal-education" tabindex="-1" aria-hidden="true"
+                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative p-4 w-full max-w-3xl max-h-full">
+                    <div class="relative bg-white rounded-lg shadow">
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                            <h3 class="text-xl font-semibold text-gray-900">
+                                Edit Education
+                            </h3>
+                            <button type="button"
+                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                                data-modal-hide="default-modal-education">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close</span>
+                            </button>
+                        </div>
+                        <form action="/profile-update-education" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="p-4 md:p-5 space-y-4">
+                                <div>
+                                    <label for="recent_education"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Recent
+                                        education</label>
+                                    <textarea name="recent_education" id="recent_education"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-full"
+                                        rows="8"
+                                        placeholder="Write your education">{{$datas->profile->recent_education }}</textarea>
+
+                                </div>
+                            </div>
+
+                            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
+                                <button data-modal-hide="default-modal-education" type="submit"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    Change</button>
+                                <button data-modal-hide="default-modal-education" type="button"
+                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="mt-6">
             <h2 class="text-2xl font-semibold mb-3">Skils</h2>
             <div class="flex pr-56 m-auto flex-wrap gap-y-3">
+                @if (count($datas->skills) >= 0)
+                @foreach ($datas->skills as $skill)
                 <span
-                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">HTML5</span>
+                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">{{
+                    $skill }}</span>
+                @endforeach
+                @else
                 <span
-                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">CSS</span>
-                <span
-                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">PYTHON</span>
-                <span
-                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">C++</span>
-                <span
-                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">JAVASCRIPT</span>
-                <span
-                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">TAILWIND
-                    CSS</span>
-                <span
-                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">BOOTSTRAP
-                    CSS</span>
-                <span
-                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">NEXT
-                    JS</span>
-                <span
-                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline uppercase">PHP</span>
+                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">none</span>
+                @endif
             </div>
-            <button type="button"
+            <button type="button" data-modal-target="default-modal-skills" data-modal-toggle="default-modal-skills"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-4 uppercase">add
                 skils</button>
+            <div id="default-modal-skills" tabindex="-1" aria-hidden="true"
+                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative p-4 w-full max-w-3xl max-h-full">
+                    <div class="relative bg-white rounded-lg shadow">
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                            <h3 class="text-xl font-semibold text-gray-900">
+                                Edit Skills
+                            </h3>
+                            <button type="button"
+                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                                data-modal-hide="default-modal-skills">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close</span>
+                            </button>
+                        </div>
+                        <form action="/profile-update-skills" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="p-4 md:p-5 space-y-4">
+                                <div>
+                                    <label for="skills" class="block mb-2 text-sm font-medium text-gray-900">Your
+                                        Skills</label>
+                                    <textarea name="skills" id="skills"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-full"
+                                        rows="1"
+                                        placeholder="PHP, JAVASCRIPT, etc">{{$datas->profile->skills }}</textarea>
+
+                                </div>
+                            </div>
+
+                            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
+                                <button data-modal-hide="default-modal-skills" type="submit"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    Change</button>
+                                <button data-modal-hide="default-modal-skills" type="button"
+                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="mt-6">
             <div class="relative mt-2 p-4 bg-transparent border-4 border-gray-200 rounded-full ">
                 <p class="text-gray-700 pr-10 ps-4 capitalize text-2xl">
-                    indonesia
+                    {{ $datas->profile->languages ?? 'none' }}
                 </p>
 
                 <div class="absolute right-5 top-4">
-                    <button>
+                    <button data-modal-target="default-modal-languages" data-modal-toggle="default-modal-languages"
+                        type="button">
                         <svg class="w-8 h-8 text-gray-500 hover:text-gray-600" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -336,17 +417,113 @@
                         </svg>
                     </button>
                 </div>
+                <div id="default-modal-languages" tabindex="-1" aria-hidden="true"
+                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-3xl max-h-full">
+                        <div class="relative bg-white rounded-lg shadow">
+                            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                                <h3 class="text-xl font-semibold text-gray-900">
+                                    Edit Language
+                                </h3>
+                                <button type="button"
+                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                                    data-modal-hide="default-modal-languages">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                            </div>
+                            <form action="/profile-update-languages" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="p-4 md:p-5 space-y-4">
+                                    <div>
+                                        <label for="languages" class="block mb-2 text-sm font-medium text-gray-900">Your
+                                            Language</label>
+                                        <textarea name="languages" id="languages"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 w-full"
+                                            rows="1" placeholder="Indonesian">{{$datas->profile->languages }}</textarea>
+
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
+                                    <button data-modal-hide="default-modal-languages" type="submit"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                        Change</button>
+                                    <button data-modal-hide="default-modal-languages" type="button"
+                                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="mt-6 mb-10">
                 <div class="w-64 mt-2 p-8 bg-transparent border-4 border-gray-200 rounded-xl">
                     <h2 class="text-2xl font-semibold">Resume</h2>
-                    <a href="#" class="text-blue-500 text-lg hover:underline">resume.docx</a>
-                    <p class="text-gray-500">Added 4 months ago</p>
-                    <hr class="px-2 my-3 border-t-2 mt-5">
-                    <button type="button"
+                    @if (isset($datas->profile->resume))
+                    <a href="{{ asset('storage/resume/' . $datas->profile->resume) }}"
+                        class="text-blue-500 text-lg hover:underline mt-2">Download file</a>
+                    @else
+                    <p class="text-gray-800 mx-1">None</p>
+                    @endif
+                    <hr class="px-2 my-3 border-t-2">
+                    <button type="button" data-modal-target="default-modal-resume"
+                        data-modal-toggle="default-modal-resume"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 uppercase">add
                         resume</button>
+                    <div id="default-modal-resume" tabindex="-1" aria-hidden="true"
+                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-full max-w-3xl max-h-full">
+                            <div class="relative bg-white rounded-lg shadow">
+                                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                                    <h3 class="text-xl font-semibold text-gray-900">
+                                        Add Resume
+                                    </h3>
+                                    <button type="button"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                                        data-modal-hide="default-modal-resume">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        </svg>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                                <form action="/profile-update-resume" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="p-4 md:p-5 space-y-4">
+                                        <div>
+                                            <label class="block mb-2 text-sm font-medium text-gray-900"
+                                                for="file_input">Upload resume</label>
+                                            <input
+                                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
+                                                aria-describedby="file_input_help" id="file_input" type="file"
+                                                name="resume"
+                                                value="{{ asset('storage/resume/' . $datas->profile->resume) }}">
+                                            <p class="mt-1 text-sm text-gray-500" id="file_input_help">Doc, Docx, Pdf
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
+                                        <button data-modal-hide="default-modal-resume" type="submit"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                            Change</button>
+                                        <button data-modal-hide="default-modal-resume" type="button"
+                                            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -379,7 +556,20 @@
             <hr class="py-2 border-t-2">
             <div class="w-full flex justify-between items-center py-4">
                 <p class="text-lg text-muted">Visible</p>
-                <p class="text-lg text-muted">{{ $datas->profile->is_visible ? 'on' : 'off' }}</p>
+                <div>
+                    <form action="/profile-update-is-visible" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <label class="inline-flex items-center cursor-pointer">
+                            <input type="checkbox" onchange="this.form.submit()" name="is_visible" value="on"
+                                class="sr-only peer" {{ $datas->profile->is_visible ? 'checked' : '' }}
+                            >
+                            <div
+                                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4  peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                            </div>
+                        </label>
+                    </form>
+                </div>
             </div>
             <hr class="py-2 border-t-2">
         </div>
@@ -390,10 +580,78 @@
             <hr class="my-3 border-t-2 mt-5">
             <p class="mt-2 text-gray-700 capitalize">Indicate your professional credentials. your relevant certificates,
                 memberships and accreditations here.</p>
+            <hr class="my-3 border-t-2 mt-5">
+            <button type="button" data-modal-target="default-modal-certi" data-modal-toggle="default-modal-certi"
+                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-4 uppercase">add
+                Certificate</button>
+            <div id="default-modal-certi" tabindex="-1" aria-hidden="true"
+                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative p-4 w-full max-w-3xl max-h-full">
+                    <div class="relative bg-white rounded-lg shadow">
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                            <h3 class="text-xl font-semibold text-gray-900">
+                                Add Certificate
+                            </h3>
+                            <button type="button"
+                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                                data-modal-hide="default-modal-certi">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close</span>
+                            </button>
+                        </div>
+                        <form action="/profile-add-certi" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="p-4 md:p-5 space-y-4">
+                                <div>
+                                    <label for="certi_name"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Certificate</label>
+                                    <input type="text" name="certi_name" id="certi_name"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                                        value="" placeholder="Certificate name">
+                                </div>
+                                <div>
+                                    <label for="certi_description"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                                    <input type="text" name="certi_description" id="certi_description"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                                        value="" placeholder="about information">
+                                </div>
+                                <div>
+                                    <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">Upload
+                                        Certificate</label>
+                                    <input
+                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
+                                        aria-describedby="file_input_help" id="file_input" type="file" name="certi_img"
+                                        value="">
+                                    <p class="mt-1 text-sm text-gray-500" id="file_input_help">PNG, JPEG, JPG
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
+                                <button data-modal-hide="default-modal-certi" type="submit"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    Change</button>
+                                <button data-modal-hide="default-modal-certi" type="button"
+                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="flex flex-wrap gap-2 mt-5">
-                <img src="https://via.placeholder.com/100" alt="Avatar" class="w-25 h-25 rounded-lg">
-                <img src="https://via.placeholder.com/100" alt="Avatar" class="w-25 h-25 rounded-lg">
-                <img src="https://via.placeholder.com/100" alt="Avatar" class="w-25 h-25 rounded-lg">
+                @if (count($datas->certifications) > 0)
+                @foreach ($datas->certifications as $certification)
+                <img src="{{ asset('storage/certi/' . $certification->certi_img) }}" alt="certi"
+                    class="max-w-25 max-h-25 rounded-lg" />
+                @endforeach
+                @else
+                <img src="https://via.placeholder.com/100" alt="certi" class="max-w-25 max-h-25 rounded-lg">
+                <img src="https://via.placeholder.com/100" alt="certi" class="max-w-25 max-h-25 rounded-lg">
+                @endif
             </div>
         </div>
     </div>

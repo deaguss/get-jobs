@@ -50,7 +50,13 @@ Route::prefix('/')->name('home.')->group(function () {
     Route::put('/profile-update', [ProfileUser::class, 'updateProfile'])->name('profile.update');
     Route::put('/profile-update-summary', [ProfileUser::class, 'updateSummary'])->name('profile.update.summary');
     Route::put('/profile-update-career', [ProfileUser::class, 'updateCareer'])->name('profile.update.career');
+    Route::put('/profile-update-education', [ProfileUser::class, 'updateEducation'])->name('profile.update.education');
+    Route::put('/profile-update-skills', [ProfileUser::class, 'updateSkills'])->name('profile.update.skills');
+    Route::put('/profile-update-languages', [ProfileUser::class, 'updateLanguages'])->name('profile.update.languages');
     Route::put('/profile-update-avatar', [ProfileUser::class, 'updateAvatar'])->name('profile.update.avatar');
+    Route::put('/profile-update-resume', [ProfileUser::class, 'updateResume'])->name('profile.update.resume');
+    Route::put('/profile-update-is-visible', [ProfileUser::class, 'updateIsVisible'])->name('profile.update.isVisible');
+    Route::post('/profile-add-certi', [ProfileUser::class, 'addCerti'])->name('profile.add.certi');
 });
 
 

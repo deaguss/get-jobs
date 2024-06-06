@@ -13,9 +13,9 @@
     <div class="w-full mt-10 bg-white border border-gray-200 rounded-lg">
         <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border border-gray-200 rounded-t-lg bg-gray-50"
             id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
-            <li class="me-2 ">
+            <li class="me-2 border-b">
                 <button id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about"
-                    aria-selected="true" class="inline-block p-4 text-yellow-600 rounded-lg hover:bg-gray-100 ">
+                    aria-selected="true" class="inline-block p-4 text-blue-600 rounded-lg hover:bg-gray-100 ">
                     Apllied Jobs
                 </button>
             </li>

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CertificateRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Models\Certification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileUser extends Controller
 {
@@ -21,12 +23,20 @@ class ProfileUser extends Controller
 
         $datas = json_decode(json_encode($datas));
 
+        // short id
         $idParts = explode('-', $datas->id);
         $shortId = $idParts[0];
-
         $datas->short_id = $shortId;
 
+        // short skills
+        $idSkills = explode(',', $datas->profile->skills);
+        foreach ($idSkills as $key => $value) {
+            $arraySkills[] = Str::upper($value);
+        }
+        $datas->skills = $arraySkills;
+
         // dd($datas);
+
         return view('profile.index', ['datas' => $datas]);
     }
 
@@ -71,18 +81,11 @@ class ProfileUser extends Controller
 
         if($user == null) return Session::flash('error_summary', 'Personal summary not found');
 
-        if($user->profile->personal_summmary == null && $user->profile ){
-            $user->profile()->create([
-                'id' => $user->id,
-                'user_id' => $user->id,
-                'personal_summmary' => $request->personal_summmary
-            ]);
-        }else {
-            $user->profile()->update([
-                'user_id' => $user->id,
-                'personal_summmary' => $request->personal_summmary
-            ]);
-        }
+        $user->profile()->update([
+            'user_id' => $user->id,
+            'personal_summmary' => $request->personal_summmary
+        ]);
+
 
         Session::flash('success_summary', 'Personal summary updated successfully');
 
@@ -100,6 +103,10 @@ class ProfileUser extends Controller
         $storagePath = 'public/avatars';
         $imageFile->storeAs($storagePath, $imageName);
 
+        if ($user->avatar != null) {
+            Storage::delete($storagePath . '/' . $user->avatar);
+        }
+
         $user->update([
             'avatar' => $imageName
         ]);
@@ -114,20 +121,114 @@ class ProfileUser extends Controller
 
         if($user == null) return Session::flash('error_recent_work', 'Career history not found');
 
-        if($user->profile->recent_work == null && $user->profile ){
-            $user->profile()->create([
-                'id' => $user->id,
-                'user_id' => $user->id,
-                'recent_work' => $request->recent_work
-            ]);
-        }else {
-            $user->profile()->update([
-                'user_id' => $user->id,
-                'recent_work' => $request->recent_work
-            ]);
-        }
+        $user->profile()->update([
+            'user_id' => $user->id,
+            'recent_work' => $request->recent_work
+        ]);
 
         Session::flash('success_recent_work', 'Career history updated successfully');
+
+        return redirect()->back();
+    }
+    public function updateEducation(ProfileRequest $request){
+        $user = User::find(auth()->user()->id);
+
+        if($user == null) return Session::flash('error_recent_education', 'Recent education not found');
+
+        $user->profile()->update([
+            'user_id' => $user->id,
+            'recent_education' => $request->recent_education
+        ]);
+
+        Session::flash('success_recent_education', 'Recent education updated successfully');
+
+        return redirect()->back();
+    }
+
+    public function updateSkills(ProfileRequest $request){
+        $user = User::find(auth()->user()->id);
+
+        if($user == null) return Session::flash('error_recent_skills', 'Skills not found');
+
+        $user->profile()->update([
+            'user_id' => $user->id,
+            'skills' => $request->skills
+        ]);
+
+        Session::flash('success_recent_education', 'Skills updated successfully');
+
+        return redirect()->back();
+    }
+    public function updateLanguages(ProfileRequest $request){
+        $user = User::find(auth()->user()->id);
+
+        if($user == null) return Session::flash('error_recent_languages', 'Languages not found');
+
+        $user->profile()->update([
+            'user_id' => $user->id,
+            'languages' => $request->languages
+        ]);
+
+        Session::flash('success_recent_languages', 'Languages updated successfully');
+
+        return redirect()->back();
+    }
+
+    public function updateResume(ProfileRequest $request){
+        $user = User::find(auth()->user()->id);
+
+        if($user == null) return Session::flash('error_resume', 'Resume not found');
+
+        $resumeFile = $request->file('resume');
+        $resumeName = time(). '-' . $resumeFile->getClientOriginalName();
+
+        $storagePath = 'public/resume';
+        $resumeFile->storeAs($storagePath, $resumeName);
+
+        if ($user->profile->resume != null) {
+            Storage::delete($storagePath . '/' . $user->profile->resume);
+        }
+
+        $user->profile->update([
+            'resume' => $resumeName
+        ]);
+
+        Session::flash('success_resume', 'Resume updated successfully!');
+
+        return redirect()->back();
+    }
+
+    public function updateIsVisible(ProfileRequest $request){
+        $user = User::find(auth()->user()->id);
+
+        if($user == null) return Session::flash('error_is_visble', 'Is Visible  not found');
+
+        $user->profile()->update([
+            'user_id' => $user->id,
+            'is_visible' => $request->is_visible ? '1' : '0',
+        ]);
+
+        Session::flash('success_is_visble', 'Is Visible updated successfully');
+
+        return redirect()->back();
+    }
+
+    public function addCerti(CertificateRequest $request){
+        $imageFile = $request->file('certi_img');
+        $imageName = time() . '.' . $imageFile->getClientOriginalName();
+
+        $storagePath = 'public/certi';
+        $imageFile->storeAs($storagePath, $imageName);
+
+        Certification::create([
+            'id' => Str::uuid(),
+            'certi_img' => $imageName,
+            'user_id' => auth()->user()->id,
+            'certi_name' => $request->certi_name,
+            'certi_description' => $request->certi_description
+        ]);
+
+        Session::flash('success_certi', 'Certificate added successfully!');
 
         return redirect()->back();
     }
