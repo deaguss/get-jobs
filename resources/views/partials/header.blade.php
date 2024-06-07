@@ -50,6 +50,9 @@
                                     class="block px-4 py-2 hover:bg-gray-100 ">Profile</a>
                             </li>
                             <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Registration company</a>
+                            </li>
+                            <li>
                                 <a href="/save-jobs" class="block px-4 py-2 hover:bg-gray-100 ">Job application</a>
                             </li>
                             <hr class="mx-4">

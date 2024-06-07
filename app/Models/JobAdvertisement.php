@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
-class Certification extends Model
+class JobAdvertisement extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $keyType = 'string';
-    protected $primaryKey = 'id';
     public $incrementing = false;
 
     protected static function boot()
@@ -35,8 +34,23 @@ class Certification extends Model
         'id' => 'string',
     ];
 
-    public function user()
+    public function company()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Company::class);
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'admin_id');
+    }
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
+
+    public function savedByUsers()
+    {
+        return $this->hasMany(SavedJob::class);
     }
 }
