@@ -66,6 +66,10 @@ Route::get('/register-company', function () {
     return view('regis-company.index');
 });;
 
+Route::get('/register-job', function () {
+    return view('regis-job.index');
+});;
+
 
 Route::get('/detail-company', function () {
     return view('detail-company.index');
