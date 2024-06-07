@@ -221,7 +221,6 @@ class ProfileUser extends Controller
         $imageFile->storeAs($storagePath, $imageName);
 
         Certification::create([
-            'id' => Str::uuid(),
             'certi_img' => $imageName,
             'user_id' => auth()->user()->id,
             'certi_name' => $request->certi_name,

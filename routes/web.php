@@ -46,18 +46,25 @@ Route::prefix('sign-in')->name('signin.')->group(function () {
 Route::get('/sign-out', [AuthController::class, 'logout'])->name('sign.out');
 
 Route::prefix('/')->name('home.')->group(function () {
-    Route::get('/profile', [ProfileUser::class, 'index'])->name('profile');
-    Route::put('/profile-update', [ProfileUser::class, 'updateProfile'])->name('profile.update');
-    Route::put('/profile-update-summary', [ProfileUser::class, 'updateSummary'])->name('profile.update.summary');
-    Route::put('/profile-update-career', [ProfileUser::class, 'updateCareer'])->name('profile.update.career');
-    Route::put('/profile-update-education', [ProfileUser::class, 'updateEducation'])->name('profile.update.education');
-    Route::put('/profile-update-skills', [ProfileUser::class, 'updateSkills'])->name('profile.update.skills');
-    Route::put('/profile-update-languages', [ProfileUser::class, 'updateLanguages'])->name('profile.update.languages');
-    Route::put('/profile-update-avatar', [ProfileUser::class, 'updateAvatar'])->name('profile.update.avatar');
-    Route::put('/profile-update-resume', [ProfileUser::class, 'updateResume'])->name('profile.update.resume');
-    Route::put('/profile-update-is-visible', [ProfileUser::class, 'updateIsVisible'])->name('profile.update.isVisible');
-    Route::post('/profile-add-certi', [ProfileUser::class, 'addCerti'])->name('profile.add.certi');
+    Route::prefix('/profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileUser::class, 'index'])->name('index');
+        Route::put('/update', [ProfileUser::class, 'updateProfile'])->name('update');
+        Route::put('/update-summary', [ProfileUser::class, 'updateSummary'])->name('update.summary');
+        Route::put('/update-career', [ProfileUser::class, 'updateCareer'])->name('update.career');
+        Route::put('/update-education', [ProfileUser::class, 'updateEducation'])->name('update.education');
+        Route::put('/update-skills', [ProfileUser::class, 'updateSkills'])->name('update.skills');
+        Route::put('/update-languages', [ProfileUser::class, 'updateLanguages'])->name('update.languages');
+        Route::put('/update-avatar', [ProfileUser::class, 'updateAvatar'])->name('update.avatar');
+        Route::put('/update-resume', [ProfileUser::class, 'updateResume'])->name('update.resume');
+        Route::put('/update-is-visible', [ProfileUser::class, 'updateIsVisible'])->name('update.isVisible');
+        Route::post('/add-certi', [ProfileUser::class, 'addCerti'])->name('add.certi');
+    });
 });
+
+
+Route::get('/register-company', function () {
+    return view('regis-company.index');
+});;
 
 
 Route::get('/detail-company', function () {

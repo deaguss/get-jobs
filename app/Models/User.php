@@ -45,9 +45,23 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne(Profile::class, 'user_id', 'id');
+        return $this->hasOne(Profile::class);
     }
 
+    public function certifications()
+    {
+        return $this->hasMany(Certification::class);
+    }
+
+    public function jobAdvertisements()
+    {
+        return $this->hasMany(JobAdvertisement::class, 'admin_id');
+    }
+
+    public function savedJobs()
+    {
+        return $this->hasMany(SavedJob::class);
+    }
 
     public function createPasswordResetToken()
     {

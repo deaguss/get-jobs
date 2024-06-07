@@ -8,7 +8,7 @@
 <div class="container flex p-4 gap-x-5 w-full">
     <div class="bg-white rounded-lg">
         <div class="flex items-center space-x-4 bg-gradient-to-r from-rose-700 to-pink-600 py-8 px-3 rounded-xl">
-            <form action="/profile-update-avatar" enctype="multipart/form-data" method="POST">
+            <form action="/profile/update-avatar" enctype="multipart/form-data" method="POST">
                 @csrf
                 @method("PUT")
                 <label for="file-upload" class="hover-edit-image relative cursor-pointer block rounded-full">
@@ -60,7 +60,7 @@
                                     <span class="sr-only">Close</span>
                                 </button>
                             </div>
-                            <form action="/profile-update" method="POST">
+                            <form action="/profile/update" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="p-4 md:p-5 space-y-4">
@@ -189,7 +189,7 @@
                                     <span class="sr-only">Close</span>
                                 </button>
                             </div>
-                            <form action="/profile-update-summary" method="POST">
+                            <form action="/profile/update-summary" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="p-4 md:p-5 space-y-4">
@@ -255,7 +255,7 @@
                                     <span class="sr-only">Close</span>
                                 </button>
                             </div>
-                            <form action="/profile-update-career" method="POST">
+                            <form action="/profile/update-career" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="p-4 md:p-5 space-y-4">
@@ -309,7 +309,7 @@
                                 <span class="sr-only">Close</span>
                             </button>
                         </div>
-                        <form action="/profile-update-education" method="POST">
+                        <form action="/profile/update-education" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="p-4 md:p-5 space-y-4">
@@ -373,7 +373,7 @@
                                 <span class="sr-only">Close</span>
                             </button>
                         </div>
-                        <form action="/profile-update-skills" method="POST">
+                        <form action="/profile/update-skills" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="p-4 md:p-5 space-y-4">
@@ -436,7 +436,7 @@
                                     <span class="sr-only">Close</span>
                                 </button>
                             </div>
-                            <form action="/profile-update-languages" method="POST">
+                            <form action="/profile/update-languages" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="p-4 md:p-5 space-y-4">
@@ -496,7 +496,7 @@
                                         <span class="sr-only">Close</span>
                                     </button>
                                 </div>
-                                <form action="/profile-update-resume" method="POST" enctype="multipart/form-data">
+                                <form action="/profile/update-resume" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="p-4 md:p-5 space-y-4">
@@ -557,7 +557,7 @@
             <div class="w-full flex justify-between items-center py-4">
                 <p class="text-lg text-muted">Visible</p>
                 <div>
-                    <form action="/profile-update-is-visible" method="POST">
+                    <form action="/profile/update-is-visible" method="POST">
                         @csrf
                         @method('PUT')
                         <label class="inline-flex items-center cursor-pointer">
@@ -603,7 +603,7 @@
                                 <span class="sr-only">Close</span>
                             </button>
                         </div>
-                        <form action="/profile-add-certi" method="POST" enctype="multipart/form-data">
+                        <form action="/profile/add-certi" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="p-4 md:p-5 space-y-4">
                                 <div>

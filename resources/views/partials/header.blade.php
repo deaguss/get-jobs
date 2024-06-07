@@ -46,11 +46,12 @@
                         class="z-10 hidden absolute md:right-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                         <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
                             <li>
-                                <a href="{{ route('home.profile') }}"
+                                <a href="{{ route('home.profile.index') }}"
                                     class="block px-4 py-2 hover:bg-gray-100 ">Profile</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Registration company</a>
+                                <a href="/register-company" class="block px-4 py-2 hover:bg-gray-100 ">Registration
+                                    company</a>
                             </li>
                             <li>
                                 <a href="/save-jobs" class="block px-4 py-2 hover:bg-gray-100 ">Job application</a>
