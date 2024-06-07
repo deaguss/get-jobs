@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('saved_jobs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('location')->nullable();
-            $table->string('website')->nullable();
-            $table->string('logo')->nullable();
+            $table->uuid('user_id'); // User who saved the job
+            $table->uuid('job_advertisement_id'); // Job advertisement being saved
             $table->timestamps();
-            $table->softDeletes();
 
+            // Foreign key constraints
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('job_advertisement_id')->references('id')->on('job_advertisements')->onDelete('cascade');
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('saved_jobs');
     }
 };

@@ -12,8 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('job_advertisements', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->uuid('admin_id'); // Admin who posted the job advertisement
+            $table->uuid('company_id'); // Company related to the job
+            $table->string('title');
+            $table->text('description');
+            $table->string('location');
+            $table->decimal('salary', 10, 2)->nullable();
+            $table->string('type'); // Full-time, Part-time, etc.
+            $table->timestamp('posted_at')->useCurrent();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 

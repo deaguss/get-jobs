@@ -13,17 +13,14 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
-            $table->string('title');
-            $table->text('description');
-            $table->string('location');
-            $table->decimal('salary', 10, 2)->nullable();
-            $table->string('type'); // Full-time, Part-time
-            $table->timestamp('posted_at')->useCurrent();
+            $table->uuid('user_id'); // User who applied or is tracking the job
+            $table->uuid('job_advertisement_id'); // Reference to the job advertisement
+            $table->string('status')->default('applied'); // Status of the job application
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('job_advertisement_id')->references('id')->on('job_advertisements')->onDelete('cascade');
         });
     }
 
