@@ -177,6 +177,9 @@
                     <p>
                         Location
                     </p>
+                    <p>
+                        99999999 bitcoin 🤑🤑🤑🤑
+                    </p>
                     <p class="block font-sans text-base antialiased font-light leading-relaxed text-justify">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus blanditiis nobis eaque facilis.
                         Voluptas illo, a rerum exercitationem omnis, quos eaque non alias nostrum praesentium recusandae
