@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="mx-auto w-full max-w-screen-xl px-2.5 md:px-20">
+    <div class="w-full px-20">
         @yield('content')
     </div>
 

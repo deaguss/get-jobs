@@ -646,11 +646,11 @@
                 @if (count($datas->certifications) > 0)
                 @foreach ($datas->certifications as $certification)
                 <img src="{{ asset('storage/certi/' . $certification->certi_img) }}" alt="certi"
-                    class="max-w-25 max-h-25 rounded-lg" />
+                    class="max-w-64 max-h-20 rounded-lg" />
                 @endforeach
                 @else
-                <img src="https://via.placeholder.com/100" alt="certi" class="max-w-25 max-h-25 rounded-lg">
-                <img src="https://via.placeholder.com/100" alt="certi" class="max-w-25 max-h-25 rounded-lg">
+                <img src="https://via.placeholder.com/100" alt="certi" class="max-w-64 rounded-lg">
+                <img src="https://via.placeholder.com/100" alt="certi" class="max-w-64 rounded-lg">
                 @endif
             </div>
         </div>

@@ -78,3 +78,7 @@ Route::get('/detail-company', function () {
 Route::get('/save-jobs', function () {
     return view('save-jobs.index');
 });
+
+Route::get('/apply-job', function () {
+    return view('apply-job.index');
+});
