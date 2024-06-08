@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="register px-0">
+<div style="padding: 0 !important;" class="register">
     <div class="min-h-screen py-40">
         <div class="container mx-auto">
             <div class="w-6/12 bg-white rounded-xl mx-auto overflow-hidden shadow-2xl">

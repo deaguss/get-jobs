@@ -63,6 +63,12 @@ class User extends Authenticatable
         return $this->hasMany(SavedJob::class);
     }
 
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
+
+
     public function createPasswordResetToken()
     {
         $this->reset_password_token = Str::random(64);
