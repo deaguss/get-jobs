@@ -66,13 +66,13 @@ Route::prefix('/')->name('home.')->group(function () {
         Route::get('/register', [CompanyController::class, 'register'])->name('form');
         Route::post('/register', [CompanyController::class, 'addCompany'])->name('add');
         Route::put('/update', [CompanyController::class, 'updateCompany'])->name('update');
+
+        Route::prefix('/job')->name('job.')->group(function () {
+            Route::post('/', [CompanyController::class, 'addJobAdvertisement'])->name('add');
+            Route::delete('/{id}/delete', [CompanyController::class, 'deleteJobAdvertisement'])->name('delete');
+        });
     });
 });
-
-Route::get('/register-job', function () {
-    return view('regis-job.index');
-});;
-
 
 Route::get('/detail-company', function () {
     return view('detail-company.index');

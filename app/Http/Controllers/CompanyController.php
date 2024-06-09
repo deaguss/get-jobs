@@ -99,6 +99,7 @@ class CompanyController extends Controller
 
     public function addJobAdvertisement(JobAdvertisementRequest $request)
     {
+        // dd($request->all());
         $user = Auth::user();
 
         if (!$user->company) {
@@ -107,12 +108,13 @@ class CompanyController extends Controller
         }
 
         $jobAdvertisement = JobAdvertisement::create([
+            'admin_id' => $user->id,
             'company_id' => $user->company->id,
             'title' => $request->title,
             'description' => $request->description,
-            'requirements' => $request->requirements,
             'location' => $request->location,
             'salary' => $request->salary,
+            'type' => $request->type,
         ]);
 
         if (!$jobAdvertisement) {
@@ -121,6 +123,33 @@ class CompanyController extends Controller
         }
 
         Session::flash('success_job', 'Job advertisement added successfully!');
+
+        return redirect()->back();
+    }
+
+    public function deleteJobAdvertisement($id = null)
+    {
+        $user = Auth::user();
+
+        if (!$user->company) {
+            Session::flash('error_job', 'You need to register a company first.');
+            return redirect()->back();
+        }
+
+        if (!$id) {
+            Session::flash('error_job', 'Job advertisement not found.');
+            return redirect()->back();
+        }
+
+        $jobAdvertisement = $user->company->jobAdvertisements()
+        ->findOrFail($id)->delete();
+
+        if (!$jobAdvertisement) {
+            Session::flash('error_job', 'Failed to delete job advertisement.');
+            return redirect()->back();
+        }
+
+        Session::flash('success_job', 'Job advertisement deleted successfully!');
 
         return redirect()->back();
     }

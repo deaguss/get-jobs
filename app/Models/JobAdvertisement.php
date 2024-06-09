@@ -30,6 +30,8 @@ class JobAdvertisement extends Model
         'deleted_at',
     ];
 
+    protected $dates = ['deleted_at'];
+
     protected $casts = [
         'id' => 'string',
     ];
