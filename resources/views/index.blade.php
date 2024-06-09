@@ -38,7 +38,7 @@
                 d="m1 1 4 4 4-4" />
         </svg>
     </button>
-    <div id="dropdownNavbar" class="hiddenn w-full px-2 font-normal">
+    <div id="dropdownNavbar" class="hidden w-full px-2 font-normal">
         <ul aria-labelledby="dropdownLargeButton" class="flex gap-x-2 w-fit">
             <li class="py-1.5">
                 <span id="badge-dismiss-red"
@@ -130,7 +130,7 @@
                         </span>
                     </div>
                     <button type="button"
-                        class="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 rounded-lg focus:ring-4 focus:outline-none focus:ring-pink-300 mt-2">
+                        class="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 rounded-lg focus:ring-4 focus:outline-none focus:ring-pink-300 mt-4 mb-2">
                         <svg class="w-3 h-3 text-white me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 20 16">
                             <path
@@ -154,50 +154,38 @@
         <p class="pt-2 font-light text-justify text-gray-900 mr-[40rem]">find jobs that are relevant to your desires.
             just apply and wait for a reply.</p>
 
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-3">
             {{-- Card --}}
-            @for($i = 0; $i < 3; $i++) <div
-                class="flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
-                <div class="p-6">
-                    <div class="flex justify-between items-center">
-                        <h5 class="block text-2xl antialiased leading-snug tracking-normal font-bold">
-                            Junior Coler
-                        </h5>
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m17 21-5-4-5 4V3.889a.92.92 0 0 1 .244-.629.808.808 0 0 1 .59-.26h8.333a.81.81 0 0 1 .589.26.92.92 0 0 1 .244.63V21Z" />
-                        </svg>
-                    </div>
-                    <p class="mb-3">
-                        Pt. name
-                    </p>
-                    <p>
-                        Location
-                    </p>
-                    <p>
-                        99999999 bitcoin 🤑🤑🤑🤑
-                    </p>
-                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-justify">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus blanditiis nobis eaque facilis.
-                        Voluptas illo, a rerum exercitationem omnis, quos eaque non alias nostrum praesentium recusandae
-                        ratione repellat laborum sequi.
-                    </p>
+            @foreach ($allJobs as $jobs)
+            <a href="{{ $jobs->id }}/job"
+                class="mx-auto mt-10 p-6 w-96 max-w-96 bg-white rounded-lg shadow-md border-2 border-transparent hover:border-indigo-600">
+                <div class="flex items-start justify-between">
+                    <img src="{{ $jobs->company->logo ? asset('storage/company/logo/' . $jobs->company->logo) : 'https://placehold.co/100x50' }}"
+                        alt="logo" class="w-16 max-w-16">
+                    <form action="/{{ $jobs->id }}/saved-jobs" method="POST">
+                        @csrf
+                        <button type="submit">
+                            <i class="fa fa-bookmark text-pink-300 hover:text-pink-600 text-xl"></i>
+                        </button>
+                    </form>
                 </div>
-                <div class="p-6 pt-0">
-                    <button
-                        class="align-middle select-none font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 focus:ring-4 focus:ring-pink-500 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
-                        type="button">
-                        Apply now
-                    </button>
+                <div class="mt-4">
+                    <h2 class="text-lg font-semibold">{{ $jobs->title }}</h2>
+                    <p class="text-gray-700">{{ $jobs->company->name }}</p>
+                    <p class="mt-2 text-gray-700">{{ $jobs->location }}</p>
+                    <p class="mt-1 text-gray-700">{{ $jobs->type }}</p>
+                    <p class="mt-2 text-indigo-700 font-semibold">${{ $jobs->salary }}</p>
+                    <p class="mt-2 text-gray-500 text-sm">{{ $jobs->created_at->diffForHumans() }}</p>
                 </div>
+            </a>
+            @endforeach
         </div>
-        @endfor
+        <button type="button" onclick="window.location.href='/detail-company'""
+            class=" text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4
+            focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-10
+            mt-5 ms-5">See
+            more &rarr;</button>
     </div>
-    <button type="button"
-        class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-10 mt-5">See
-        more &rarr;</button>
-</div>
 </div>
 
 

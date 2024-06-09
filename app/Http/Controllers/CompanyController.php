@@ -9,6 +9,7 @@ use App\Models\Application;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobAdvertisement;
+use App\Models\SavedJob;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -154,6 +155,39 @@ class CompanyController extends Controller
         return redirect()->back();
     }
 
+    public function saveJobAdvertisement($id = null) {
+        $job = JobAdvertisement::find($id);
+
+        if (!$job) {
+            Session::flash('error_job', 'Job not found.');
+            return redirect()->back();
+        }
+
+        $user = Auth::user();
+
+        $findSavedJob = SavedJob::where('user_id', $user->id)
+                                ->where('job_advertisement_id', $job->id)
+                                ->first();
+
+        if ($findSavedJob) {
+            Session::flash('error_job', 'Job already saved.');
+            return redirect()->back();
+        } else {
+            $savedJob = SavedJob::create([
+                'user_id' => $user->id,
+                'job_advertisement_id' => $job->id,
+            ]);
+            if (!$savedJob) {
+                Session::flash('error_job', 'Failed to save job advertisement.');
+                return redirect()->back();
+            }
+        }
+
+        Session::flash('success_job', 'Job saved successfully!');
+        return redirect()->back();
+    }
+
+
     public function applyJob(ApplicationRequest $request)
     {
         $user = Auth::user();
@@ -194,4 +228,6 @@ class CompanyController extends Controller
 
         return redirect()->back();
     }
+
+
 }

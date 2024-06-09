@@ -30,6 +30,7 @@ class Job extends Model
         'deleted_at',
     ];
 
+
     protected $casts = [
         'id' => 'string',
     ];

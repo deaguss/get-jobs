@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ForgetPasswordController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileUser;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +17,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-Route::get('/', function () {
-    return view('index');
-});
 
 
 Route::get('/explore-companies', function () {
@@ -47,6 +43,10 @@ Route::prefix('sign-in')->name('signin.')->group(function () {
 Route::get('/sign-out', [AuthController::class, 'logout'])->name('sign.out');
 
 Route::prefix('/')->name('home.')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::post('/{id}/saved-jobs', [CompanyController::class, 'saveJobAdvertisement'])->name('save.jobs');
+    Route::get('/{id}/job', [HomeController::class, 'detailJob'])->name('detail.jobs');
+
     Route::prefix('/profile')->name('profile.')->group(function () {
         Route::get('/', [ProfileUser::class, 'index'])->name('index');
         Route::put('/update', [ProfileUser::class, 'updateProfile'])->name('update');
