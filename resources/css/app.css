@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .hover-edit-image::after {
-    content: 'Edit Image';
+    content: "Edit Image";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -26,212 +26,212 @@
 }
 
 .wrapper {
-  max-width: 1100px;
-  width: 100%;
-  position: relative;
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
 }
 .wrapper i {
-  top: 50%;
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
-  font-size: 1.25rem;
-  position: absolute;
-  text-align: center;
-  line-height: 50px;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.23);
-  transform: translateY(-50%);
-  transition: transform 0.1s linear;
+    top: 50%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    position: absolute;
+    text-align: center;
+    line-height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+    transform: translateY(-50%);
+    transition: transform 0.1s linear;
 }
-.wrapper i:active{
-  transform: translateY(-50%) scale(0.85);
+.wrapper i:active {
+    transform: translateY(-50%) scale(0.85);
 }
-.wrapper i:first-child{
-  left: -22px;
+.wrapper i:first-child {
+    left: -22px;
 }
-.wrapper i:last-child{
-  right: -22px;
+.wrapper i:last-child {
+    right: -22px;
 }
-.wrapper .carousel{
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% / 3) - 12px);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 16px;
-  border-radius: 8px;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
+.wrapper .carousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 3) - 12px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    border-radius: 8px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
 }
 .carousel::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 .carousel.no-transition {
-  scroll-behavior: auto;
+    scroll-behavior: auto;
 }
 .carousel.dragging {
-  scroll-snap-type: none;
-  scroll-behavior: auto;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
 }
 .carousel.dragging .card {
-  cursor: grab;
-  user-select: none;
+    cursor: grab;
+    user-select: none;
 }
 .carousel :where(.card, .img) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .carousel .card {
-  scroll-snap-align: start;
-  height: 342px;
-  list-style: none;
-  background: #fff;
-  cursor: pointer;
-  padding-bottom: 15px;
-  flex-direction: column;
-  border-radius: 8px;
+    scroll-snap-align: start;
+    list-style: none;
+    background: #fff;
+    cursor: pointer;
+    padding-bottom: 15px;
+    flex-direction: column;
+    border-radius: 8px;
 }
 .carousel .card .img {
-  background: #8B53FF;
-  height: 148px;
-  width: 148px;
-  border-radius: 50%;
+    background: #8b53ff;
+    height: 148px;
+    width: 148px;
+    border-radius: 50%;
 }
 .card .img img {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #fff;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
 }
 .carousel .card h2 {
-  font-weight: 500;
-  font-size: 1.56rem;
-  margin: 30px 0 5px;
+    font-weight: 500;
+    font-size: 1.56rem;
+    margin: 30px 0 5px;
 }
 .carousel .card span {
-  color: #6A6D78;
-  font-size: 1.31rem;
+    color: #6a6d78;
+    font-size: 1.31rem;
 }
 
 .register {
     width: 100%;
     background-image: linear-gradient(
-        316deg,
-        rgba(234, 234, 234, 0.02) 0%,
-        rgba(234, 234, 234, 0.02) 16.667%,
-        rgba(128, 128, 128, 0.02) 16.667%,
-        rgba(128, 128, 128, 0.02) 33.334%,
-        rgba(161, 161, 161, 0.02) 33.334%,
-        rgba(161, 161, 161, 0.02) 50.001000000000005%,
-        rgba(154, 154, 154, 0.02) 50.001%,
-        rgba(154, 154, 154, 0.02) 66.668%,
-        rgba(77, 77, 77, 0.02) 66.668%,
-        rgba(77, 77, 77, 0.02) 83.33500000000001%,
-        rgba(10, 10, 10, 0.02) 83.335%,
-        rgba(10, 10, 10, 0.02) 100.002%
-      ),
-      linear-gradient(
-        75deg,
-        rgba(39, 39, 39, 0.03) 0%,
-        rgba(39, 39, 39, 0.03) 20%,
-        rgba(232, 232, 232, 0.03) 20%,
-        rgba(232, 232, 232, 0.03) 40%,
-        rgba(33, 33, 33, 0.03) 40%,
-        rgba(33, 33, 33, 0.03) 60%,
-        rgba(84, 84, 84, 0.03) 60%,
-        rgba(84, 84, 84, 0.03) 80%,
-        rgba(112, 112, 112, 0.03) 80%,
-        rgba(112, 112, 112, 0.03) 100%
-      ),
-      linear-gradient(
-        103deg,
-        rgba(174, 174, 174, 0.03) 0%,
-        rgba(174, 174, 174, 0.03) 12.5%,
-        rgba(190, 190, 190, 0.03) 12.5%,
-        rgba(190, 190, 190, 0.03) 25%,
-        rgba(191, 191, 191, 0.03) 25%,
-        rgba(191, 191, 191, 0.03) 37.5%,
-        rgba(23, 23, 23, 0.03) 37.5%,
-        rgba(23, 23, 23, 0.03) 50%,
-        rgba(227, 227, 227, 0.03) 50%,
-        rgba(227, 227, 227, 0.03) 62.5%,
-        rgba(71, 71, 71, 0.03) 62.5%,
-        rgba(71, 71, 71, 0.03) 75%,
-        rgba(162, 162, 162, 0.03) 75%,
-        rgba(162, 162, 162, 0.03) 87.5%,
-        rgba(85, 85, 85, 0.03) 87.5%,
-        rgba(85, 85, 85, 0.03) 100%
-      ),
-      linear-gradient(
-        355deg,
-        rgba(38, 38, 38, 0.02) 0%,
-        rgba(38, 38, 38, 0.02) 25%,
-        rgba(106, 106, 106, 0.02) 25%,
-        rgba(106, 106, 106, 0.02) 50%,
-        rgba(28, 28, 28, 0.02) 50%,
-        rgba(28, 28, 28, 0.02) 75%,
-        rgba(66, 66, 66, 0.02) 75%,
-        rgba(66, 66, 66, 0.02) 100%
-      ),
-      linear-gradient(
-        137deg,
-        rgba(38, 38, 38, 0.03) 0%,
-        rgba(38, 38, 38, 0.03) 25%,
-        rgba(211, 211, 211, 0.03) 25%,
-        rgba(211, 211, 211, 0.03) 50%,
-        rgba(4, 4, 4, 0.03) 50%,
-        rgba(4, 4, 4, 0.03) 75%,
-        rgba(24, 24, 24, 0.03) 75%,
-        rgba(24, 24, 24, 0.03) 100%
-      ),
-      linear-gradient(
-        51deg,
-        rgba(253, 253, 253, 0.03) 0%,
-        rgba(253, 253, 253, 0.03) 14.286%,
-        rgba(103, 103, 103, 0.03) 14.286%,
-        rgba(103, 103, 103, 0.03) 28.572%,
-        rgba(46, 46, 46, 0.03) 28.572%,
-        rgba(46, 46, 46, 0.03) 42.858%,
-        rgba(68, 68, 68, 0.03) 42.858%,
-        rgba(68, 68, 68, 0.03) 57.144%,
-        rgba(116, 116, 116, 0.03) 57.144%,
-        rgba(116, 116, 116, 0.03) 71.42999999999999%,
-        rgba(248, 248, 248, 0.03) 71.43%,
-        rgba(248, 248, 248, 0.03) 85.71600000000001%,
-        rgba(174, 174, 174, 0.03) 85.716%,
-        rgba(174, 174, 174, 0.03) 100.002%
-      ),
-      linear-gradient(
-        283deg,
-        rgba(20, 20, 20, 0.01) 0%,
-        rgba(20, 20, 20, 0.01) 14.286%,
-        rgba(23, 23, 23, 0.01) 14.286%,
-        rgba(23, 23, 23, 0.01) 28.572%,
-        rgba(19, 19, 19, 0.01) 28.572%,
-        rgba(19, 19, 19, 0.01) 42.858%,
-        rgba(134, 134, 134, 0.01) 42.858%,
-        rgba(134, 134, 134, 0.01) 57.144%,
-        rgba(4, 4, 4, 0.01) 57.144%,
-        rgba(4, 4, 4, 0.01) 71.42999999999999%,
-        rgba(254, 254, 254, 0.01) 71.43%,
-        rgba(254, 254, 254, 0.01) 85.71600000000001%,
-        rgba(87, 87, 87, 0.01) 85.716%,
-        rgba(87, 87, 87, 0.01) 100.002%
-      ),
-      linear-gradient(90deg, rgb(168, 1, 206), rgb(20, 120, 203));
+            316deg,
+            rgba(234, 234, 234, 0.02) 0%,
+            rgba(234, 234, 234, 0.02) 16.667%,
+            rgba(128, 128, 128, 0.02) 16.667%,
+            rgba(128, 128, 128, 0.02) 33.334%,
+            rgba(161, 161, 161, 0.02) 33.334%,
+            rgba(161, 161, 161, 0.02) 50.001000000000005%,
+            rgba(154, 154, 154, 0.02) 50.001%,
+            rgba(154, 154, 154, 0.02) 66.668%,
+            rgba(77, 77, 77, 0.02) 66.668%,
+            rgba(77, 77, 77, 0.02) 83.33500000000001%,
+            rgba(10, 10, 10, 0.02) 83.335%,
+            rgba(10, 10, 10, 0.02) 100.002%
+        ),
+        linear-gradient(
+            75deg,
+            rgba(39, 39, 39, 0.03) 0%,
+            rgba(39, 39, 39, 0.03) 20%,
+            rgba(232, 232, 232, 0.03) 20%,
+            rgba(232, 232, 232, 0.03) 40%,
+            rgba(33, 33, 33, 0.03) 40%,
+            rgba(33, 33, 33, 0.03) 60%,
+            rgba(84, 84, 84, 0.03) 60%,
+            rgba(84, 84, 84, 0.03) 80%,
+            rgba(112, 112, 112, 0.03) 80%,
+            rgba(112, 112, 112, 0.03) 100%
+        ),
+        linear-gradient(
+            103deg,
+            rgba(174, 174, 174, 0.03) 0%,
+            rgba(174, 174, 174, 0.03) 12.5%,
+            rgba(190, 190, 190, 0.03) 12.5%,
+            rgba(190, 190, 190, 0.03) 25%,
+            rgba(191, 191, 191, 0.03) 25%,
+            rgba(191, 191, 191, 0.03) 37.5%,
+            rgba(23, 23, 23, 0.03) 37.5%,
+            rgba(23, 23, 23, 0.03) 50%,
+            rgba(227, 227, 227, 0.03) 50%,
+            rgba(227, 227, 227, 0.03) 62.5%,
+            rgba(71, 71, 71, 0.03) 62.5%,
+            rgba(71, 71, 71, 0.03) 75%,
+            rgba(162, 162, 162, 0.03) 75%,
+            rgba(162, 162, 162, 0.03) 87.5%,
+            rgba(85, 85, 85, 0.03) 87.5%,
+            rgba(85, 85, 85, 0.03) 100%
+        ),
+        linear-gradient(
+            355deg,
+            rgba(38, 38, 38, 0.02) 0%,
+            rgba(38, 38, 38, 0.02) 25%,
+            rgba(106, 106, 106, 0.02) 25%,
+            rgba(106, 106, 106, 0.02) 50%,
+            rgba(28, 28, 28, 0.02) 50%,
+            rgba(28, 28, 28, 0.02) 75%,
+            rgba(66, 66, 66, 0.02) 75%,
+            rgba(66, 66, 66, 0.02) 100%
+        ),
+        linear-gradient(
+            137deg,
+            rgba(38, 38, 38, 0.03) 0%,
+            rgba(38, 38, 38, 0.03) 25%,
+            rgba(211, 211, 211, 0.03) 25%,
+            rgba(211, 211, 211, 0.03) 50%,
+            rgba(4, 4, 4, 0.03) 50%,
+            rgba(4, 4, 4, 0.03) 75%,
+            rgba(24, 24, 24, 0.03) 75%,
+            rgba(24, 24, 24, 0.03) 100%
+        ),
+        linear-gradient(
+            51deg,
+            rgba(253, 253, 253, 0.03) 0%,
+            rgba(253, 253, 253, 0.03) 14.286%,
+            rgba(103, 103, 103, 0.03) 14.286%,
+            rgba(103, 103, 103, 0.03) 28.572%,
+            rgba(46, 46, 46, 0.03) 28.572%,
+            rgba(46, 46, 46, 0.03) 42.858%,
+            rgba(68, 68, 68, 0.03) 42.858%,
+            rgba(68, 68, 68, 0.03) 57.144%,
+            rgba(116, 116, 116, 0.03) 57.144%,
+            rgba(116, 116, 116, 0.03) 71.42999999999999%,
+            rgba(248, 248, 248, 0.03) 71.43%,
+            rgba(248, 248, 248, 0.03) 85.71600000000001%,
+            rgba(174, 174, 174, 0.03) 85.716%,
+            rgba(174, 174, 174, 0.03) 100.002%
+        ),
+        linear-gradient(
+            283deg,
+            rgba(20, 20, 20, 0.01) 0%,
+            rgba(20, 20, 20, 0.01) 14.286%,
+            rgba(23, 23, 23, 0.01) 14.286%,
+            rgba(23, 23, 23, 0.01) 28.572%,
+            rgba(19, 19, 19, 0.01) 28.572%,
+            rgba(19, 19, 19, 0.01) 42.858%,
+            rgba(134, 134, 134, 0.01) 42.858%,
+            rgba(134, 134, 134, 0.01) 57.144%,
+            rgba(4, 4, 4, 0.01) 57.144%,
+            rgba(4, 4, 4, 0.01) 71.42999999999999%,
+            rgba(254, 254, 254, 0.01) 71.43%,
+            rgba(254, 254, 254, 0.01) 85.71600000000001%,
+            rgba(87, 87, 87, 0.01) 85.716%,
+            rgba(87, 87, 87, 0.01) 100.002%
+        ),
+        linear-gradient(90deg, rgb(168, 1, 206), rgb(20, 120, 203));
 }
 @media screen and (max-width: 900px) {
-  .wrapper .carousel {
-    grid-auto-columns: calc((100% / 2) - 9px);
-  }
+    .wrapper .carousel {
+        grid-auto-columns: calc((100% / 2) - 9px);
+    }
 }
 
 @media screen and (max-width: 600px) {
-  .wrapper .carousel {
-    grid-auto-columns: 100%;
-  }
+    .wrapper .carousel {
+        grid-auto-columns: 100%;
+    }
 }
+

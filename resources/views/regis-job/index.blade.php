@@ -39,7 +39,7 @@
                 </select>
             </div>
             <button type="submit"
-                class="w-full my-4 bg-blue-500 text-white font-bold py-2 px-4 rounded-md">Submit</button>
+                class="w-full my-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md">Submit</button>
 
         </form>
     </div>

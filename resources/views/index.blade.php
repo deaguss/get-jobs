@@ -22,7 +22,7 @@
                 placeholder="Enter country, state...">
         </div>
         <button type="submit"
-            class="w-full px-8 py-4 text-base font-bold text-center text-white bg-blue-800 rounded-lg md:w-auto md:mt-auto hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-primary-300">Search</button>
+            class="w-full px-8 py-4 text-base font-bold text-center text-white bg-indigo-600 rounded-lg md:w-auto md:mt-auto hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Search</button>
     </form>
 </div>
 
@@ -38,8 +38,8 @@
                 d="m1 1 4 4 4-4" />
         </svg>
     </button>
-    <div id="dropdownNavbar" class="hiddenn w-full px-32 font-normal">
-        <ul aria-labelledby="dropdownLargeButton" class="flex gap-x-2">
+    <div id="dropdownNavbar" class="hiddenn w-full px-2 font-normal">
+        <ul aria-labelledby="dropdownLargeButton" class="flex gap-x-2 w-fit">
             <li class="py-1.5">
                 <span id="badge-dismiss-red"
                     class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-800 bg-red-100 rounded me-2 dark:bg-red-900 dark:text-red-300">
@@ -96,43 +96,41 @@
 <div>
     <div class="px mt-16 promotion_people">
         <h1 class="text-2xl font-semibold">Promotion people</h1>
-        <p class="pt-2 font-thin text-justify text-gray-900 mr-[40rem]">promotion of job seekers on the homepage of the
-            website.
-            Each registered job
-            seeker has the opportunity to be
+        <p class="pt-2 font-light text-justify text-gray-900">promotion of job seekers on the homepage of the
+            website. Each registered job seeker has the opportunity to be
             promoted, so that their profile appears more frequently and more prominently among other job seekers.</p>
         <div class="card_people">
         </div>
     </div>
-    <div class="wrapper ms-6 my-5">
+    <div class="wrapper mx-auto my-10">
         <i id="left" class="fa-solid fa-angle-left"></i>
-        <ul class="carousel">
+        <ul class="carousel h-fit">
             @for ($i = 1; $i < 7; $i++) <li class="card">
                 <div class="bg-white border border-slate-300 px-10 py-3 rounded-lg">
-                    <div class="flex justify-center">
-                        <img class="w-24 h-24 mb-3 rounded-full object-cover"
+                    <div class="relative flex justify-center items-center h-24 mt-3">
+                        <img class="w-24 h-24 mb-3 rounded-full object-cover transition-all duration-300 ease-in-out hover:absolute hover:top-0 hover:w-full hover:h-full hover:rounded-3xl hover:ease-in"
                             src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
                             alt="Bonnie image" draggable="false" />
                     </div>
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Jro Datuk {{ $i }}</h5>
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 pt-3">Jro Datuk {{ $i }}</h5>
                     <p class="mb-2">Skill</p>
                     <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
                         amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
                         natus eaque.</p>
                     <div class="flex text-white gap-x-3">
-                        <span class="bg-purple-100 text-purple-800 px-1.5 py-1 rounded">
+                        <span class="bg-rose-100 text-pink-500 px-1.5 py-1 rounded">
                             <p class="text-xs font-medium">Node
                                 js</p>
                         </span>
-                        <span class="bg-purple-100 text-purple-800 px-1.5 py-1 rounded">
+                        <span class="bg-rose-100 text-pink-500 px-1.5 py-1 rounded">
                             <p class="text-xs font-medium">PHP</p>
                         </span>
-                        <span class="bg-purple-100 text-purple-800 px-1.5 py-1 rounded">
+                        <span class="bg-rose-100 text-pink-500 px-1.5 py-1 rounded">
                             <p class="text-xs font-medium">Laravel</p>
                         </span>
                     </div>
                     <button type="button"
-                        class="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 mt-2">
+                        class="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 rounded-lg focus:ring-4 focus:outline-none focus:ring-pink-300 mt-2">
                         <svg class="w-3 h-3 text-white me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 20 16">
                             <path
@@ -153,7 +151,7 @@
 <div>
     <div class="px mt-16 promotion_people">
         <h1 class="text-2xl font-semibold">Find a job</h1>
-        <p class="pt-2 font-thin text-justify text-gray-900 mr-[40rem]">find jobs that are relevant to your desires.
+        <p class="pt-2 font-light text-justify text-gray-900 mr-[40rem]">find jobs that are relevant to your desires.
             just apply and wait for a reply.</p>
 
         <div class="grid grid-cols-3 gap-4">
@@ -162,7 +160,7 @@
                 class="flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
                 <div class="p-6">
                     <div class="flex justify-between items-center">
-                        <h5 class="block text-2xl antialiased leading-snug tracking-normal text-blue-600 font-bold">
+                        <h5 class="block text-2xl antialiased leading-snug tracking-normal font-bold">
                             Junior Coler
                         </h5>
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -188,7 +186,7 @@
                 </div>
                 <div class="p-6 pt-0">
                     <button
-                        class="align-middle select-none font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+                        class="align-middle select-none font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 focus:ring-4 focus:ring-pink-500 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
                         type="button">
                         Apply now
                     </button>

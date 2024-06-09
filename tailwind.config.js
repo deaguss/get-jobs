@@ -43,6 +43,7 @@ module.exports = {
                 "Segoe UI Symbol",
                 "Noto Color Emoji",
             ],
+            poppins: ["Poppins", "sans-serif"],
         },
     },
     plugins: [],

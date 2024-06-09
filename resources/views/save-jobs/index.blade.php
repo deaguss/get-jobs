@@ -15,7 +15,7 @@
             id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
             <li class="me-2 border-b">
                 <button id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about"
-                    aria-selected="true" class="inline-block p-4 text-blue-600 rounded-lg hover:bg-gray-100 ">
+                    aria-selected="true" class="inline-block p-4 text-indigo-600 rounded-lg hover:bg-gray-100 ">
                     Jobs Apllied
                 </button>
             </li>
@@ -35,14 +35,10 @@
                     <div class="p-6">
                         <div class="flex justify-between items-center">
                             <h5
-                                class="block text-4xl antialiased leading-snug tracking-normal text-blue-600 font-bold underline underline-offset-4">
+                                class="block text-4xl antialiased leading-snug tracking-normal text-indigo-600 font-bold underline underline-offset-4">
                                 Junior Coler
                             </h5>
-                            <svg class="w-10 h-10 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M7.833 2c-.507 0-.98.216-1.318.576A1.92 1.92 0 0 0 6 3.89V21a1 1 0 0 0 1.625.78L12 18.28l4.375 3.5A1 1 0 0 0 18 21V3.889c0-.481-.178-.954-.515-1.313A1.808 1.808 0 0 0 16.167 2H7.833Z" />
-                            </svg>
+
                         </div>
                         <p class="mb-3 text-xl">
                             Pt. name
@@ -75,7 +71,7 @@
                     <div class="p-6">
                         <div class="flex justify-between items-center">
                             <h5
-                                class="block text-4xl antialiased leading-snug tracking-normal text-blue-600 font-bold underline underline-offset-4">
+                                class="block text-4xl antialiased leading-snug tracking-normal text-indigo-600 font-bold underline underline-offset-4">
                                 Junior Coler
                             </h5>
                             <svg class="w-10 h-10 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -98,11 +94,11 @@
                             facilis.
                         </p>
                     </div>
-                    <div class="p-6 pt-0 mb-5">
-                        <a href=""
-                            class="align-middle select-none font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none">
+                    <div class="p-6 pt-0">
+                        <button disabled
+                            class="align-middle font-bold text-center uppercase cursor-pointer text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none">
                             Apply now
-                        </a>
+                        </button>
                     </div>
             </div>
             @endfor
