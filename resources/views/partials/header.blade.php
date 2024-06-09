@@ -49,10 +49,18 @@
                                 <a href="{{ route('home.profile.index') }}"
                                     class="block px-4 py-2 hover:bg-gray-100 ">Profile</a>
                             </li>
+                            @if (auth()->user()->company)
                             <li>
-                                <a href="/register-company" class="block px-4 py-2 hover:bg-gray-100 ">Registration
+                                <a href="{{ route('home.company.index') }}" class="block px-4 py-2 hover:bg-gray-100 ">
+                                    Company profile</a>
+                            </li>
+                            @else
+                            <li>
+                                <a href="{{ route('home.company.form') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 ">Registration
                                     company</a>
                             </li>
+                            @endif
                             <li>
                                 <a href="/save-jobs" class="block px-4 py-2 hover:bg-gray-100 ">Job application</a>
                             </li>

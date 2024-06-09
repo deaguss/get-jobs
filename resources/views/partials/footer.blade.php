@@ -1,4 +1,4 @@
-<footer class="bottom-0 w-full p-4 bg-white border-t border-gray-200 md:flex md:items-center md:justify-between md:p-6">
+<footer class="w-full bg-white border-t border-gray-200 flex items-center justify-between pt-5 pb-4">
     <span class="text-sm text-gray-500 sm:text-center">© 2023 <a href="#" class="hover:underline">Get jobs™</a>. All
         Rights Reserved.
     </span>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\ProfileUser;
 use Illuminate\Support\Facades\Route;
@@ -59,12 +60,14 @@ Route::prefix('/')->name('home.')->group(function () {
         Route::put('/update-is-visible', [ProfileUser::class, 'updateIsVisible'])->name('update.isVisible');
         Route::post('/add-certi', [ProfileUser::class, 'addCerti'])->name('add.certi');
     });
+
+    Route::prefix('/company')->name('company.')->group(function () {
+        Route::get('/', [CompanyController::class, 'index'])->name('index');
+        Route::get('/register', [CompanyController::class, 'register'])->name('form');
+        Route::post('/register', [CompanyController::class, 'addCompany'])->name('add');
+        Route::put('/update', [CompanyController::class, 'updateCompany'])->name('update');
+    });
 });
-
-
-Route::get('/register-company', function () {
-    return view('regis-company.index');
-});;
 
 Route::get('/register-job', function () {
     return view('regis-job.index');

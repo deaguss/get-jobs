@@ -11,10 +11,27 @@ use App\Models\Job;
 use App\Models\JobAdvertisement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
     public $companyDir = 'public/company';
+
+    public function index(){
+        $user = Auth::user();
+
+        if (!$user->company) {
+            Session::flash('error_company', 'You need to register a company first.');
+            return redirect()->route('home.company.form');
+        }
+
+        return view('company.index', ['user' => $user]);
+    }
+
+    public function register(){
+        return view('company.create');
+    }
+
     public function addCompany(CompanyRequest $request)
     {
         $user = Auth::user();
@@ -24,20 +41,10 @@ class CompanyController extends Controller
             return redirect()->back();
         }
 
-        $logoFile = $request->file('logo');
-        if ($logoFile) {
-            $logoName = time() . '.' . $logoFile->getClientOriginalExtension();
-            $storagePath = $this->companyDir . '/logos';
-            $logoFile->storeAs($storagePath, $logoName);
-        } else {
-            $logoName = null;
-        }
-
         $company = Company::create([
             'user_id' => $user->id,
             'name' => $request->name,
             'description' => $request->description,
-            'logo' => $logoName,
             'website' => $request->website,
             'location' => $request->location,
         ]);
@@ -49,7 +56,45 @@ class CompanyController extends Controller
 
         Session::flash('success_company', 'Company registered successfully!');
 
-        return redirect()->back();
+        return redirect()->route('home.company.index');
+    }
+
+    public function updateCompany(CompanyRequest $request)
+    {
+        $user = Auth::user();
+
+        if (!$user->company) {
+            Session::flash('error_company', 'Company not found.');
+            return redirect()->back();
+        }
+
+        $logoFile = $request->file('logo');
+        if ($logoFile) {
+            $logoName = time() . '.' . $logoFile->getClientOriginalName();
+            $storagePath = $this->companyDir . '/logo';
+            $logoFile->storeAs($storagePath, $logoName);
+        }
+
+        if ($user->company->logo != null) {
+            Storage::delete($this->companyDir . '/logo' . '/' . $user->company->logo);
+        }
+
+        $company = $user->company->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'logo' => $logoName,
+            'website' => $request->website,
+            'location' => $request->location,
+        ]);
+
+        if (!$company) {
+            Session::flash('error_company', 'Failed to update company.');
+            return redirect()->back();
+        }
+
+        Session::flash('success_company', 'Company updated successfully!');
+
+        return redirect()->route('home.company.index');
     }
 
     public function addJobAdvertisement(JobAdvertisementRequest $request)
