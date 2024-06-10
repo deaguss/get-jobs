@@ -20,91 +20,132 @@
     </div>
 </div>
 
-<div>
-    <h1 class="mt-5 text-3xl font-semibold">Explore companies</h1>
+<div class="mt-8">
+    <h1 class="text-3xl font-semibold">Explore companies</h1>
     <p class="mt-3 text-xl">Learn about new jobs, reviews, company culture, perks and benefits.</p>
 
 
-    {{--
-    Ada dua tipe buat nampilin perusahaan
-    Yang pertama pake carousel, yang kedua tak bikin list slide
-    Yang carousel tak komen dulu, sekarang pake list dulu.
-    Pilih dah yang mana mau tak pake
-    --}}
+    <div>
+        <div class="wrapper mx-auto my-10">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+            <ul class="carousel h-fit mx-4">
+                @for ($i = 1; $i < 7; $i++) <li class="card gap-x-12">
+                    {{-- <div class="flex-shrink-0 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow w-80">
+                        <a href="#">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Company name</h5>
+                        </a>
+                        <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
+                            amet
+                            consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed natus
+                            eaque.
+                        </p>
+                        <a href="/detail-company"
+                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 rounded-lg focus:ring-4 focus:outline-none focus:ring-pink-600">
+                            See Jobs
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </a>
+                    </div> --}}
 
-    {{-- CAROUSEL --}}
-    {{-- <div id="default-carousel" class="relative w-full mt-6 border border-black rounded-lg" data-carousel="slide">
-        <div class="relative h-32 overflow-hidden rounded-lg md:h-96">
-            @for($i = 0; $i < 4; $i++) <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <div class="absolute block w-full text-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                    <h5 class="text-xl font-semibold">Company name</h5>
-                    <p class="text-sm">Company description</p>
-                    <p>5 Jobs available</p>
-                </div>
+                    <a href=""
+                        class="mx-auto mt-5 p-6 w-[21rem] max-w-96 bg-white rounded-lg shadow-md border-2 border-transparent hover:border-indigo-600">
+
+                        <div class="">
+                            <h1 class="text-[1.56rem] font-semibold">Jobs Title</h1>
+                            <p class="text-gray-700">Company name</p>
+                            <p class="mt-2 text-gray-700">Location</p>
+                            <p class="mt-1 text-gray-700">Full-time</p>
+                            <p class="mt-2 text-indigo-700 font-semibold">$1000</p>
+                            <p class="mt-2 text-gray-500 text-sm">Posted 2 days ago</p>
+                        </div>
+                    </a>
+                    </li>
+                    @endfor
+            </ul>
+            <i id="right" class="fa-solid fa-angle-right"></i>
         </div>
-        @endfor
     </div>
 
-    <!-- Tombol Slide -->
-    <button type="button"
-        class="absolute top-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer start-0 group focus:outline-none"
-        data-carousel-prev>
-        <span
-            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-black dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-black dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M5 1 1 5l4 4" />
-            </svg>
-            <span class="sr-only">Previous</span>
-        </span>
-    </button>
-    <button type="button"
-        class="absolute top-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer end-0 group focus:outline-none"
-        data-carousel-next>
-        <span
-            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-black dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-black dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 9 4-4-4-4" />
-            </svg>
-            <span class="sr-only">Next</span>
-        </span>
-    </button>
-</div> --}}
-
-{{-- LIST --}}
-<hr class="mt-8">
-<div class="container py-2 mx-auto">
-    <div class="overflow-x-auto">
-        <div class="inline-flex space-x-4 flex-nowrap">
-            @for($i = 0; $i < 6; $i++) <div
-                class="flex-shrink-0 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow w-80">
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Company name</h5>
-                </a>
-                <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed natus eaque.
-                </p>
-                <a href="/detail-company"
-                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 rounded-lg focus:ring-4 focus:outline-none focus:ring-pink-600">
-                    See Jobs
-                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg>
-                </a>
-        </div>
-        @endfor
-    </div>
-</div>
-</div>
-<hr class="mb-20">
-
 
 </div>
+
+
+
+<script>
+    const wrapper = document.querySelector(".wrapper");
+    const carousel = document.querySelector(".carousel");
+    const firstCardWidth = carousel.querySelector(".card").offsetWidth;
+    const arrowBtns = document.querySelectorAll(".wrapper i");
+    const carouselChildrens = [...carousel.children];
+
+    let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
+
+    let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
+
+    carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
+        carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+    });
+
+    carouselChildrens.slice(0, cardPerView).forEach(card => {
+        carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+    });
+
+    carousel.classList.add("no-transition");
+    carousel.scrollLeft = carousel.offsetWidth;
+    carousel.classList.remove("no-transition");
+
+    arrowBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            carousel.scrollLeft += btn.id == "left" ? -firstCardWidth : firstCardWidth;
+        });
+    });
+
+    const dragStart = (e) => {
+        isDragging = true;
+        carousel.classList.add("dragging");
+
+        startX = e.pageX;
+        startScrollLeft = carousel.scrollLeft;
+    }
+
+    const dragging = (e) => {
+        if(!isDragging) return;
+
+        carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+    }
+
+    const dragStop = () => {
+        isDragging = false;
+        carousel.classList.remove("dragging");
+    }
+
+    const infiniteScroll = () => {
+
+        if(carousel.scrollLeft === 0) {
+            carousel.classList.add("no-transition");
+            carousel.scrollLeft = carousel.scrollWidth - (2 * carousel.offsetWidth);
+            carousel.classList.remove("no-transition");
+        }
+
+        else if(Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+            carousel.classList.add("no-transition");
+            carousel.scrollLeft = carousel.offsetWidth;
+            carousel.classList.remove("no-transition");
+        }
+        clearTimeout(timeoutId);
+        if(!wrapper.matches(":hover")) autoPlay();
+    }
+
+
+    carousel.addEventListener("mousedown", dragStart);
+    carousel.addEventListener("mousemove", dragging);
+    document.addEventListener("mouseup", dragStop);
+    carousel.addEventListener("scroll", infiniteScroll);
+    wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+</script>
 @include("partials.footer")
 
 @endsection
