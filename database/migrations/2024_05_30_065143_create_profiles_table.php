@@ -23,7 +23,6 @@ return new class extends Migration
             $table->boolean("is_visible")->default(true);
             $table->boolean("avaliable")->default(true);
             $table->string("resume")->nullable();
-            $table->string("cover_letter")->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

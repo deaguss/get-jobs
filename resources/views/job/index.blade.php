@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Profile')
+@section('title', $job->title)
 
 @include('partials.header')
 
@@ -29,12 +29,12 @@
             </div>
             <div class="text-gray-600">{{ $job->created_at->diffForHumans() }}</div>
         </div>
-        <div class="flex space-x-4 mb-6">
-            <form action="#" method="POST" class="block">
-                @csrf
-                <button class="bg-pink-500 text-white hover:bg-pink-600 py-2 px-4 rounded-md">Apply</button>
-            </form>
-            <form action="/{{ $job->id }}/saved-jobs" method="POST" class="block">
+        <div class="flex gap-x-4 mb-6">
+            <div>
+                <a href="{{ route('home.apply.jobs', $job->id) }}"
+                    class="bg-pink-500 text-white hover:bg-pink-600 py-2 px-4 rounded-md">Apply</a>
+            </div>
+            <form action="/{{ $job->id }}/saved-jobs" method="POST" class="-mt-2">
                 @csrf
                 <button
                     class="{{ $job->isSaved ? 'bg-blue-100 text-blue-600' : 'bg-blue-500 text-blue-100'}} py-2 px-4 rounded-md">{{

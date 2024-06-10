@@ -35,7 +35,6 @@ class ProfileRequest extends FormRequest
             'is_visible' => 'string',
             'avaliable' => 'string',
             'resume' => 'mimes:doc,docx,pdf|max:5000',
-            'cover_letter' => 'mimes:doc,docx,pdf|max:2048',
             'recent_work' => 'string',
             'recent_education' => 'string',
             'personal_summmary' => 'string',

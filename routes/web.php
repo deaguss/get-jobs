@@ -47,6 +47,8 @@ Route::prefix('/')->name('home.')->group(function () {
     Route::post('/{id}/saved-jobs', [CompanyController::class, 'saveJobAdvertisement'])->name('save.jobs');
     Route::get('/{id}/job', [HomeController::class, 'detailJob'])->name('detail.jobs');
 
+    Route::get('/{id}/apply', [HomeController::class, 'applyJob'])->name('apply.jobs');
+
     Route::prefix('/profile')->name('profile.')->group(function () {
         Route::get('/', [ProfileUser::class, 'index'])->name('index');
         Route::put('/update', [ProfileUser::class, 'updateProfile'])->name('update');

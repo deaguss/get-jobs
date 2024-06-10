@@ -38,6 +38,15 @@ class HomeController extends Controller
         ]);
     }
 
+
+    public function applyJob($id = null)
+    {
+        $job = JobAdvertisement::with('company')->findOrFail($id);
+        return view('job.apply', [
+            'job' => $job
+        ]);
+    }
+
     public function allJobs(){
         return JobAdvertisement::with('company')->limit(3)->get();
     }

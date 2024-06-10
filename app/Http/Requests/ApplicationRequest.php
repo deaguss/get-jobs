@@ -22,7 +22,7 @@ class ApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cover_letter' => 'required|string',
+            'cover_letter' => 'mimes:doc,docx,pdf|max:2048',
             'status' => 'required|in:pending,accepted,rejected',
         ];
     }
