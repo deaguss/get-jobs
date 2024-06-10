@@ -132,7 +132,7 @@
                                                 $datas->profile->avaliable ? 'checked' : '' }}
                                             >
                                             <div
-                                                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4  peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                                                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4  peer-focus:ring-pink-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-pink-600">
                                             </div>
                                             <span class="ms-3 text-sm font-medium text-gray-900">Avaliable?</span>
                                         </label>
@@ -141,10 +141,10 @@
 
                                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
                                     <button data-modal-hide="default-modal" type="submit"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                        class="text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                         Change</button>
                                     <button data-modal-hide="default-modal" type="button"
-                                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-pink-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
                                 </div>
                             </form>
                         </div>
@@ -206,10 +206,10 @@
 
                                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
                                     <button data-modal-hide="default-modal-summary" type="submit"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                        class="text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                         Change</button>
                                     <button data-modal-hide="default-modal-summary" type="button"
-                                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-pink-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
                                 </div>
                             </form>
                         </div>
@@ -272,10 +272,10 @@
 
                                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
                                     <button data-modal-hide="default-modal-career" type="submit"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                        class="text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                         Change</button>
                                     <button data-modal-hide="default-modal-career" type="button"
-                                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-pink-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
                                 </div>
                             </form>
                         </div>
@@ -283,12 +283,14 @@
                 </div>
             </div>
         </div>
+
+        {{-- Education --}}
         <div class="mt-6">
             <h2 class="text-3xl font-semibold">Education</h2>
             <p class="text-gray-700 capitalize">{{ $datas->profile->recent_education ?? 'Not set yet' }}</p>
             <button type="button" data-modal-target="default-modal-education"
-                data-modal-toggle="default-modal-education" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium
-                rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-4 uppercase">add
+                data-modal-toggle="default-modal-education" class="text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 rounded-lg focus:ring-4 focus:ring-pink-300 font-medium
+                 text-sm px-5 py-2.5 me-2 mb-2 mt-4 uppercase">add
                 education</button>
             <div id="default-modal-education" tabindex="-1" aria-hidden="true"
                 class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -327,23 +329,25 @@
 
                             <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
                                 <button data-modal-hide="default-modal-education" type="submit"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    class="text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                     Change</button>
                                 <button data-modal-hide="default-modal-education" type="button"
-                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-pink-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
+        {{-- Skills --}}
         <div class="mt-6">
             <h2 class="text-2xl font-semibold mb-3">Skils</h2>
             <div class="flex pr-56 m-auto flex-wrap gap-y-3">
                 @if (count($datas->skills) >= 0)
                 @foreach ($datas->skills as $skill)
                 <span
-                    class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">{{
+                    class="bg-rose-100 text-pink-500 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">{{
                     $skill }}</span>
                 @endforeach
                 @else
@@ -352,7 +356,7 @@
                 @endif
             </div>
             <button type="button" data-modal-target="default-modal-skills" data-modal-toggle="default-modal-skills"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-4 uppercase">add
+                class="text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-4 uppercase">add
                 skils</button>
             <div id="default-modal-skills" tabindex="-1" aria-hidden="true"
                 class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -390,16 +394,17 @@
 
                             <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
                                 <button data-modal-hide="default-modal-skills" type="submit"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    class="text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                     Change</button>
                                 <button data-modal-hide="default-modal-skills" type="button"
-                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-pink-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="mt-6">
             <div class="relative mt-2 p-4 bg-transparent border-4 border-gray-200 rounded-full ">
@@ -452,10 +457,10 @@
 
                                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
                                     <button data-modal-hide="default-modal-languages" type="submit"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                        class="text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                         Change</button>
                                     <button data-modal-hide="default-modal-languages" type="button"
-                                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-pink-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
                                 </div>
                             </form>
                         </div>
@@ -468,14 +473,14 @@
                     <h2 class="text-2xl font-semibold">Resume</h2>
                     @if (isset($datas->profile->resume))
                     <a href="{{ asset('storage/resume/' . $datas->profile->resume) }}"
-                        class="text-blue-500 text-lg hover:underline mt-2">Download file</a>
+                        class="text-pink-500 text-lg hover:underline mt-2">Download file</a>
                     @else
                     <p class="text-gray-800 mx-1">None</p>
                     @endif
                     <hr class="px-2 my-3 border-t-2">
                     <button type="button" data-modal-target="default-modal-resume"
                         data-modal-toggle="default-modal-resume"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 uppercase">add
+                        class="text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 uppercase">add
                         resume</button>
                     <div id="default-modal-resume" tabindex="-1" aria-hidden="true"
                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -515,10 +520,10 @@
 
                                     <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
                                         <button data-modal-hide="default-modal-resume" type="submit"
-                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                             Change</button>
                                         <button data-modal-hide="default-modal-resume" type="button"
-                                            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-indigo-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
                                     </div>
                                 </form>
                             </div>
@@ -565,7 +570,7 @@
                                 class="sr-only peer" {{ $datas->profile->is_visible ? 'checked' : '' }}
                             >
                             <div
-                                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4  peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4  peer-focus:ring-pink-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-pink-600">
                             </div>
                         </label>
                     </form>
@@ -633,10 +638,10 @@
                             </div>
                             <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
                                 <button data-modal-hide="default-modal-certi" type="submit"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    class="text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                     Change</button>
                                 <button data-modal-hide="default-modal-certi" type="button"
-                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
+                                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-pink-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
                             </div>
                         </form>
                     </div>
