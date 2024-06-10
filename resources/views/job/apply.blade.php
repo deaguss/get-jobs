@@ -37,21 +37,20 @@
                 </div>
             </div>
         </section>
-        <form action="">
+        <form action="/{{$job->id }}/apply/send" method="POST" enctype="multipart/form-data">
+            @csrf
             <section class="mb-8">
                 <h3 class="text-xl font-semibold mb-4">Cover letter</h3>
                 <div class="space-y-4">
-
                     <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">Upload
                         resume</label>
                     <input
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-                        id="file_input" type="file" name="resume">
-
+                        id="file_input" type="file" name="cover_letter" required>
                 </div>
             </section>
             <div class="text-right mb-16">
-                <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Continue <i
+                <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Continue <i
                         class="fas fa-arrow-right"></i></button>
             </div>
         </form>

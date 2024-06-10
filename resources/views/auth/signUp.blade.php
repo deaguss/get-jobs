@@ -50,7 +50,7 @@
         </div>
     </div>
 </section>
-@include("components.alert",
-['errors' => $errors, 'success' => session('success')])
+{{-- @include("components.alert",
+['errors' => $errors, 'success' => session('success')]) --}}
 @include("partials.footer")
 @endsection

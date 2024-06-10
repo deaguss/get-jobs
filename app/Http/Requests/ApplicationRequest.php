@@ -23,7 +23,6 @@ class ApplicationRequest extends FormRequest
     {
         return [
             'cover_letter' => 'mimes:doc,docx,pdf|max:2048',
-            'status' => 'required|in:pending,accepted,rejected',
         ];
     }
 }

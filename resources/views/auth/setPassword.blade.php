@@ -35,7 +35,7 @@
         </div>
     </div>
 </section>
-@include("components.simple-alert", ['errors' => $errors] + (isset($success) ? ['success' => $success] : []))
+{{-- @include("components.simple-alert", ['errors' => $errors] + (isset($success) ? ['success' => $success] : [])) --}}
 
 @include("partials.footer")
 @endsection

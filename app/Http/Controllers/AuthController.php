@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Mail\VerifyOtp;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -28,6 +29,12 @@ class AuthController extends Controller
             'otp' => Str::random(4),
             'otp_expires_at' => Carbon::now()->addMinutes(10),
         ]);
+
+        $profile = $user->profile()->create([
+            'user_id' => $user->id
+        ]);
+
+        if($profile == null) return Session::flash('error_profile', 'Profile not created');
 
         Mail::to($user->email)->send(new VerifyOtp($user));
 

@@ -15,32 +15,37 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileUser extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = User::with('profile')->where('id', auth()->user()->id)->first();
+
         $certification = Certification::with('user')->where('user_id', auth()->user()->id)->get();
 
-        $datas = array_merge($user->toArray(),
-        ['certifications' => $certification->toArray()]);
+        $datas = array_merge($user->toArray(), ['certifications' => $certification->toArray()]);
 
         $datas = json_decode(json_encode($datas));
 
-        // short id
         $idParts = explode('-', $datas->id);
         $shortId = $idParts[0];
         $datas->short_id = $shortId;
 
-        // short skills
-        $idSkills = explode(',', $datas->profile->skills);
-        foreach ($idSkills as $key => $value) {
-            $arraySkills[] = Str::upper($value);
+        $arraySkills = [];
+
+        if ($user->profile && $user->profile->skills !== null) {
+            $idSkills = explode(',', $datas->profile->skills);
+
+            foreach ($idSkills as $key => $value) {
+                $arraySkills[] = Str::upper($value);
+            }
+
+            $datas->skills = $arraySkills;
         }
-        $datas->skills = $arraySkills;
 
         // dd($datas);
 
         return view('profile.index', ['datas' => $datas]);
     }
+
 
     public function updateProfile(ProfileRequest $request)
     {

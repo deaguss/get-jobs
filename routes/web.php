@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/explore-companies', function () {
-    return view('explore-companies');
-});
+
 
 Route::prefix('sign-up')->name('signup.')->group(function () {
     Route::get('/', [AuthController::class, 'showRegistrationForm'])->name('form');
@@ -48,6 +46,7 @@ Route::prefix('/')->name('home.')->group(function () {
     Route::get('/{id}/job', [HomeController::class, 'detailJob'])->name('detail.jobs');
 
     Route::get('/{id}/apply', [HomeController::class, 'applyJob'])->name('apply.jobs');
+    Route::post('/{id}/apply/send', [CompanyController::class, 'applySend'])->name('apply.send');
 
     Route::prefix('/profile')->name('profile.')->group(function () {
         Route::get('/', [ProfileUser::class, 'index'])->name('index');
@@ -82,4 +81,8 @@ Route::prefix('/')->name('home.')->group(function () {
 
 Route::get('/detail-company', function () {
     return view('detail-company.index');
+});
+
+Route::get('/explore-companies', function () {
+    return view('explore-companies');
 });

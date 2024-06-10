@@ -8,18 +8,18 @@
 
 {{-- FORM Jobs Title Search --}}
 <div class="w-full px-4 py-16 rounded header_search bg-gradient-to-r from-rose-700 to-pink-600">
-    <form class="max-w-full h-fit md:flex md:gap-x-4 md:items-end">
+    <form action="/search" class="max-w-full h-fit md:flex md:gap-x-4 md:items-end" method="GET">
         <div class="flex-grow mb-5 md:mb-0">
             <label for="jobs-title" class="block mb-1 text-xl font-bold text-white">Jobs Title</label>
             <input type="text" id="jobs-title"
                 class="block w-full p-4 text-base text-gray-900 border-none rounded-lg outline-none bg-gray-50 focus:ring-offset-2 focus:ring-4"
-                placeholder="Enter keyword">
+                name="title" placeholder="Enter keyword">
         </div>
         <div class="flex-grow mb-5 md:mb-0">
             <label for="location" class="block mb-1 text-xl font-bold text-white">Where</label>
             <input type="text" id="location"
                 class="block w-full p-4 text-base text-gray-900 border-none rounded-lg outline-none bg-gray-50 focus:ring-offset-2 focus:ring-4"
-                placeholder="Enter country, state...">
+                name="location" placeholder="Enter country, state...">
         </div>
         <button type="submit"
             class="w-full px-8 py-4 text-base font-bold text-center text-white bg-indigo-600 rounded-lg md:w-auto md:mt-auto hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Search</button>
@@ -105,31 +105,50 @@
     <div class="wrapper mx-auto my-10">
         <i id="left" class="fa-solid fa-angle-left"></i>
         <ul class="carousel h-fit">
-            @for ($i = 1; $i < 7; $i++) <li class="card">
+            @if (!empty($allUsers))
+            @foreach ($allUsers as $users)
+            <li class="card">
                 <div class="bg-white border border-slate-300 px-10 py-3 rounded-lg">
                     <div class="relative flex justify-center items-center h-24 mt-3">
-                        <img class="w-24 h-24 mb-3 rounded-full object-cover transition-all duration-300 ease-in-out hover:absolute hover:top-0 hover:w-full hover:h-full hover:rounded-3xl hover:ease-in"
-                            src="https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
+                        <img class="w-24 h-24 max- mb-3 rounded-full object-cover transition-all duration-300 ease-in-out hover:absolute hover:top-0 hover:w-full hover:h-full hover:rounded-3xl hover:ease-in"
+                            src="{{ $users->avatar ? asset('storage/avatars/'. $users->avatar) : 'https://plus.unsplash.com/premium_photo-1682146151884-40fe6fcc284f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8' }}"
                             alt="Bonnie image" draggable="false" />
                     </div>
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 pt-3">Jro Datuk {{ $i }}</h5>
-                    <p class="mb-2">Skill</p>
-                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit
-                        amet consectetur adipisicing elit. Sed, dolores. Fugiat cum, earum vitae quis ad sequi sed
-                        natus eaque.</p>
-                    <div class="flex text-white gap-x-3">
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 pt-3">{{ isset($users->first_name,
+                        $users->last_name) && $users->first_name !== null && $users->last_name !== null ?
+                        $users->first_name . ' ' . $users->last_name : 'John Doe' }}</h5>
+                    <p class="mb-2 font-extralight text-sm">{{ $users->profile->recent_education ?? 'Suite 564 17055
+                        Adriane Knoll, Breitenbergshire, MO 83592-4816' }}</p>
+                    @php
+                    $personalSummary = $users->profile->personal_summmary ?? null;
+
+                    $summaryArray = $personalSummary ? explode('.', $personalSummary) : ['In today meeting, the team
+                    discussed the progress of the ongoing project, highlighting significant milestones achieved in the
+                    past week.'];
+
+                    $firstPart = isset($summaryArray[0]) ? $summaryArray[0] : '';
+                    @endphp
+
+                    <p class="mb-3 font-normal text-justify text-gray-700 dark:text-gray-400">{{ $firstPart }}</p>
+
+                    <div class="flex text-white gap-x-1 gap-y-2 flex-wrap">
+                        @if (!empty($users->profile->skills))
+                        @php
+                        $skills = explode(',', $users->profile->skills);
+                        @endphp
+                        @foreach ($skills as $skill)
                         <span class="bg-rose-100 text-pink-500 px-1.5 py-1 rounded">
-                            <p class="text-xs font-medium">Node
-                                js</p>
+                            <p class="text-xs font-medium">{{ $skill }}</p>
                         </span>
+                        @endforeach
+                        @else
                         <span class="bg-rose-100 text-pink-500 px-1.5 py-1 rounded">
-                            <p class="text-xs font-medium">PHP</p>
+                            <p class="text-xs font-medium">None</p>
                         </span>
-                        <span class="bg-rose-100 text-pink-500 px-1.5 py-1 rounded">
-                            <p class="text-xs font-medium">Laravel</p>
-                        </span>
+                        @endif
+
                     </div>
-                    <button type="button"
+                    <a href="mailto:{{ $users->email }}"
                         class="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-gradient-to-r from-rose-700 to-pink-600 hover:from-rose-900 hover:to-pink-800 rounded-lg focus:ring-4 focus:outline-none focus:ring-pink-300 mt-4 mb-2">
                         <svg class="w-3 h-3 text-white me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 20 16">
@@ -138,10 +157,11 @@
                             <path
                                 d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
                         </svg>
-                        Contact </button>
+                        Contact </a>
                 </div>
-                </li>
-                @endfor
+            </li>
+            @endforeach
+            @endif
         </ul>
         <i id="right" class="fa-solid fa-angle-right"></i>
     </div>

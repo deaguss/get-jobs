@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ApplicationRequest;
 use App\Http\Requests\CompanyRequest;
 use App\Http\Requests\JobAdvertisementRequest;
+use App\Mail\CompanyJobMail;
 use App\Models\Application;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobAdvertisement;
 use App\Models\SavedJob;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -189,46 +191,100 @@ class CompanyController extends Controller
     }
 
 
-    public function applyJob(ApplicationRequest $request)
+    public function applySend(ApplicationRequest $request, $id = null)
     {
         $user = Auth::user();
-
-        $jobs = Job::where('job_advertisement_id', $request->input('job_advertisement_id'))->get();
 
         if (!$user) {
             Session::flash('error', 'You need to login first.');
             return redirect()->back();
         }
 
+        $jobs = JobAdvertisement::find($id);
 
-
-        $application = new Application();
-        $application->fill($request->validated());
-        $application->user_id = $user->id;
-
-        if (!$application->save()) {
-            Session::flash('error', 'Failed to submit application.');
+        if (!$jobs) {
+            Session::flash('error', 'Job not found.');
             return redirect()->back();
+        }
+
+        if ($user->id === $jobs->admin_id) {
+            Session::flash('error', 'You cannot apply for your own job.');
+            return redirect()->back();
+        }
+
+        $company = Company::find($jobs->company_id);
+
+        if (!$company) {
+            Session::flash('error', 'Company not found.');
+            return redirect()->back();
+        }
+
+        $coverLetterPath = null;
+        $coverLetterFile = $request->file('cover_letter');
+        if ($coverLetterFile) {
+            $coverLetterName = 'cover_letter' . '-' . time();
+
+            $storagePath = $this->companyDir . '/cover_letter';
+            $coverLetterPath = $coverLetterFile
+            ->storeAs($storagePath, $coverLetterName);
         }
 
         $job = Job::create([
+            'job_advertisement_id' => $jobs->id,
             'user_id' => $user->id,
-            'job_advertisement_id' => $jobs->job_advertisement_id,
-            'status' => 'applied',
+            'cover_letter' => $coverLetterPath,
+            'status' => 'pending',
         ]);
 
-        if (!$job) {
-            $application->delete();
+        $application = Application::create([
+            'job_id' => $job->id,
+            'user_id' => $user->id,
+            'cover_letter' => $coverLetterPath,
+            'status' => 'pending',
+        ]);
+
+        // dd($job, $application, $coverLetterPath, $company);
+        // exit();
+
+        if (!$application) {
             Session::flash('error', 'Failed to submit application.');
             return redirect()->back();
         }
 
-        $job->applications()->attach($application->id);
+        try {
+            $isSent = Mail::to($user->email)->send(new CompanyJobMail(
+                $user,
+                $coverLetterPath,
+                $company
+            ));
+
+            if($isSent) {
+                $job->update([
+                    'status' => 'accepted',
+                ]);
+                Session::flash('success', 'Application submitted successfully!');
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            $job->update([
+                'status' => 'rejected',
+            ]);
+            Session::flash('error', 'Failed to send application email.');
+            return redirect()->back();
+        }
+
+        // $jobApplication = $job->applications()->attach($application->id);
+
+        // if (!$jobApplication) {
+        //     $job->update([
+        //         'status' => 'rejected',
+        //     ]);
+        //     Session::flash('error', 'Failed to associate application with the job.');
+        //     return redirect()->back();
+        // }
 
         Session::flash('success', 'Application submitted successfully!');
-
         return redirect()->back();
     }
-
 
 }

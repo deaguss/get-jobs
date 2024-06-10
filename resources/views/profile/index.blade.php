@@ -340,7 +340,7 @@
         <div class="mt-6">
             <h2 class="text-2xl font-semibold mb-3">Skils</h2>
             <div class="flex pr-56 m-auto flex-wrap gap-y-3">
-                @if (count($datas->skills) >= 0)
+                @if (!empty($datas->skills))
                 @foreach ($datas->skills as $skill)
                 <span
                     class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-1 rounded inline-flex items-center uppercase">{{

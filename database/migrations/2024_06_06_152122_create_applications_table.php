@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('job_id');
             $table->uuid('user_id'); // User who applied for the job
-            $table->text('cover_letter')->nullable();
+            $table->string('cover_letter')->nullable();
             $table->string('status')->default('pending'); // Pending, Accepted, Rejected
             $table->timestamps();
             $table->softDeletes();
