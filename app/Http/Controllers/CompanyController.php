@@ -170,8 +170,9 @@ class CompanyController extends Controller
                                 ->first();
 
         if ($findSavedJob) {
-            Session::flash('error_job', 'Job already saved.');
-            return redirect()->back();
+            $findSavedJob->delete();
+
+            Session::flash('success_job', 'Unsaved the job.');
         } else {
             $savedJob = SavedJob::create([
                 'user_id' => $user->id,
@@ -181,9 +182,9 @@ class CompanyController extends Controller
                 Session::flash('error_job', 'Failed to save job advertisement.');
                 return redirect()->back();
             }
+            Session::flash('success_job', 'Job saved successfully!');
         }
 
-        Session::flash('success_job', 'Job saved successfully!');
         return redirect()->back();
     }
 

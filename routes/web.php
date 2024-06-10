@@ -59,6 +59,10 @@ Route::prefix('/')->name('home.')->group(function () {
         Route::put('/update-resume', [ProfileUser::class, 'updateResume'])->name('update.resume');
         Route::put('/update-is-visible', [ProfileUser::class, 'updateIsVisible'])->name('update.isVisible');
         Route::post('/add-certi', [ProfileUser::class, 'addCerti'])->name('add.certi');
+
+        Route::prefix('/bookmark')->name('bookmark.')->group(function () {
+            Route::get('/', [ProfileUser::class, 'bookmark'])->name('index');
+        });
     });
 
     Route::prefix('/company')->name('company.')->group(function () {
@@ -76,12 +80,4 @@ Route::prefix('/')->name('home.')->group(function () {
 
 Route::get('/detail-company', function () {
     return view('detail-company.index');
-});
-
-Route::get('/save-jobs', function () {
-    return view('save-jobs.index');
-});
-
-Route::get('/apply-job', function () {
-    return view('apply-job.index');
 });

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CertificateRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Models\Certification;
+use App\Models\JobAdvertisement;
+use App\Models\SavedJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -230,6 +232,33 @@ class ProfileUser extends Controller
         Session::flash('success_certi', 'Certificate added successfully!');
 
         return redirect()->back();
+    }
+
+    public function bookmark()
+    {
+        $savedJobs = $this->savedJobs();
+        $savedJobByUsers = $this->savedJobByUsers();
+
+        return view('profile.bookmark',
+        [
+            'savedJobs' => $savedJobs,
+            'savedJobByUsers' => $savedJobByUsers
+        ]);
+    }
+
+    public function savedJobs(){
+        return JobAdvertisement::with(['company', 'savedByUsers'])
+            ->whereHas('savedByUsers', function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })
+            ->get();
+    }
+
+
+    public function savedJobByUsers()
+    {
+        return SavedJob::
+        where('user_id', auth()->user()->id)->get();
     }
 }
 

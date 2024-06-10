@@ -62,7 +62,8 @@
                             </li>
                             @endif
                             <li>
-                                <a href="/save-jobs" class="block px-4 py-2 hover:bg-gray-100 ">Job application</a>
+                                <a href="{{ route('home.profile.bookmark.index') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 ">Job application</a>
                             </li>
                             <hr class="mx-4">
                             <li>
