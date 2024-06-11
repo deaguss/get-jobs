@@ -50,6 +50,7 @@ class CompanyController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'website' => $request->website,
+            'email' => $request->email,
             'location' => $request->location,
         ]);
 
@@ -223,7 +224,7 @@ class CompanyController extends Controller
         $coverLetterPath = null;
         $coverLetterFile = $request->file('cover_letter');
         if ($coverLetterFile) {
-            $coverLetterName = 'cover_letter' . '-' . time();
+            $coverLetterName = 'cover_letter' . '-' . time() . '.' . $coverLetterFile->getClientOriginalExtension();
 
             $storagePath = $this->companyDir . '/cover_letter';
             $coverLetterPath = $coverLetterFile
@@ -252,25 +253,20 @@ class CompanyController extends Controller
             return redirect()->back();
         }
 
-        try {
-            $isSent = Mail::to($user->email)->send(new CompanyJobMail(
-                $user,
-                $coverLetterPath,
-                $company
-            ));
+        $isSent = Mail::to($company->email)->send(new CompanyJobMail(
+            $user,
+            $coverLetterPath,
+            $company
+        ));
 
-            if($isSent) {
-                $job->update([
-                    'status' => 'accepted',
-                ]);
-                Session::flash('success', 'Application submitted successfully!');
-                return redirect()->back();
-            }
-        } catch (\Exception $e) {
+        // dd($isSent);
+        // exit();
+
+        if($isSent) {
             $job->update([
-                'status' => 'rejected',
+                'status' => 'accepted',
             ]);
-            Session::flash('errors', 'Failed to send application email.');
+            Session::flash('success', 'Application submitted successfully!');
             return redirect()->back();
         }
 

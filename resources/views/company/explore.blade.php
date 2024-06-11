@@ -57,7 +57,7 @@
                         class="mx-auto mt-5 p-6 w-[21rem] max-w-96 bg-white rounded-lg shadow-md border-2 border-transparent hover:border-indigo-600">
                         <div class="">
                             <img src="{{ $company->logo ? asset('storage/company/logo/' . $company->logo) : 'https://placehold.co/150x50?text=Logo' }}"
-                                alt="Logo" class="w-24 h-16 max-w-24 max-h-16 mb-2 object-cover">
+                                alt="Logo" class="w-26 h-10 max-w-26 max-h-10 mb-2 object-cover">
                             <h1 class="text-[1.56rem] font-semibold">{{ $company->name }}</h1>
                             <p class="mt-2 mb-2 text-gray-700">{{ $company->location }}</p>
                             <p

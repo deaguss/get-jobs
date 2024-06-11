@@ -29,6 +29,8 @@
                         <div>
                             <input type="text" placeholder="Website"
                                 class="border border-gray-400 py-1 px-2 rounded-md w-full mb-3" name="website" />
+                            <input type="email" placeholder="company@explain.com"
+                                class="border border-gray-400 py-1 px-2 rounded-md w-full mb-3" name="email" />
                             <textarea placeholder="Company Description"
                                 class="border border-gray-400 py-1 px-2 rounded-md w-full mb-5" name="description"
                                 rows="8"></textarea>

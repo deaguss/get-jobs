@@ -41,9 +41,9 @@ class CompanyJobMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.company-message',
             with: [
-                'name' => $this->user,
+                'user' => $this->user,
                 'cover_letter' => $this->cover_letter,
                 'company' => $this->findCompany
             ]
