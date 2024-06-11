@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notification: Get jobs</title>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -87,8 +88,12 @@
         </ul>
         <p>Berikut file yang dilampirkan:</p>
         <div class="button-container">
-            <a class="btn" href="{{ asset('storage/resume/' . $user->profile->resume) }}">Download Resume</a>
-            <a class="btn" href="{{ asset('storage/company/cover_letter/' . $cover_letter) }}">Download Cover Letter</a>
+            <a class="btn"
+                href="{{ 'http://localhost:8000' . asset('storage/resume/' . $user->profile->resume) }}">Download
+                Resume</a>
+            <a class="btn"
+                href="{{ 'http://localhost:8000' . asset('storage/company/cover_letter/' . $cover_letter) }}">Download
+                Cover Letter</a>
         </div>
     </div>
 </body>
