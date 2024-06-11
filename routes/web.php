@@ -76,13 +76,12 @@ Route::prefix('/')->name('home.')->group(function () {
             Route::post('/', [CompanyController::class, 'addJobAdvertisement'])->name('add');
             Route::delete('/{id}/delete', [CompanyController::class, 'deleteJobAdvertisement'])->name('delete');
         });
+
+        Route::prefix('/explore')->name('explore.')->group(function () {
+            Route::get('/', [CompanyController::class, 'explore'])->name('index');
+            Route::get('/{id}', [CompanyController::class, 'detail'])->name('detail');
+        });
     });
 });
 
-Route::get('/detail-company', function () {
-    return view('detail-company.index');
-});
 
-Route::get('/explore-companies', function () {
-    return view('explore-companies');
-});

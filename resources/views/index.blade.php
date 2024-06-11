@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Get jobs')
+@section('title', 'Get jobs - Dashboard')
 
 @include('partials.header')
 
@@ -8,7 +8,7 @@
 
 {{-- FORM Jobs Title Search --}}
 <div class="w-full px-4 py-16 rounded header_search bg-gradient-to-r from-rose-700 to-pink-600">
-    <form action="/search" class="max-w-full h-fit md:flex md:gap-x-4 md:items-end" method="GET">
+    <form action="" class="max-w-full h-fit md:flex md:gap-x-4 md:items-end" method="GET">
         <div class="flex-grow mb-5 md:mb-0">
             <label for="jobs-title" class="block mb-1 text-xl font-bold text-white">Jobs Title</label>
             <input type="text" id="jobs-title"
@@ -38,60 +38,63 @@
                 d="m1 1 4 4 4-4" />
         </svg>
     </button>
-    <div id="dropdownNavbar" class="hidden w-full px-2 font-normal">
-        <ul aria-labelledby="dropdownLargeButton" class="flex gap-x-2 w-fit">
-            <li class="py-1.5">
-                <span id="badge-dismiss-red"
-                    class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-800 bg-red-100 rounded me-2 dark:bg-red-900 dark:text-red-300">
-                    IT Support
-                    <button type="button"
-                        class="inline-flex items-center p-1 text-sm text-red-400 bg-transparent rounded-sm ms-2 hover:bg-red-200 hover:text-red-900 dark:hover:bg-red-800 dark:hover:text-red-300"
-                        data-dismiss-target="#badge-dismiss-red" aria-label="Remove">
-                        <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Remove badge</span>
-                    </button>
-                </span>
-            </li>
-            <li class="py-1.5">
-                <span id="badge-dismiss-red"
-                    class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-800 bg-red-100 rounded me-2 dark:bg-red-900 dark:text-red-300">
-                    IT Support
-                    <button type="button"
-                        class="inline-flex items-center p-1 text-sm text-red-400 bg-transparent rounded-sm ms-2 hover:bg-red-200 hover:text-red-900 dark:hover:bg-red-800 dark:hover:text-red-300"
-                        data-dismiss-target="#badge-dismiss-red" aria-label="Remove">
-                        <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Remove badge</span>
-                    </button>
-                </span>
-            </li>
-            <li class="py-1.5">
-                <span id="badge-dismiss-red"
-                    class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-800 bg-red-100 rounded me-2 dark:bg-red-900 dark:text-red-300">
-                    IT Support
-                    <button type="button"
-                        class="inline-flex items-center p-1 text-sm text-red-400 bg-transparent rounded-sm ms-2 hover:bg-red-200 hover:text-red-900 dark:hover:bg-red-800 dark:hover:text-red-300"
-                        data-dismiss-target="#badge-dismiss-red" aria-label="Remove">
-                        <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Remove badge</span>
-                    </button>
-                </span>
-            </li>
+    <div id="dropdownNavbar" class="w-full px-36 font-normal">
+        <ul id="searchHistoryList" aria-labelledby="dropdownLargeButton" class="flex gap-x-2 w-fit">
+            {{-- history --}}
         </ul>
     </div>
 </div>
 
+
+@if (!empty($searchJobs))
+<div>
+    <div class="px mt-16 promotion_people mb-10">
+        <h1 class="text-2xl font-semibold">Find a job</h1>
+        <p class="pt-2 font-light text-justify text-gray-900 mr-[40rem]">find jobs that are relevant to your desires.
+            just apply and wait for a reply.</p>
+        <button type="button" onclick="window.location.href='/'" class=" text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4
+            focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-10
+            mt-5">&larr; Back </button>
+        <div class="grid grid-cols-3">
+            {{-- Card --}}
+            @foreach ($searchJobs as $jobs)
+            <a href="{{ $jobs->id }}/job"
+                class="mx-auto mt-10 p-6 w-96 max-w-96 bg-white rounded-lg shadow-md border-2 border-transparent hover:border-indigo-600">
+                <div class="flex items-start justify-between">
+                    <img src="{{ $jobs->company->logo ? asset('storage/company/logo/' . $jobs->company->logo) : 'https://placehold.co/100x50' }}"
+                        alt="logo" class="w-16 max-w-16">
+                    @php
+                    $isActive = false;
+                    foreach ($savedJobByUsers as $saved) {
+                    if ($saved->job_advertisement_id === $jobs->id) {
+                    $isActive = true;
+                    break;
+                    }
+                    }
+                    @endphp
+                    <form action="/{{ $jobs->id }}/saved-jobs" method="POST">
+                        @csrf
+                        <button type="submit">
+                            <i
+                                class="fa fa-bookmark {{ $isActive ? 'text-pink-600' : 'text-pink-300 hover:text-pink-600' }} text-xl"></i>
+
+                        </button>
+                    </form>
+                </div>
+                <div class="mt-4">
+                    <h2 class="text-lg font-semibold">{{ $jobs->title }}</h2>
+                    <p class="text-gray-700">{{ $jobs->company->name }}</p>
+                    <p class="mt-2 text-gray-700">{{ $jobs->location }}</p>
+                    <p class="mt-1 text-gray-700">{{ $jobs->type }}</p>
+                    <p class="mt-2 text-indigo-700 font-semibold">${{ $jobs->salary }}</p>
+                    <p class="mt-2 text-gray-500 text-sm">{{ $jobs->created_at->diffForHumans() }}</p>
+                </div>
+            </a>
+            @endforeach
+        </div>
+    </div>
+</div>
+@else
 {{-- Slider --}}
 <div>
     <div class="px mt-16 promotion_people">
@@ -177,7 +180,7 @@
         <div class="grid grid-cols-3">
             {{-- Card --}}
             @foreach ($allJobs as $jobs)
-            <a href="{{ $jobs->id }}/job"
+            <a href="{{ route('home.detail.jobs', $jobs->id) }}"
                 class="mx-auto mt-10 p-6 w-96 max-w-96 bg-white rounded-lg shadow-md border-2 border-transparent hover:border-indigo-600">
                 <div class="flex items-start justify-between">
                     <img src="{{ $jobs->company->logo ? asset('storage/company/logo/' . $jobs->company->logo) : 'https://placehold.co/100x50' }}"
@@ -217,9 +220,51 @@
             more &rarr;</button>
     </div>
 </div>
+@endif
 
 
 <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+            const searchQuery = @json($searchQuery);
+
+            let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+            if (searchQuery.title || searchQuery.location) {
+                searchHistory.push(searchQuery);
+                localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+            }
+
+            // console.log('Search History:', searchHistory);
+
+            const searchHistoryList = document.getElementById('searchHistoryList');
+            searchHistory.forEach((query, index) => {
+                const listItem = document.createElement('li');
+                listItem.className = 'py-1.5';
+                listItem.innerHTML = `
+                    <span id="badge-dismiss-${index}" class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-800 bg-red-100 rounded me-2 dark:bg-red-900 dark:text-red-300">
+                        ${query.title || ''} ${query.location || ''}
+                        <button type="button" class="inline-flex items-center p-1 text-sm text-red-400 bg-transparent rounded-sm ms-2 hover:bg-red-200 hover:text-red-900 dark:hover:bg-red-800 dark:hover:text-red-300" data-dismiss-target="#badge-dismiss-${index}" aria-label="Remove">
+                            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Remove badge</span>
+                        </button>
+                    </span>
+                `;
+                searchHistoryList.appendChild(listItem);
+            });
+
+            const lastSearch = searchHistory.length ? searchHistory[searchHistory.length - 1] : null;
+            if (lastSearch) {
+                if (lastSearch.title) {
+                    document.getElementById('title').value = lastSearch.title;
+                }
+                if (lastSearch.location) {
+                    document.getElementById('location').value = lastSearch.location;
+                }
+            }
+        });
+
     const wrapper = document.querySelector(".wrapper");
     const carousel = document.querySelector(".carousel");
     const firstCardWidth = carousel.querySelector(".card").offsetWidth;
@@ -281,7 +326,7 @@
             carousel.classList.remove("no-transition");
         }
         clearTimeout(timeoutId);
-        if(!wrapper.matches(":hover")) autoPlay();
+        if(!wrapper.matches(":hover"));
     }
 
 

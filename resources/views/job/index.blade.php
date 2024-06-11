@@ -11,7 +11,8 @@
             alt="Company logo" class="mb-6 w-40 max-w-40">
         <h1 class="text-2xl font-semibold mb-2">{{ $job->title }}</h1>
         <h2 class="text-lg text-gray-600 mb-4">{{ $job->company->name }}
-            <a href="#" class="text-blue-600 hover:underline-offset-2 hover:underline">See
+            <a href="{{ route('home.company.explore.detail', $job->company->id) }}"
+                class="text-blue-600 hover:underline-offset-2 hover:underline">See
                 company</a>
         </h2>
         <div class="space-y-2 mb-4">

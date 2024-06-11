@@ -11,10 +11,21 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
+
+        $title = $request->input('title');
+        $location = $request->input('location');
+
+        $searchJobs = null;
+
+        if(isset($title) || isset($location)){
+            $searchJobs = $this->searchJobs($title?: null, $location?: null);
+        }
+
+
         $allJobs = $this->allJobs();
         $savedJobByUsers = $this->savedJobByUsers();
         $allUsers = $this->allUsers();
-        $searchJobs = $this->searchJobs($request);
+
 
         // if($searchJobs){
         //     dd($searchJobs);
@@ -24,7 +35,8 @@ class HomeController extends Controller
             'allJobs' => $allJobs,
             'savedJobByUsers' => $savedJobByUsers,
             'allUsers' => $allUsers,
-            'searchJobs' => $searchJobs
+            'searchJobs' => $searchJobs,
+            'searchQuery' => ['title' => $title, 'location' => $location]
         ]);
     }
 
@@ -71,11 +83,8 @@ class HomeController extends Controller
         return User::with('profile')->get();
     }
 
-    public function searchJobs($request)
+    public function searchJobs($title, $location)
     {
-
-        $title = $request->input('title');
-        $location = $request->input('location');
 
         return JobAdvertisement::with('company')
             ->where('title', 'like', '%' . $title . '%')

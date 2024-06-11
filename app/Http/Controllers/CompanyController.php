@@ -11,6 +11,7 @@ use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobAdvertisement;
 use App\Models\SavedJob;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -287,4 +288,41 @@ class CompanyController extends Controller
         return redirect()->back();
     }
 
+    public function explore(Request $request)
+    {
+        $searchCompany = null;
+
+        if(isset($request->search)) {
+            $searchCompany = $this->searchCompany($request->search);
+        }
+
+        $companies = Company::with('jobAdvertisements')->get();
+
+        return view('company.explore',
+        [
+            'companies' => $companies,
+            'searchCompany' => $searchCompany
+        ]);
+    }
+
+    public function detail($id = null) {
+        $savedJobByUsers = $this->savedJobByUsers();
+        $company = Company::with('jobAdvertisements')->findOrFail($id);
+
+        return view('company.detail', [
+            'company' => $company,
+            'savedJobByUsers' => $savedJobByUsers
+        ]);
+    }
+
+    public function savedJobByUsers()
+    {
+        return SavedJob::
+        where('user_id', auth()->user()->id)->get();
+    }
+
+    public function searchCompany($company = null)
+    {
+        return Company::where('name', 'like', '%' . $company . '%')->get();
+    }
 }

@@ -25,7 +25,7 @@
                         class="block px-3 py-2 text-gray-800 hover:underline hover:underline-offset-8 rounded">Dashboard</a>
                 </li>
                 <li>
-                    <a href="/explore-companies"
+                    <a href="{{ route('home.company.explore.index') }}"
                         class="block px-3 py-2 text-gray-800 hover:underline hover:underline-offset-8 rounded">Explore
                         company</a>
                 </li>
