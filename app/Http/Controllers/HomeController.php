@@ -21,9 +21,14 @@ class HomeController extends Controller
             $searchJobs = $this->searchJobs($title?: null, $location?: null);
         }
 
+        $savedJobByUsers[] = null;
+
+        if(auth()->user()){
+            $savedJobByUsers = $this->savedJobByUsers();
+        }
+
 
         $allJobs = $this->allJobs();
-        $savedJobByUsers = $this->savedJobByUsers();
         $allUsers = $this->allUsers();
 
 

@@ -34,7 +34,7 @@ class AuthController extends Controller
             'user_id' => $user->id
         ]);
 
-        if($profile == null) return Session::flash('error_profile', 'Profile not created');
+        if($profile == null) return Session::flash('errors', 'Profile not created');
 
         Mail::to($user->email)->send(new VerifyOtp($user));
 
@@ -99,15 +99,15 @@ class AuthController extends Controller
 
             return redirect()->route('signin.form');
         }else {
+            Session::flash('errors', 'Invalid or expired OTP.');
             return view('auth.verifyOtp', [
                 'id' => $id,
-                'errors'=> ['Invalid or expired OTP.']
             ]);
         }
     } catch (\Exception $e) {
+        Session::flash('errors', 'Verification failed. Please try again.');
         return view('auth.verifyOtp', [
             'id' => $id,
-            'errors'=> ['Verification failed. Please try again.']
         ]);
         }
     }
@@ -125,14 +125,14 @@ class AuthController extends Controller
 
             $successMessage = 'A new OTP has been sent to your email address.';
 
+            Session::flash('success', $successMessage);
             return view('auth.verifyOtp', [
                 'id' => $id,
-                'success' => $successMessage
             ]);
         } catch (\Exception $e) {
+            Session::flash('errors','Failed to resend OTP. Please try again.');
             return view('auth.verifyOtp', [
                 'id' => $id,
-                'errors' => ['Failed to resend OTP. Please try again.']
             ]);
         }
     }

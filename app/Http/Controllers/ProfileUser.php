@@ -51,34 +51,34 @@ class ProfileUser extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        if($user == null) return Session::flash('error_profile', 'Profile not found');
+        if($user == null) return Session::flash('errors', 'Profile not found');
 
         $user->update([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'address' => $request->address,
-            'city' => $request->city,
-            'phone' => $request->phone,
-            'country' => $request->country,
-            'postal_code' => $request->postal_code,
+            'first_name' => $request->first_name ?? $user->first_name,
+            'last_name' => $request->last_name ?? $user->last_name,
+            'address' => $request->address ?? $user->address,
+            'city' => $request->city ?? $user->city,
+            'phone' => $request->phone ?? $user->phone,
+            'country' => $request->country ?? $user->country,
+            'postal_code' => $request->postal_code ?? $user->postal_code,
         ]);
 
         if($user->profile == null){
             $user->profile()->create([
                 'id' => $user->id,
                 'user_id' => $user->id,
-                'hobbies' => $request->hobbies,
+                'hobbies' => $request->hobbies ?? 'none',
                 'avaliable' => $request->avaliable ? '1' : '0',
             ]);
         }else {
             $user->profile()->update([
                 'user_id' => $user->id,
-                'hobbies' => $request->hobbies,
+                'hobbies' => $request->hobbies ?? 'none',
                 'avaliable' => $request->avaliable ? '1' : '0',
             ]);
         }
 
-        Session::flash('success_profile', 'Profile updated successfully');
+        Session::flash('success', 'Profile updated successfully');
 
         return redirect()->back();
     }
@@ -86,7 +86,7 @@ class ProfileUser extends Controller
     public function updateSummary(ProfileRequest $request){
         $user = User::find(auth()->user()->id);
 
-        if($user == null) return Session::flash('error_summary', 'Personal summary not found');
+        if($user == null) return Session::flash('errors', 'Personal summary not found');
 
         $user->profile()->update([
             'user_id' => $user->id,
@@ -94,7 +94,7 @@ class ProfileUser extends Controller
         ]);
 
 
-        Session::flash('success_summary', 'Personal summary updated successfully');
+        Session::flash('success', 'Personal summary updated successfully');
 
         return redirect()->back();
     }
@@ -102,7 +102,7 @@ class ProfileUser extends Controller
     public function updateAvatar(ProfileRequest $request){
         $user = User::find(auth()->user()->id);
 
-        if($user == null) return Session::flash('error_avatar', 'Avatar not found');
+        if($user == null) return Session::flash('errors', 'Avatar not found');
 
         $imageFile = $request->file('avatar');
         $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
@@ -118,7 +118,7 @@ class ProfileUser extends Controller
             'avatar' => $imageName
         ]);
 
-        Session::flash('success_avatar', 'Avatar updated successfully!');
+        Session::flash('success', 'Avatar updated successfully!');
 
         return redirect()->back();
     }
@@ -126,28 +126,28 @@ class ProfileUser extends Controller
     public function updateCareer(ProfileRequest $request){
         $user = User::find(auth()->user()->id);
 
-        if($user == null) return Session::flash('error_recent_work', 'Career history not found');
+        if($user == null) return Session::flash('errors', 'Career history not found');
 
         $user->profile()->update([
             'user_id' => $user->id,
             'recent_work' => $request->recent_work
         ]);
 
-        Session::flash('success_recent_work', 'Career history updated successfully');
+        Session::flash('success', 'Career history updated successfully');
 
         return redirect()->back();
     }
     public function updateEducation(ProfileRequest $request){
         $user = User::find(auth()->user()->id);
 
-        if($user == null) return Session::flash('error_recent_education', 'Recent education not found');
+        if($user == null) return Session::flash('errors', 'Recent education not found');
 
         $user->profile()->update([
             'user_id' => $user->id,
             'recent_education' => $request->recent_education
         ]);
 
-        Session::flash('success_recent_education', 'Recent education updated successfully');
+        Session::flash('success', 'Recent education updated successfully');
 
         return redirect()->back();
     }
@@ -155,28 +155,28 @@ class ProfileUser extends Controller
     public function updateSkills(ProfileRequest $request){
         $user = User::find(auth()->user()->id);
 
-        if($user == null) return Session::flash('error_recent_skills', 'Skills not found');
+        if($user == null) return Session::flash('errors', 'Skills not found');
 
         $user->profile()->update([
             'user_id' => $user->id,
             'skills' => $request->skills
         ]);
 
-        Session::flash('success_recent_education', 'Skills updated successfully');
+        Session::flash('success', 'Skills updated successfully');
 
         return redirect()->back();
     }
     public function updateLanguages(ProfileRequest $request){
         $user = User::find(auth()->user()->id);
 
-        if($user == null) return Session::flash('error_recent_languages', 'Languages not found');
+        if($user == null) return Session::flash('errors', 'Languages not found');
 
         $user->profile()->update([
             'user_id' => $user->id,
             'languages' => $request->languages
         ]);
 
-        Session::flash('success_recent_languages', 'Languages updated successfully');
+        Session::flash('success', 'Languages updated successfully');
 
         return redirect()->back();
     }
@@ -184,7 +184,7 @@ class ProfileUser extends Controller
     public function updateResume(ProfileRequest $request){
         $user = User::find(auth()->user()->id);
 
-        if($user == null) return Session::flash('error_resume', 'Resume not found');
+        if($user == null) return Session::flash('errors', 'Resume not found');
 
         $resumeFile = $request->file('resume');
         $resumeName = time(). '-' . $resumeFile->getClientOriginalName();
@@ -200,7 +200,7 @@ class ProfileUser extends Controller
             'resume' => $resumeName
         ]);
 
-        Session::flash('success_resume', 'Resume updated successfully!');
+        Session::flash('success', 'Resume updated successfully!');
 
         return redirect()->back();
     }
@@ -208,14 +208,14 @@ class ProfileUser extends Controller
     public function updateIsVisible(ProfileRequest $request){
         $user = User::find(auth()->user()->id);
 
-        if($user == null) return Session::flash('error_is_visble', 'Is Visible  not found');
+        if($user == null) return Session::flash('errors', 'Is Visible  not found');
 
         $user->profile()->update([
             'user_id' => $user->id,
             'is_visible' => $request->is_visible ? '1' : '0',
         ]);
 
-        Session::flash('success_is_visble', 'Is Visible updated successfully');
+        Session::flash('success', 'Is Visible updated successfully');
 
         return redirect()->back();
     }
@@ -234,7 +234,7 @@ class ProfileUser extends Controller
             'certi_description' => $request->certi_description
         ]);
 
-        Session::flash('success_certi', 'Certificate added successfully!');
+        Session::flash('success', 'Certificate added successfully!');
 
         return redirect()->back();
     }

@@ -662,8 +662,15 @@
     </div>
 </div>
 
-{{-- @include('components.simple-alert', ['errors' => session('error')])
-@include('components.simple-alert', ['success' => session('success')]) --}}
+@if ($errors->any())
+@foreach ($errors->all() as $error)
+@include('components.alert', ['type' => 'error', 'message' => $error])
+@endforeach
+@endif
+
+@if (session('success'))
+@include('components.alert', ['type' => 'success', 'message' => session('success')])
+@endif
 
 @include("partials.footer")
 @endsection

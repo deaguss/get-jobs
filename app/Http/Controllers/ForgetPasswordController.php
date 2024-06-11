@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ForgetPasswordController extends Controller
 {
@@ -24,14 +25,16 @@ class ForgetPasswordController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (! $user) {
-            return view('auth.forgetPassword', ['errors' => 'We can\'t find a user with that e-mail address.']);
+            Session::flash('errors', 'We can\'t find a user with that e-mail address.');
+            return view('auth.forgetPassword');
         }
 
         $user->createPasswordResetToken();
 
         Mail::to($user->email)->send(new ResetPasswordMail($user));
 
-        return view('auth.forgetPassword', ['success' => 'We have e-mailed your password reset link.']);
+        Session::flash('success', 'We have e-mailed your password reset link!');
+        return view('auth.forgetPassword');
     }
 
     public function showResetPasswordForm($token = null)
@@ -56,18 +59,21 @@ class ForgetPasswordController extends Controller
         $user = User::where('reset_password_token', $token)->first();
 
         if (! $user) {
-            return view('auth.setPassword', ['errors' => 'This password reset token is invalid.']);
+            Session::flash('errors' , 'This password reset token is invalid.');
+            return view('auth.setPassword');
         }
 
         if($user->reset_password_token_expires_at < now()){
-            return view('auth.setPassword', ['errors' => 'This password reset token has expired.']);
+            Session::flash('errors' , 'This password reset token has expired. Please try again. ');
+            return view('auth.setPassword');
         }
 
         $user->password = Hash::make($request->password);
         $user->reset_password_token = null;
         $user->save();
 
-        return view('auth.signIn', ['success' => 'Your password has been reset.']);
+        Session::flash('success' , 'Your password has been reset.');
+        return view('auth.signIn');
     }
 
 

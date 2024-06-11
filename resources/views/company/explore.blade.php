@@ -148,4 +148,14 @@
 </script>
 @include("partials.footer")
 
+@if ($errors->any())
+@foreach ($errors->all() as $error)
+@include('components.alert', ['type' => 'error', 'message' => $error])
+@endforeach
+@endif
+
+@if (session('success'))
+@include('components.alert', ['type' => 'success', 'message' => session('success')])
+@endif
+
 @endsection

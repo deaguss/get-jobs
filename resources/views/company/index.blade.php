@@ -272,4 +272,15 @@
 <div class="w-full max-w-7xl">
     @include("partials.footer")
 </div>
+
+@if ($errors->any())
+@foreach ($errors->all() as $error)
+@include('components.alert', ['type' => 'error', 'message' => $error])
+@endforeach
+@endif
+
+@if (session('success'))
+@include('components.alert', ['type' => 'success', 'message' => session('success')])
+@endif
+
 @endsection

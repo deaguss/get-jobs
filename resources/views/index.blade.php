@@ -65,13 +65,17 @@
                         alt="logo" class="w-16 max-w-16">
                     @php
                     $isActive = false;
+                    if (!is_null($savedJobByUsers) && (is_array($savedJobByUsers) || is_object($savedJobByUsers))) {
                     foreach ($savedJobByUsers as $saved) {
-                    if ($saved->job_advertisement_id === $jobs->id) {
+                    if (!is_null($saved) && isset($saved->job_advertisement_id) && $saved->job_advertisement_id ===
+                    $jobs->id) {
                     $isActive = true;
                     break;
                     }
                     }
+                    }
                     @endphp
+
                     <form action="/{{ $jobs->id }}/saved-jobs" method="POST">
                         @csrf
                         <button type="submit">
@@ -187,13 +191,17 @@
                         alt="logo" class="w-16 max-w-16">
                     @php
                     $isActive = false;
+                    if (!is_null($savedJobByUsers) && (is_array($savedJobByUsers) || is_object($savedJobByUsers))) {
                     foreach ($savedJobByUsers as $saved) {
-                    if ($saved->job_advertisement_id === $jobs->id) {
+                    if (!is_null($saved) && isset($saved->job_advertisement_id) && $saved->job_advertisement_id ===
+                    $jobs->id) {
                     $isActive = true;
                     break;
                     }
                     }
+                    }
                     @endphp
+
                     <form action="/{{ $jobs->id }}/saved-jobs" method="POST">
                         @csrf
                         <button type="submit">
@@ -214,7 +222,7 @@
             </a>
             @endforeach
         </div>
-        <button type="button" onclick="window.location.href='/detail-company'" class=" text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4
+        <button type="button" onclick="window.location.href='/company/explore'" class=" text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4
             focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-10
             mt-5 ms-5">See
             more &rarr;</button>
@@ -337,4 +345,15 @@
     wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
 </script>
 @include("partials.footer")
+
+@if ($errors->any())
+@foreach ($errors->all() as $error)
+@include('components.alert', ['type' => 'error', 'message' => $error])
+@endforeach
+@endif
+
+@if (session('success'))
+@include('components.alert', ['type' => 'success', 'message' => session('success')])
+@endif
+
 @endsection

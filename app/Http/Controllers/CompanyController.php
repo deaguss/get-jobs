@@ -25,7 +25,7 @@ class CompanyController extends Controller
         $user = Auth::user();
 
         if (!$user->company) {
-            Session::flash('error_company', 'You need to register a company first.');
+            Session::flash('errors', 'You need to register a company first.');
             return redirect()->route('home.company.form');
         }
 
@@ -41,7 +41,7 @@ class CompanyController extends Controller
         $user = Auth::user();
 
         if ($user->company) {
-            Session::flash('error_company', 'You have already registered a company.');
+            Session::flash('errors', 'You have already registered a company.');
             return redirect()->back();
         }
 
@@ -54,11 +54,11 @@ class CompanyController extends Controller
         ]);
 
         if (!$company) {
-            Session::flash('error_company', 'Failed to register company.');
+            Session::flash('errors', 'Failed to register company.');
             return redirect()->back();
         }
 
-        Session::flash('success_company', 'Company registered successfully!');
+        Session::flash('success', 'Company registered successfully!');
 
         return redirect()->route('home.company.index');
     }
@@ -68,7 +68,7 @@ class CompanyController extends Controller
         $user = Auth::user();
 
         if (!$user->company) {
-            Session::flash('error_company', 'Company not found.');
+            Session::flash('errors', 'Company not found.');
             return redirect()->back();
         }
 
@@ -92,11 +92,11 @@ class CompanyController extends Controller
         ]);
 
         if (!$company) {
-            Session::flash('error_company', 'Failed to update company.');
+            Session::flash('errors', 'Failed to update company.');
             return redirect()->back();
         }
 
-        Session::flash('success_company', 'Company updated successfully!');
+        Session::flash('success', 'Company updated successfully!');
 
         return redirect()->route('home.company.index');
     }
@@ -107,7 +107,7 @@ class CompanyController extends Controller
         $user = Auth::user();
 
         if (!$user->company) {
-            Session::flash('error_job', 'You need to register a company first.');
+            Session::flash('errors', 'You need to register a company first.');
             return redirect()->back();
         }
 
@@ -122,11 +122,11 @@ class CompanyController extends Controller
         ]);
 
         if (!$jobAdvertisement) {
-            Session::flash('error_job', 'Failed to add job advertisement.');
+            Session::flash('errors', 'Failed to add job advertisement.');
             return redirect()->back();
         }
 
-        Session::flash('success_job', 'Job advertisement added successfully!');
+        Session::flash('success', 'Job advertisement added successfully!');
 
         return redirect()->back();
     }
@@ -136,12 +136,12 @@ class CompanyController extends Controller
         $user = Auth::user();
 
         if (!$user->company) {
-            Session::flash('error_job', 'You need to register a company first.');
+            Session::flash('errors', 'You need to register a company first.');
             return redirect()->back();
         }
 
         if (!$id) {
-            Session::flash('error_job', 'Job advertisement not found.');
+            Session::flash('errors', 'Job advertisement not found.');
             return redirect()->back();
         }
 
@@ -149,11 +149,11 @@ class CompanyController extends Controller
         ->findOrFail($id)->delete();
 
         if (!$jobAdvertisement) {
-            Session::flash('error_job', 'Failed to delete job advertisement.');
+            Session::flash('errors', 'Failed to delete job advertisement.');
             return redirect()->back();
         }
 
-        Session::flash('success_job', 'Job advertisement deleted successfully!');
+        Session::flash('success', 'Job advertisement deleted successfully!');
 
         return redirect()->back();
     }
@@ -162,7 +162,7 @@ class CompanyController extends Controller
         $job = JobAdvertisement::find($id);
 
         if (!$job) {
-            Session::flash('error_job', 'Job not found.');
+            Session::flash('errors', 'Job not found.');
             return redirect()->back();
         }
 
@@ -175,17 +175,17 @@ class CompanyController extends Controller
         if ($findSavedJob) {
             $findSavedJob->delete();
 
-            Session::flash('success_job', 'Unsaved the job.');
+            Session::flash('success', 'Unsaved the job.');
         } else {
             $savedJob = SavedJob::create([
                 'user_id' => $user->id,
                 'job_advertisement_id' => $job->id,
             ]);
             if (!$savedJob) {
-                Session::flash('error_job', 'Failed to save job advertisement.');
+                Session::flash('errors', 'Failed to save job advertisement.');
                 return redirect()->back();
             }
-            Session::flash('success_job', 'Job saved successfully!');
+            Session::flash('success', 'Job saved successfully!');
         }
 
         return redirect()->back();
@@ -197,26 +197,26 @@ class CompanyController extends Controller
         $user = Auth::user();
 
         if (!$user) {
-            Session::flash('error', 'You need to login first.');
+            Session::flash('errors', 'You need to login first.');
             return redirect()->back();
         }
 
         $jobs = JobAdvertisement::find($id);
 
         if (!$jobs) {
-            Session::flash('error', 'Job not found.');
+            Session::flash('errors', 'Job not found.');
             return redirect()->back();
         }
 
         if ($user->id === $jobs->admin_id) {
-            Session::flash('error', 'You cannot apply for your own job.');
+            Session::flash('errors', 'You cannot apply for your own job.');
             return redirect()->back();
         }
 
         $company = Company::find($jobs->company_id);
 
         if (!$company) {
-            Session::flash('error', 'Company not found.');
+            Session::flash('errors', 'Company not found.');
             return redirect()->back();
         }
 
@@ -248,7 +248,7 @@ class CompanyController extends Controller
         // exit();
 
         if (!$application) {
-            Session::flash('error', 'Failed to submit application.');
+            Session::flash('errors', 'Failed to submit application.');
             return redirect()->back();
         }
 
@@ -270,7 +270,7 @@ class CompanyController extends Controller
             $job->update([
                 'status' => 'rejected',
             ]);
-            Session::flash('error', 'Failed to send application email.');
+            Session::flash('errors', 'Failed to send application email.');
             return redirect()->back();
         }
 
@@ -280,7 +280,7 @@ class CompanyController extends Controller
         //     $job->update([
         //         'status' => 'rejected',
         //     ]);
-        //     Session::flash('error', 'Failed to associate application with the job.');
+        //     Session::flash('errors', 'Failed to associate application with the job.');
         //     return redirect()->back();
         // }
 

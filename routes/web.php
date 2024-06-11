@@ -21,14 +21,14 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::prefix('sign-up')->name('signup.')->group(function () {
+Route::prefix('sign-up')->name('signup.')->middleware('guest')->group(function () {
     Route::get('/', [AuthController::class, 'showRegistrationForm'])->name('form');
     Route::post('/', [AuthController::class, 'register']);
     Route::post('/verify-otp/{id}', [AuthController::class, 'verifyOtp'])->name('verify.otp');
     Route::post('/resend-otp/{id}', [AuthController::class, 'resendOtp'])->name('resend.otp');
 });
 
-Route::prefix('sign-in')->name('signin.')->group(function () {
+Route::prefix('sign-in')->name('signin.')->middleware('guest')->group(function () {
     Route::get('/', [AuthController::class, 'showLoginForm'])->name('form');
     Route::post('/', [AuthController::class, 'login']);
     Route::get('/forget-password', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.form');
@@ -38,17 +38,23 @@ Route::prefix('sign-in')->name('signin.')->group(function () {
     Route::post('/reset-password/{token}', [ForgetPasswordController::class, 'resetPassword'])->name('reset.password');
 });
 
-Route::get('/sign-out', [AuthController::class, 'logout'])->name('sign.out');
+Route::get('/sign-out', [AuthController::class, 'logout'])->middleware('auth')->name('sign.out');
 
 Route::prefix('/')->name('home.')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('index');
-    Route::post('/{id}/saved-jobs', [CompanyController::class, 'saveJobAdvertisement'])->name('save.jobs');
-    Route::get('/{id}/job', [HomeController::class, 'detailJob'])->name('detail.jobs');
+    Route::get('/', [HomeController::class, 'index'])
+    ->name('index');
 
-    Route::get('/{id}/apply', [HomeController::class, 'applyJob'])->name('apply.jobs');
-    Route::post('/{id}/apply/send', [CompanyController::class, 'applySend'])->name('apply.send');
+    Route::post('/{id}/saved-jobs',[CompanyController::class, 'saveJobAdvertisement'])
+    ->middleware('auth')->name('save.jobs');
 
-    Route::prefix('/profile')->name('profile.')->group(function () {
+    Route::get('/{id}/job', [HomeController::class, 'detailJob'])
+    ->middleware('auth')->name('detail.jobs');
+
+    Route::get('/{id}/apply', [HomeController::class, 'applyJob'])
+    ->middleware('auth')->name('apply.jobs');
+    Route::post('/{id}/apply/send', [CompanyController::class, 'applySend'])->middleware('auth')->name('apply.send');
+
+    Route::prefix('/profile')->middleware('auth')->name('profile.')->group(function () {
         Route::get('/', [ProfileUser::class, 'index'])->name('index');
         Route::put('/update', [ProfileUser::class, 'updateProfile'])->name('update');
         Route::put('/update-summary', [ProfileUser::class, 'updateSummary'])->name('update.summary');
@@ -68,18 +74,23 @@ Route::prefix('/')->name('home.')->group(function () {
 
     Route::prefix('/company')->name('company.')->group(function () {
         Route::get('/', [CompanyController::class, 'index'])->name('index');
-        Route::get('/register', [CompanyController::class, 'register'])->name('form');
-        Route::post('/register', [CompanyController::class, 'addCompany'])->name('add');
-        Route::put('/update', [CompanyController::class, 'updateCompany'])->name('update');
+        Route::get('/register', [CompanyController::class, 'register'])
+        ->middleware('auth')->name('form');
+        Route::post('/register', [CompanyController::class, 'addCompany'])
+        ->middleware('auth')->name('add');
+        Route::put('/update', [CompanyController::class, 'updateCompany'])
+        ->middleware('auth')->name('update');
 
-        Route::prefix('/job')->name('job.')->group(function () {
+        Route::prefix('/job')->middleware('auth')->name('job.')->group(function ()
+        {
             Route::post('/', [CompanyController::class, 'addJobAdvertisement'])->name('add');
             Route::delete('/{id}/delete', [CompanyController::class, 'deleteJobAdvertisement'])->name('delete');
         });
 
         Route::prefix('/explore')->name('explore.')->group(function () {
             Route::get('/', [CompanyController::class, 'explore'])->name('index');
-            Route::get('/{id}', [CompanyController::class, 'detail'])->name('detail');
+            Route::get('/{id}', [CompanyController::class, 'detail'])
+            ->middleware('auth')->name('detail');
         });
     });
 });

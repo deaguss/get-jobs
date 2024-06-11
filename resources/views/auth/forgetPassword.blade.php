@@ -30,7 +30,16 @@
         </div>
     </div>
 </section>
-{{-- @include("components.simple-alert", ['errors' => $errors] + (isset($success) ? ['success' => $success] : [])) --}}
+
+@if ($errors->any())
+@foreach ($errors->all() as $error)
+@include('components.alert', ['type' => 'error', 'message' => $error])
+@endforeach
+@endif
+
+@if (session('success'))
+@include('components.alert', ['type' => 'success', 'message' => session('success')])
+@endif
 
 @include("partials.footer")
 @endsection
