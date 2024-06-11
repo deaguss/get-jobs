@@ -1,6 +1,6 @@
 @props(['type' => 'success', 'message'])
 
-<div class="fixed bottom-0 right-0 z-10">
+<div class="fixed w-fit bottom-0 right-0 z-10">
     <div class="flex p-4 mb-4 text-sm rounded-lg {{ $type === 'error' ? 'text-red-800 bg-red-50 dark:bg-gray-800 dark:text-red-400' : 'text-green-800 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800' }}"
         role="alert">
         <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

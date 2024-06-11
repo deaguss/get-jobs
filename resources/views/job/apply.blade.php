@@ -42,8 +42,8 @@
             <section class="mb-8">
                 <h3 class="text-xl font-semibold mb-4">Cover letter</h3>
                 <div class="space-y-4">
-                    <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">Upload
-                        resume</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">upload cover
+                        letter</label>
                     <input
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                         id="file_input" type="file" name="cover_letter" required>
